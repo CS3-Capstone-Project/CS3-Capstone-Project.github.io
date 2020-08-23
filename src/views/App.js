@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import "./App.scss";
 
+//Views
+import Landing from "./landing/Landing.js";
+
 class App extends Component {
   render() {
-    return <h1>Hello World!</h1>;
+    return (
+    	<Landing/>
+    );
   }
 }
 
