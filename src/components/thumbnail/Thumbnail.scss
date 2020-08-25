@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/bootstrap";
+
+.ttop{
+	height: 150px;
+	width:250px;
+	
+	box-shadow: 1px 1px 5px grey;
+	border-radius: 2px;
+}
+
+.t-bottom{
+	margin-top: 5px;
+}
+
+.a, .a:hover{
+	text-decoration: none;
+	color: black;
+}

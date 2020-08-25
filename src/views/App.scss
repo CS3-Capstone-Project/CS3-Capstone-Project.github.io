@@ -1,0 +1,17 @@
+@import "~bootstrap/scss/bootstrap";
+
+.bottom-nav{
+	text-align: center;
+	padding-bottom: 7px;
+	padding-top: 5px;
+	background-color: white;
+	overflow: hidden;
+	position: fixed;
+	box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+	bottom: 0;
+	width: 100%;
+}
+
+.links, .links:hover{
+	text-decoration: none;
+}

@@ -7,11 +7,17 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
+//import Jumbotron from 'react-bootstrap/Jumbotron';
+//import Button from 'react-bootstrap/Button';
+
+//Material UI API
+import Button from '@material-ui/core/Button';
 
 //Styles
 import "./Landing.scss";
+
+//Components
+import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 
 //Views
 import questions from "../questionnaire/questionnaire.js";
@@ -19,16 +25,205 @@ import questions from "../questionnaire/questionnaire.js";
 export default class Landing extends Component{
 	render(){
 		return(
-			<Container className="center-v">
+			<Container fluid sstyle={{backgroundColor:"#f5f5f5"}}>
+			<Container className="wrapper">
+				<div><h3>Easy</h3></div>
+				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Jumbotron className="center-h landing-cover">
-							<h1>Hi, are you a</h1>
-							<p> <Button variant="info"> Student </Button> &nbsp; or a &nbsp; <Button variant="info"> Python Expert </Button></p>
-
-						</Jumbotron>
+						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
 					</Col>
 				</Row>
+
+				<div><h5>YouTube Playlists</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>Webpages</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>eBooks</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+					</Col>
+				</Row>
+				<hr/>
+
+				<div><h3>Intermediate</h3></div>
+				<div><h5>YouTube Videos</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>YouTube Playlists</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>Webpages</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>eBooks</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+					</Col>
+				</Row>
+				<hr/>
+				<div><h3>Hard</h3></div>
+				<div><h5>YouTube Videos</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>YouTube Playlists</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>Webpages</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+					</Col>
+				</Row>
+
+				<div><h5>eBooks</h5></div>
+				<Row>
+					<Col>
+						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+					</Col>
+					<Col>
+						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+					</Col>
+				</Row>
+
+			</Container>
 			</Container>
 		);
 	}
