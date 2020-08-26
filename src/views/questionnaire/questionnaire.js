@@ -1,24 +1,19 @@
-import React, { Component } from "react";
-
-//React Bootstrap API
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
+import React, { Component } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Dropbox from './Components/dropbox';
+import LPButton from './Components/LP button';
 
 
-export default class Landing extends Component{
-	render(){
-		return(
-			<Container className="center-v">
-				<Row>
-					<Col>
-						Something
-					</Col>
-				</Row>
-			</Container>
-		);
-	}
+export default class Questionnaire extends Component {
+    render() {
+        return ( 
+           <ul><Dropbox/>
+                <li>The learning path is based on the level you chose.</li>
+                <li>You can choose not to take the learning path.</li>
+                <LPButton/>
+            </ul>
+        );
+    }
+
+
 }
