@@ -14,23 +14,26 @@ import ShareIcon from '@material-ui/icons/Share';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 
+//Images
+
 
 export default class Thumbnail extends Component{
 	render(){
 		return(
-			<div className="">
+			<div className="thumbnail">
 				<a className="a" target="_blank" href="https://livetembiso.co.za/">
 					<div className="ttop" style = {this.props.style}>
-						{this.props.name}
+						<div className="source">Source: {this.props.name}</div>
+						<p className="desc">Description: {this.props.description}</p>
 					</div>
 				</a>
 
 				<div className="t-bottom">
-					<ShareIcon onClick={copy} 
-						style={{backgroundColor:"", marginTop:"-20px", cursor:"copy"}}/> 
+					<ShareIcon onClick={copy} className="shareButton"/> 
 						&nbsp; 
 					<Rating style={{backgroundColor:""}} name= {this.props.name} size="large" precision={1} />
-					<p>Description of: {this.props.name}</p>
+					<p></p>
+					{/*<p>Description of: {this.props.name}</p>*/}
 				</div>
 			</div>
 		);

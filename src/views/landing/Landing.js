@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 
 //React Bootstrap API
 import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -25,13 +26,15 @@ import questions from "../questionnaire/questionnaire.js";
 export default class Landing extends Component{
 	render(){
 		return(
-			<Container fluid sstyle={{backgroundColor:"#f5f5f5"}}>
+			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
+				<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>
+				<hr/>
 			<Container className="wrapper">
 				<div><h3>Easy</h3></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="red" description="This is a description" style={{backgroundColor:"red"}}/>
 					</Col>
 					<Col>
 						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
