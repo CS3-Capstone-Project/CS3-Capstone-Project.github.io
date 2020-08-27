@@ -34,64 +34,64 @@ export default class Landing extends Component{
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" description="This is a description" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="red" description="This is a description" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>YouTube Playlists</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(34,139,34,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(34,139,34,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(34,139,34,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(34,139,34,0.5)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(34,139,34,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(34,139,34,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(34,139,34,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(34,139,34,0.8)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(34,139,34,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(34,139,34,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(34,139,34,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(34,139,34,1)"}}/>
 					</Col>
 				</Row>
 				<hr/>
@@ -100,64 +100,64 @@ export default class Landing extends Component{
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>YouTube Playlists</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,159,0,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,159,0,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,159,0,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,159,0,0.5)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,159,0,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,159,0,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,159,0,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,159,0,0.8)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,159,0,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,159,0,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,159,0,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,159,0,1)"}}/>
 					</Col>
 				</Row>
 				<hr/>
@@ -165,64 +165,64 @@ export default class Landing extends Component{
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>YouTube Playlists</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,56,0,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,56,0,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,56,0,0.5)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,56,0,0.5)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,56,0,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,56,0,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,56,0,0.8)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,56,0,0.8)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="red" style={{backgroundColor:"rgba(255,56,0,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="blue" style={{backgroundColor:"rgba(255,56,0,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="yellow" style={{backgroundColor:"rgba(255,56,0,1)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+						<Thumbnail name="brown" style={{backgroundColor:"rgba(255,56,0,1)"}}/>
 					</Col>
 				</Row>
 
