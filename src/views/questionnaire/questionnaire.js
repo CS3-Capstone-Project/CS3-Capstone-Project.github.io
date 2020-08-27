@@ -4,15 +4,18 @@ import React, { Component } from "react";
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
-import './Component/dropbox.jsx';
-import './Component/LP_button.jsx';
+import Dropbox from "./Components/dropbox.jsx";
+import LPButton from "./Components/LP_button.jsx";
 
 export default class Questionnaire extends Component{
 	render(){
 		return(
-			<div><Dropbox/>
+
+			<ul>
+                <Dropbox/>
+                <p>There is a learning path specially made for you based on the level you selected.</p>
                 <LPButton/>
-            </div>  
+            </ul>  
 		);
 	}
 }
