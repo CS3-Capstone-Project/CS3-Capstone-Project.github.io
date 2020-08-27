@@ -1,24 +1,18 @@
 import React, { Component } from "react";
 
 //React Bootstrap API
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
+import './Component/dropbox.jsx';
+import './Component/LP_button.jsx';
 
-
-export default class Landing extends Component{
+export default class Questionnaire extends Component{
 	render(){
 		return(
-			<Container className="center-v">
-				<Row>
-					<Col>
-						Something
-					</Col>
-				</Row>
-			</Container>
+			<div><Dropbox/>
+                <LPButton/>
+            </div>  
 		);
 	}
 }
