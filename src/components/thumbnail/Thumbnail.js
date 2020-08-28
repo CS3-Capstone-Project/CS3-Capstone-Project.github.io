@@ -18,6 +18,10 @@ import Button from 'react-bootstrap/Button';
 
 
 export default class Thumbnail extends Component{
+	copy = () => {
+		navigator.clipboard.writeText("https://livetembiso.co.za/");
+		alert("Link to " + this.props.name + " copied to clipboard");
+	}
 	render(){
 		return(
 			<div className="thumbnail">
@@ -29,7 +33,7 @@ export default class Thumbnail extends Component{
 				</a>
 
 				<div className="t-bottom">
-					<ShareIcon onClick={copy} className="shareButton"/> 
+					<ShareIcon onClick={this.copy} className="shareButton"/> 
 						&nbsp; 
 					<Rating style={{backgroundColor:""}} name= {this.props.name} size="large" precision={1} />
 					<p></p>
@@ -38,9 +42,4 @@ export default class Thumbnail extends Component{
 			</div>
 		);
 	}
-}
-
-function copy(){
-	navigator.clipboard.writeText("https://livetembiso.co.za/");
-	alert("Link copied to clipboard");
 }

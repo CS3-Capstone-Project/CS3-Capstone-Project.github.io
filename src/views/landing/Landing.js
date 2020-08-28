@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 //React Bootstrap API
 import Container from 'react-bootstrap/Container';
@@ -21,7 +21,7 @@ import "./Landing.scss";
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 
 //Views
-import questions from "../questionnaire/questionnaire.js";
+import questionnaire from "../questionnaire/questionnaire.js";
 
 export default class Landing extends Component{
 	render(){
@@ -30,7 +30,7 @@ export default class Landing extends Component{
 				<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>
 				<hr/>
 			<Container className="wrapper">
-				<div><h3>Easy</h3></div>
+				<div><h3>Beginner</h3></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
@@ -161,7 +161,7 @@ export default class Landing extends Component{
 					</Col>
 				</Row>
 				<hr/>
-				<div><h3>Hard</h3></div>
+				<div><h3>Advanced</h3></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
@@ -227,6 +227,12 @@ export default class Landing extends Component{
 				</Row>
 
 			</Container>
+				<div className="bottom-nav">
+    				<h6>Hi, are you a</h6> 
+    				<Link className="links" to="/questionnaire"> <Button size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
+    					&nbsp; or a &nbsp;
+    				<Link className="links" to="/login"> <Button size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
+    			</div>
 			</Container>
 		);
 	}
