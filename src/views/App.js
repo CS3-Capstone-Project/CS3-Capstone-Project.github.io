@@ -19,34 +19,20 @@ export default class App extends Component {
   render() {
     return (
     	<Router>
-    		<div>
-    			<Switch>
-    				<Route exact path="/"> 
-    					<Landing/>
-    				</Route>
+    		<Switch>
+    			<Route exact path="/"> 
+    				<Landing/>
+    			</Route>
 
-    				<Route path="/questionnaire">
-    					<Questionnaire/>
-    				</Route>
+    			<Route path="/questionnaire">
+    				<Questionnaire/>
+   				</Route>
 
-    				<Route path="/login">
-    					<Login/>
-    				</Route>
-    			</Switch>
-
-    			<div className="bottom-nav">
-    				<h6>Hi, are you a</h6> 
-    				<Link className="links" to="/questionnaire"> <Button size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
-    					&nbsp; or a &nbsp;
-    				<Link className="links" to="/login"> <Button size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    			</div>
-    		</div>
+   				<Route path="/login">
+   					<Login/>
+   				</Route>
+   			</Switch>
     	</Router>
     );
   }
-}
-
-
-function navbar(){
-
 }
