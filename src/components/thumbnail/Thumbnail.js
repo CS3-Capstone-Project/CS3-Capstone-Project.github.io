@@ -11,8 +11,8 @@ import Rating from '@material-ui/lab/Rating';
 import ShareIcon from '@material-ui/icons/Share';
 
 //React Bootstrap API
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
+import {Jumbotron} from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 
 //Images
 
@@ -29,8 +29,8 @@ export default class Thumbnail extends Component{
 				</a>
 
 				<div className="t-bottom">
-					<ShareIcon onClick={copy} className="shareButton"/> 
-						&nbsp; 
+					<ShareIcon onClick={copy} className="shareButton"/>
+						&nbsp;
 					<Rating style={{backgroundColor:""}} name= {this.props.name} size="large" precision={1} />
 					<p></p>
 					{/*<p>Description of: {this.props.name}</p>*/}

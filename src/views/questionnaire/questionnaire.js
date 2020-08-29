@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
 //React Bootstrap API
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+//import Container from 'react-bootstrap/Container';
+//import Row from 'react-bootstrap/Row';
+import {Col,Container,Row} from 'reactstrap';
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
+import {Jumbotron} from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 
 
 export default class Landing extends Component{
