@@ -1,67 +1,97 @@
 import React, { Component, setState } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 //React Bootstrap API
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import {Container } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
 import './Components/LP_button.scss';
 import Beginner from "./Components/Beginner.js";
+import pythonImg from "./Components/python.png";
+import Landing from "../landing/Landing.js";
 
 
 export default class Questionnaire extends Component{
-    style ={
-        fontSize: 17,
-        fontWeight: 'bold'
+    constructor(){
+        super();
+        this.styles ={
+            fontSize: 17,
+            fontWeight: 'bold'
+        };
+        this.state = {
+            name: "level"
+        };
+        this.form_control={
+            background: '#ffdf80'
+        };
+        this.onLevelChange =this.onLevelChange.bind(this);
+        this.formSubmit = this.formSubmit.bind(this);
     }
-    state = {
-        level: "Beginner"
-    };
-    onChange = e =>{
-        this.setState({value: e.target.value});
+    onLevelChange(event){
+        this.setState({
+            selectedOption:event.target.value
+        });
+    }
+    formSubmit(event){
+        event.preventDefault();
+        console.log(this.state.selectedOption)
     }
     render() { 
-        const {level} = this.state;
         return (
-            <div>
-                <Form>
-                    <h1>Current value is: {level}</h1>
+            <Container style={this.form_control}>
+                <img style={{width:"12em",margin:"5px"}} src={pythonImg}/>
+                <Form onSubmit={this.formSubmit}>
+                    <Form.Group>
+                    <Link to="/landing">
+                        <Button>Go back</Button>
+                    </Link>
+                    <p style={this.styles}>Take a learning path.</p>
+                    <ul></ul>
+                    <Form.Label style={this.styles}>select level:</Form.Label>
+                    </Form.Group>
                     <ul>
+                    <Form.Group>
                     <label>
                         Beginner
                         <input type="radio"
                         value="Beginner"
-                        checked={level==="Beginner"}
-                        onChange={this.onChange}/>
+                        checked={this.state.selectedOption==="Beginner"}
+                        onChange={this.onLevelChange}/>
                     </label>
+                    </Form.Group>
                     </ul>
                     <ul>
+                    <Form.Group>
                     <label>
                         Intermediate
                         <input type="radio"
                         value="Intermediate"
-                        checked={level==="Intermediate"}
-                        onChange={this.onChange}/>
+                        checked={this.state.selectedOption==="Intermediate"}
+                        onChange={this.onLevelChange}/>
                     </label>
+                    </Form.Group>
                     </ul>
                     <ul>
+                    <Form.Group>
                     <label>
                         Advanced
                         <input type="radio"
                         value="Advanced"
-                        checked={level==="Advanced"}
-                        onChange={this.onChange}/>
+                        checked={this.state.selectedOption==="Advanced"}
+                        onChange={this.onLevelChange}/>
                     </label>
+                    </Form.Group>
                     </ul>
-                </Form>
                 <div className="button-nav">
-                <Link to={level}>
+                <Link to={this.state.selectedOption}>
                     <Button className="btn btn-default btn-sm">
-                        <span className="glyphicon glyphicon-chevron-down"></span>Take a learning path</Button>
+                        <span className="glyphicon glyphicon-chevron-down"></span>Continue</Button>
                 </Link> 
                 </div>
-            </div>
+            </Form>
+            </Container>
         );
 		
 	}
