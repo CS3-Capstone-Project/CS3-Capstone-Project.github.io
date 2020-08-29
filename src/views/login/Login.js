@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -87,29 +86,3 @@ const style = {
  margin: 15,
 };
 export default Login;
-=======
-import React, { Component } from "react";
-
-//React Bootstrap API
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
-
-
-export default class Login extends Component{
-	render(){
-		return(
-			<Container className="center-v">
-				<Row>
-					<Col>
-						Something
-					</Col>
-				</Row>
-			</Container>
-		);
-	}
-}
->>>>>>> 462c22ad1b840d3f51571b3a30185fed359a4a1f
