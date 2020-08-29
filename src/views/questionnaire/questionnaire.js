@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, setState } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 //React Bootstrap API
@@ -15,38 +15,48 @@ export default class Questionnaire extends Component{
         fontSize: 17,
         fontWeight: 'bold'
     }
+    state = {
+        level: "Beginner"
+    };
+    onChange = e =>{
+        this.setState({value: e.target.value});
+    }
     render() { 
+        const {level} = this.state;
         return (
             <div>
                 <Form>
-                    <Form.Label as="legend" column sm={2}>
-                        <p style={this.style}>Select level</p>
-                    </Form.Label>
-                    {['radio'].map((type) => (
-                        <div key={`default-${type}`} className="mb-3">
-                            <Form.Check
-                                type="radio"
-                                label="Beginner"
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios1"
-                            />
-                            <Form.Check
-                                type="radio"
-                                label="Intermediate"
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios2"
-                            />
-                            <Form.Check
-                                type="radio"
-                                label="Advanced"
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios2"
-                            />
-                        </div>
-                    ))}
+                    <h1>Current value is: {level}</h1>
+                    <ul>
+                    <label>
+                        Beginner
+                        <input type="radio"
+                        value="Beginner"
+                        checked={level==="Beginner"}
+                        onChange={this.onChange}/>
+                    </label>
+                    </ul>
+                    <ul>
+                    <label>
+                        Intermediate
+                        <input type="radio"
+                        value="Intermediate"
+                        checked={level==="Intermediate"}
+                        onChange={this.onChange}/>
+                    </label>
+                    </ul>
+                    <ul>
+                    <label>
+                        Advanced
+                        <input type="radio"
+                        value="Advanced"
+                        checked={level==="Advanced"}
+                        onChange={this.onChange}/>
+                    </label>
+                    </ul>
                 </Form>
                 <div className="button-nav">
-                <Link to="/Beginner">
+                <Link to={level}>
                     <Button className="btn btn-default btn-sm">
                         <span className="glyphicon glyphicon-chevron-down"></span>Take a learning path</Button>
                 </Link> 
