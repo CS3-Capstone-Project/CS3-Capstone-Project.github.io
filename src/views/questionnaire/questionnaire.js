@@ -3,21 +3,19 @@ import React, { Component, setState } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 //React Bootstrap API
-<<<<<<< HEAD
+
 import Button from 'react-bootstrap/Button';
 import {Container } from 'react-bootstrap';
 import './LP_button.scss';
 import pythonImg from "./python.png";
 import Landing from "../landing/Landing.js";
-=======
+
 //import Container from 'react-bootstrap/Container';
 //import Row from 'react-bootstrap/Row';
 import {Col,Container,Row} from 'reactstrap';
 
 import {Jumbotron} from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
->>>>>>> 958c06dc90be42fd98d5f05a06a0ae763ddddd78
-
 
 export default class Questionnaire extends Component{
     constructor(){
