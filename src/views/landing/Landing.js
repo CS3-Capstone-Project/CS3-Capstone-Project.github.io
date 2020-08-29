@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 //React Bootstrap API
 //import Container from 'react-bootstrap/Container';
@@ -21,7 +21,7 @@ import "./Landing.scss";
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 
 //Views
-import questions from "../questionnaire/questionnaire.js";
+import questionnaire from "../questionnaire/questionnaire.js";
 
 export default class Landing extends Component{
 	render(){
@@ -30,203 +30,218 @@ export default class Landing extends Component{
 				<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>
 				<hr/>
 			<Container className="wrapper">
-				<div><h3>Easy</h3></div>
+				<div><h3>Beginner</h3></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" description="This is a description" style={{backgroundColor:"red"}}/>
+						<Thumbnail id="1" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+						<Thumbnail id="2" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+						<Thumbnail id="3" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+						<Thumbnail id="4" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>YouTube Playlists</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id="5" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id="6" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id="7" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id="8" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id="9" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id="10" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id="11" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id="12" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+						<Thumbnail id="13" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+						<Thumbnail id="14" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+						<Thumbnail id="15" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+						<Thumbnail id="16" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 				</Row>
+				<div style={{textAlign:"center"}}>
+					<Link to="beginner" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
+				</div>
 				<hr/>
 
 				<div><h3>Intermediate</h3></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+						<Thumbnail id = "001" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+						<Thumbnail id = "002" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+						<Thumbnail id = "003" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+						<Thumbnail id = "004" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>YouTube Playlists</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id = "005" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id = "006" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id = "007" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+						<Thumbnail id = "008" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id = "009" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id = "010" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id = "011" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail id = "012" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+						<Thumbnail id = "013" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+						<Thumbnail id = "014" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+						<Thumbnail id = "015" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
-					</Col>
+						<Thumbnail id = "016" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
+					</Col>	
 				</Row>
+				<div style={{textAlign:"center"}}>
+					<Link to="intermediate" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
+				</div>
 				<hr/>
-				<div><h3>Hard</h3></div>
+				<div><h3>Advanced</h3></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"red"}}/>
+						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"red"}}/>
+						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"red"}}/>
+						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"red"}}/>
+						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>YouTube Playlists</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"blue"}}/>
+						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"blue"}}/>
+						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"blue"}}/>
+						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"blue"}}/>
+						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"yellow"}}/>
+						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
 					<Col>
-						<Thumbnail name="red" style={{backgroundColor:"brown"}}/>
+						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="blue" style={{backgroundColor:"brown"}}/>
+						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="yellow" style={{backgroundColor:"brown"}}/>
+						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail name="brown" style={{backgroundColor:"brown"}}/>
+						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
 					</Col>
 				</Row>
+				<div style={{textAlign:"center"}}>
+					<Link to="advanced" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
+				</div>
 
 			</Container>
+				<div className="bottom-nav">
+    				<h6>Hi, are you a</h6> 
+    				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
+    					&nbsp; or a &nbsp;
+    				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
+    			</div>
 			</Container>
 		);
 	}

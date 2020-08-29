@@ -9,7 +9,7 @@
 }
 
 .wrapper{
-	padding-bottom: 70px;
+	padding-bottom: 80px;
 	padding-top: 10px;
 }
 
@@ -20,6 +20,27 @@
 .logo{
 	padding-top: 5px;
 	height: 80px;
+}
+
+.buttons{
+	border: none!important;
+	outline: none!important;
+}
+
+.bottom-nav{
+	text-align: center;
+	padding-bottom: 7px;
+	padding-top: 5px;
+	background-color: white;
+	overflow: hidden;
+	position: fixed;
+	box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+	bottom: 0;
+	width: 100%;
+}
+
+.links, .links:hover{
+	text-decoration: none;
 }
 
 hr {

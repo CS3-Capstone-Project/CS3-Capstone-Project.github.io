@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Questionnaire from "./questionnaire/questionnaire.js";
 import Login from "./login/Login.js";
 import Landing from "./landing/Landing.js";
+import Beginner from "./levels/Beginner.js";
+import Intermediate from "./levels/Intermediate.js";
+import Advanced from "./levels/Advanced.js";
 
 //Styles
 import "./App.scss";
@@ -19,34 +22,32 @@ export default class App extends Component {
   render() {
     return (
     	<Router>
-    		<div>
-    			<Switch>
-    				<Route exact path="/"> 
-    					<Landing/>
-    				</Route>
+    		<Switch>
+    			<Route exact path="/"> 
+    				<Landing/>
+    			</Route>
 
-    				<Route path="/questionnaire">
-    					<Questionnaire/>
-    				</Route>
+    			<Route path="/questionnaire">
+    				<Questionnaire/>
+   				</Route>
 
-    				<Route path="/login">
-    					<Login/>
-    				</Route>
-    			</Switch>
+   				<Route path="/login">
+   					<Login/>
+   				</Route>
 
-    			<div className="bottom-nav">
-    				<h6>Hi, are you a</h6> 
-    				<Link className="links" to="/questionnaire"> <Button size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
-    					&nbsp; or a &nbsp;
-    				<Link className="links" to="/login"> <Button size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    			</div>
-    		</div>
+   				<Route path="/beginner">
+   					<Beginner/>
+   				</Route>
+
+   				<Route path="/intermediate">
+   					<Intermediate/>
+   				</Route>
+
+   				<Route path="/advanced">
+   					<Advanced/>
+   				</Route>
+   			</Switch>
     	</Router>
     );
   }
-}
-
-
-function navbar(){
-
 }
