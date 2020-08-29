@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //Components
 import Questionnaire from "./questionnaire/questionnaire.js";
-import Login from "./login/Login.js";
+import Login from "./login/main.js";
 import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
@@ -26,7 +26,7 @@ export default class App extends Component {
     	<Router>
 
     		<Switch>
-    			<Route exact path="/"> 
+    			<Route exact path="/">
     				<Landing/>
     			</Route>
 

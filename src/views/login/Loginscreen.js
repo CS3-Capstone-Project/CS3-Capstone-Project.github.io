@@ -43,6 +43,7 @@ class Loginscreen extends Component {
     // console.log("event",event);
     var loginmessage;
     if(this.state.isLogin){
+      alert("from log to reg");
       var loginscreen=[];
       loginscreen.push(<Register parentContext={this}/>);
       loginmessage = "Already registered.Go to Login";
@@ -54,6 +55,7 @@ class Loginscreen extends Component {
                    })
     }
     else{
+      alert("from reg to log");
       var loginscreen=[];
       loginscreen.push(<Login parentContext={this}/>);
       loginmessage = "Not Registered yet.Go to registration";

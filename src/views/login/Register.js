@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import Login from './Login';
 import loginImg from "./Login.svg"
+import {Link} from 'react-router-dom';
 class Register extends Component {
   constructor(props){
     super(props);
@@ -54,7 +55,9 @@ class Register extends Component {
              onChange = {(event,newValue) => this.setState({password:newValue})}
              />
            <br/>
+           <Link to="/">
            <RaisedButton label="Register" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+           </Link>
           </div>
          </MuiThemeProvider>
       </div>

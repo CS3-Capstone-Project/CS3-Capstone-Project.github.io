@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 //React Bootstrap API
-import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {Container} from 'reactstrap';
+import {Row,Image} from 'reactstrap';
+import {Col} from 'reactstrap';
 
 //Styles
 import "./levels.scss";
@@ -90,7 +89,7 @@ export default class Beginner extends Component{
 				</Row>
 			</Container>
 			<div className="bottom-nav">
-    				<h6>Hi, are you a</h6> 
+    				<h6>Hi, are you a</h6>
     				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
     					&nbsp; or a &nbsp;
     				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>

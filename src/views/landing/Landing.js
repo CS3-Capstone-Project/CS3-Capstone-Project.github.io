@@ -21,7 +21,7 @@ import "./Landing.scss";
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 
 //Views
-import questionnaire from "../questionnaire/questionnaire.js";
+//import questionnaire from "../questionnaire/questionnaire.js";
 
 export default class Landing extends Component{
 	render(){
@@ -161,7 +161,7 @@ export default class Landing extends Component{
 					</Col>
 					<Col>
 						<Thumbnail id = "016" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>	
+					</Col>
 				</Row>
 				<div style={{textAlign:"center"}}>
 					<Link to="intermediate" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
@@ -237,7 +237,7 @@ export default class Landing extends Component{
 
 			</Container>
 				<div className="bottom-nav">
-    				<h6>Hi, are you a</h6> 
+    				<h6>Hi, are you a</h6>
     				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
     					&nbsp; or a &nbsp;
     				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>

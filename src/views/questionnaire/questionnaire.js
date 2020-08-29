@@ -1,21 +1,19 @@
 
 import React, { Component, setState } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
+import {Form} from 'reactstrap';
 //React Bootstrap API
 
-import Button from 'react-bootstrap/Button';
-import {Container } from 'react-bootstrap';
+import {Container,Button } from 'reactstrap';
 import './LP_button.scss';
 import pythonImg from "./python.png";
 import Landing from "../landing/Landing.js";
 
 //import Container from 'react-bootstrap/Container';
 //import Row from 'react-bootstrap/Row';
-import {Col,Container,Row} from 'reactstrap';
+import {Col,Row} from 'reactstrap';
 
 import {Jumbotron} from 'react-bootstrap';
-import Button from '@material-ui/core/Button';
 
 export default class Questionnaire extends Component{
     constructor(){
@@ -42,21 +40,18 @@ export default class Questionnaire extends Component{
         event.preventDefault();
         console.log(this.state.selectedOption)
     }
-    render() { 
+    render() {
         return (
             <Container style={this.form_control}>
                 <img style={{width:"12em",margin:"5px"}} src={pythonImg}/>
                 <Form onSubmit={this.formSubmit}>
-                    <Form.Group>
-                    <Link to="/landing">
+                    <Link to="/">
                         <Button>Go back</Button>
                     </Link>
                     <p style={this.styles}>Take a learning path.</p>
-                    <ul></ul>
-                    <Form.Label style={this.styles}>select level:</Form.Label>
-                    </Form.Group>
+                    <p style={this.styles}>select level:</p>
                     <ul>
-                    <Form.Group>
+                    <li>
                     <label>
                         Beginner
                         <input type="radio"
@@ -64,10 +59,8 @@ export default class Questionnaire extends Component{
                         checked={this.state.selectedOption==="Beginner"}
                         onChange={this.onLevelChange}/>
                     </label>
-                    </Form.Group>
-                    </ul>
-                    <ul>
-                    <Form.Group>
+                    </li>
+                    <li>
                     <label>
                         Intermediate
                         <input type="radio"
@@ -75,10 +68,8 @@ export default class Questionnaire extends Component{
                         checked={this.state.selectedOption==="Intermediate"}
                         onChange={this.onLevelChange}/>
                     </label>
-                    </Form.Group>
-                    </ul>
-                    <ul>
-                    <Form.Group>
+                    </li>
+                    <li>
                     <label>
                         Advanced
                         <input type="radio"
@@ -86,17 +77,17 @@ export default class Questionnaire extends Component{
                         checked={this.state.selectedOption==="Advanced"}
                         onChange={this.onLevelChange}/>
                     </label>
-                    </Form.Group>
+                    </li>
                     </ul>
-                <div className="button-nav">
+                    <div className="button-nav">
                 <Link to={this.state.selectedOption}>
                     <Button className="btn btn-default btn-sm">
                         <span className="glyphicon glyphicon-chevron-down"></span>Continue</Button>
-                </Link> 
+                </Link>
                 </div>
-            </Form>
+                </Form>
             </Container>
         );
-		
+
 	}
 }
