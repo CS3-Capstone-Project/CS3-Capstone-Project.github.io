@@ -11,31 +11,30 @@ import Rating from '@material-ui/lab/Rating';
 import ShareIcon from '@material-ui/icons/Share';
 
 //React Bootstrap API
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
+
 
 //Images
 
 
 export default class Thumbnail extends Component{
 	copy = () => {
-		navigator.clipboard.writeText("https://livetembiso.co.za/");
-		alert("Link to " + this.props.name + " copied to clipboard");
+		navigator.clipboard.writeText(this.props.data.url);
+		alert("Link to " + this.props.source + " copied to clipboard");
 	}
 	render(){
 		return(
 			<div className="thumbnail">
-				<a className="a" target="_blank" href="https://livetembiso.co.za/">
+				<a className="a" target="_blank" href={this.props.url}>
 					<div className="ttop" style = {this.props.style}>
-						<div className="source">Source: {this.props.name}</div>
-						<p className="desc">Description: {this.props.description}</p>
+						<div className="source">{this.props.source}</div>
+						<p className="desc">{this.props.desc}</p>
 					</div>
 				</a>
 
 				<div className="t-bottom">
 					<ShareIcon onClick={this.copy} className="shareButton"/> 
 						&nbsp; 
-					<Rating style={{backgroundColor:""}} name= {this.props.name} size="large" precision={1} />
+					<Rating style={{backgroundColor:""}} name = {this.props.id} size="large" precision={1} />
 					<p></p>
 					{/*<p>Description of: {this.props.name}</p>*/}
 				</div>
