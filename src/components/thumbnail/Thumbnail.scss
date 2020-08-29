@@ -1,0 +1,54 @@
+@import "~bootstrap/scss/bootstrap";
+
+$buttonColour: #4B8BBE;
+
+.ttop{
+	height: 150px;
+	width:250px;
+	padding: 7px;
+	box-shadow: 1px 1px 5px grey;
+	border-radius: 2px;
+}
+
+.ttop:hover{
+	box-shadow: 2px 2px 18px grey;
+
+}
+
+.t-bottom{
+	margin-top: 5px;
+}
+
+.a, .a:hover{
+	text-decoration: none;
+	color: black;
+}
+
+.thumbnail{
+
+}
+
+.shareButton{
+	background-color:rgba(grey,0.28);
+	border-radius:17px;
+	margin-top:-20px;
+	cursor: copy;
+	padding:3px;
+	padding-left: 0px!important;
+	height:60px;
+	width:60px;
+}
+
+.shareButton:hover{
+	background-color: rgba(grey,0.6);
+}
+
+.source{
+	text-align: center;
+	font-size: x-large;
+	font-weight: bold;
+}
+
+.desc{
+	text-align: center;
+}

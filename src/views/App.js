@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Questionnaire from "./questionnaire/questionnaire.js";
-import Beginner from "./questionnaire/Components/Beginner.js";
-import Intermediate from "./questionnaire/Components/Intermediate.js";
-import Advanced from "./questionnaire/Components/Advanced.js";
-import "./App.scss";
-
 //Views
 //import Landing from "./landing/Landing.js";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-class App extends Component {
+//Components
+import Questionnaire from "./questionnaire/questionnaire.js";
+import Login from "./login/Login.js";
+import Landing from "./landing/Landing.js";
+import Beginner from "./levels/Beginner.js";
+import Intermediate from "./levels/Intermediate.js";
+import Advanced from "./levels/Advanced.js";
+
+//Styles
+import "./App.scss";
+
+//Bootstrap React API
+//import Button from 'react-bootstrap/Button';
+
+//Material UI API
+import Button from '@material-ui/core/Button';
+
+export default class App extends Component {
   render() {
     return (
     	<Router>
-                <div>
-                	<Switch>
-                		<Route exact path="/">
-	                            <Questionnaire/>
-	                    </Route>
-	                    <Route path="/Beginner">
-	                            <Beginner/>
-	                    </Route>
-	                    <Route path="/Intermediate">
-	                            <Intermediate/>
-	                    </Route>
-	                    <Route path="/Advanced">
-	                            <Advanced/>
-	                    </Route>
-                    </Switch>
-                </div>
-        </Router>
+
+    		<Switch>
+    			<Route exact path="/"> 
+    				<Landing/>
+    			</Route>
+
+    			<Route path="/questionnaire">
+    				<Questionnaire/>
+   				</Route>
+
+   				<Route path="/login">
+   					<Login/>
+   				</Route>
+
+   				<Route path="/beginner">
+   					<Beginner/>
+   				</Route>
+
+   				<Route path="/intermediate">
+   					<Intermediate/>
+   				</Route>
+
+   				<Route path="/advanced">
+   					<Advanced/>
+   				</Route>
+   			</Switch>
+    	</Router>
     );
   }
 }
-
-export default App;

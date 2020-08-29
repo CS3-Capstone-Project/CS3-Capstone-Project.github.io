@@ -2,15 +2,11 @@
 import React, { Component, setState } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-
 //React Bootstrap API
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import {Container } from 'react-bootstrap';
-import './Components/LP_button.scss';
-import Beginner from "./Components/Beginner.js";
-import pythonImg from "./Components/python.png";
+import './LP_button.scss';
+import pythonImg from "./python.png";
 import Landing from "../landing/Landing.js";
 
 
