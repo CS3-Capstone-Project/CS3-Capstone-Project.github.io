@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import './App.css';
 import { NavLink } from 'react-router-dom'
 import Loginscreen from './Loginscreen'
-class App extends Component {
+class Main extends React.Component {
   constructor(props){
     super(props);
     this.state={
@@ -30,4 +30,4 @@ class App extends Component {
 const style = {
   margin: 15,
 };
-export default App;
+export default Main;

@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Login from './Login';
 import Register from './Register';
-class Loginscreen extends Component {
+class Loginscreen extends React.Component {
   constructor(props){
     super(props);
     this.state={
       username:'',
       password:'',
-      loginscreen:[],
+      loginpage:[],
       loginmessage:'',
       buttonLabel:'Register',
       isLogin:true
@@ -18,21 +18,23 @@ class Loginscreen extends Component {
   componentWillMount(){
     var loginscreen=[];
     loginscreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>);
-    var loginmessage = "Not registered yet, Register Now";
+    var loginmessage = "Not registered yet?";
     this.setState({
-                  loginscreen:loginscreen,
+                  loginpage:loginscreen,
                   loginmessage:loginmessage
                     })
   }
   render() {
     return (
       <div className="loginscreen">
-        {this.state.loginscreen}
-        <div>
+        {this.state.loginpage}
+        <div style={{paddingTop:"20px"}}>
           {this.state.loginmessage}
           <MuiThemeProvider>
-            <div>
-               <RaisedButton label={this.state.buttonLabel} primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+            <div style={{paddingTop:"20px"}}>
+            <a  href="#" onClick={(event) => this.handleClick(event)}>
+              {this.state.buttonLabel}
+            </a>
            </div>
           </MuiThemeProvider>
         </div>
@@ -43,24 +45,22 @@ class Loginscreen extends Component {
     // console.log("event",event);
     var loginmessage;
     if(this.state.isLogin){
-      alert("from log to reg");
       var loginscreen=[];
       loginscreen.push(<Register parentContext={this}/>);
-      loginmessage = "Already registered.Go to Login";
+      loginmessage = "Already registered?";
       this.setState({
-                     loginscreen:loginscreen,
+                     loginpage:loginscreen,
                      loginmessage:loginmessage,
                      buttonLabel:"Login",
                      isLogin:false
                    })
     }
     else{
-      alert("from reg to log");
       var loginscreen=[];
       loginscreen.push(<Login parentContext={this}/>);
-      loginmessage = "Not Registered yet.Go to registration";
+      loginmessage = "Not Registered yet?";
       this.setState({
-                     loginscreen:loginscreen,
+                     loginpage:loginscreen,
                      loginmessage:loginmessage,
                      buttonLabel:"Register",
                      isLogin:true
@@ -68,8 +68,4 @@ class Loginscreen extends Component {
     }
   }
 }
-
-const style = {
-  margin: 15,
-};
 export default Loginscreen;
