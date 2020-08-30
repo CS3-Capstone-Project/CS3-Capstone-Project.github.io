@@ -1,4 +1,21 @@
 @import "~bootstrap/scss/bootstrap";
-form-control:valid{
-	background-color: #ffdf80!important;
+.formControl{
+	/*background-color: #ffdf80!important;*/
+	justify-content: center!important;
+	text-align: center!important;
+	position: relative;
+	background-color:#f5f5f5;
+}
+
+.links, .links:hover{
+	text-decoration: none;
+}
+
+ul{
+	list-style: none;
+}
+
+.buttons{
+	border: none!important;
+	outline: none!important;
 }

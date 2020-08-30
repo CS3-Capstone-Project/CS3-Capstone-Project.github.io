@@ -26,12 +26,12 @@ class Loginscreen extends React.Component {
   }
   render() {
     return (
-      <div className="loginscreen">
+      <div style={{backgroundColor:"#f5f5f5"}} className="loginscreen">
         {this.state.loginpage}
-        <div style={{paddingTop:"20px"}}>
+        <div style={{paddingTop:"20px", paddingBottom:"20px"}}>
           {this.state.loginmessage}
           <MuiThemeProvider>
-            <div style={{paddingTop:"20px"}}>
+            <div style={{paddingTop:"20px", paddingBottom:"20px"}}>
             <a  href="#" onClick={(event) => this.handleClick(event)}>
               {this.state.buttonLabel}
             </a>

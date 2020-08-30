@@ -14,6 +14,9 @@ import ShareIcon from '@material-ui/icons/Share';
 import {Jumbotron} from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 
+//React Js Popup
+import Popup from "reactjs-popup";
+
 //Images
 
 
@@ -42,9 +45,4 @@ export default class Thumbnail extends Component{
 			</div>
 		);
 	}
-}
-
-function copy(){
-	navigator.clipboard.writeText("https://livetembiso.co.za/");
-	alert("Link copied to clipboard");
 }

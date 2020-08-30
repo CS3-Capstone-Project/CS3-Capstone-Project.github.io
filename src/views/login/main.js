@@ -20,7 +20,7 @@ class Main extends React.Component {
   }
   render() {
     return (
-      <div className="Main">
+      <div style={{backgroundColor:"#f5f5f5"}} className="Main">
         {this.state.loginPage}
         {this.state.uploadScreen}
       </div>

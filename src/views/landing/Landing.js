@@ -6,19 +6,22 @@ import { Link } from 'react-router-dom';
 //import Container from 'react-bootstrap/Container';
 import {Image} from 'react-bootstrap';
 //import Row from 'react-bootstrap/Row';
-import {Col,Container,Row} from 'reactstrap';
+import {Col,Container,Row, Jumbotron} from 'reactstrap';
 
 //import Jumbotron from 'react-bootstrap/Jumbotron';
 //import Button from 'react-bootstrap/Button';
 
 //Material UI API
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 //Styles
 import "./Landing.scss";
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
+import SearchBar from "../../components/SearchBar.js";
 
 //Views
 //import questionnaire from "../questionnaire/questionnaire.js";
@@ -30,6 +33,23 @@ export default class Landing extends Component{
 				<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>
 				<hr/>
 			<Container className="wrapper">
+			 	<Jumbotron>
+			 		<h3 style={{textDecoration:"none"}}>Python Description</h3>
+			 		<hr/>
+			 		<p>
+			 			Python is an interpreted, high-level, general-purpose programming language. 
+			 			Created by Guido van Rossum and first released in 1991, Python's design 
+			 			philosophy emphasizes code readability with its notable use of significant whitespace.
+			 			Its language constructs and object-oriented approach aim to help programmers write clear, 
+			 			logical code for small and large-scale projects.
+			 		</p>
+			 		<a style={{textDecoration:"none"}} href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank"><Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>More about Python</Button></a>
+			 	</Jumbotron>
+
+			 	<div style={{textAlign:"center", backgroundColor:"", paddingLeft:"36%", paddingBottom:"10px"}}>
+			 		<SearchBar/>
+			 	</div>
+
 				<div><h3>Beginner</h3></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>

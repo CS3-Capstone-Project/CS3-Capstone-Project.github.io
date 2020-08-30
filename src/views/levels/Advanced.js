@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 
 //React Bootstrap API
 import {Container} from 'reactstrap';
-import {Row,Image} from 'reactstrap';
+import {Row} from 'reactstrap';
 import {Col} from 'reactstrap';
+import {Image} from 'react-bootstrap';
+
 //Styles
 import "./levels.scss";
 
@@ -16,12 +18,13 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 
-export default class Beginner extends Component{
+export default class Advanced extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-			<div> <Link to="/"><ArrowBackIcon style={{marginTop:"3px", marginLeft:"10px"}}/></Link> <h1>Advanced</h1></div>
+			<div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
 				<hr/>
+				<div style={{textAlign:"center"}}><div ><h3>Advanced</h3></div></div>
 			<Container className="wrapper">
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
@@ -87,12 +90,13 @@ export default class Beginner extends Component{
 					</Col>
 				</Row>
 			</Container>
+			{/*
 			<div className="bottom-nav">
     				<h6>Hi, are you a</h6>
     				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
     					&nbsp; or a &nbsp;
     				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    		</div>
+    		</div> */}
     		</Container>
 		);
 	}
