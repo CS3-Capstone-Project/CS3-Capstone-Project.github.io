@@ -19,8 +19,8 @@ import Button from '@material-ui/core/Button';
 
 export default class Thumbnail extends Component{
 	copy = () => {
-		navigator.clipboard.writeText(this.props.data.url);
-		alert("Link to " + this.props.source + " copied to clipboard");
+		navigator.clipboard.writeText(this.props.url);
+		alert("Link to " + this.props.url + " copied to clipboard");
 	}
 	render(){
 		return(

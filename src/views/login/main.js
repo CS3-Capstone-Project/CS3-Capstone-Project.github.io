@@ -1,6 +1,6 @@
 import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import './App.css';
+import './main.css';
 import { NavLink } from 'react-router-dom'
 import Loginscreen from './Loginscreen'
 class Main extends React.Component {
@@ -20,7 +20,7 @@ class Main extends React.Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className="Main">
         {this.state.loginPage}
         {this.state.uploadScreen}
       </div>
