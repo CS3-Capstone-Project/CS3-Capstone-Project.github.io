@@ -9,6 +9,7 @@ import loginImg from "./Login.svg"
 import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
+import Fire from "./config/fire";
 
 class Register extends Component {
   constructor(props){
@@ -62,12 +63,21 @@ class Register extends Component {
              />
            <br/>
            <Link to="/">
-           <RaisedButton label="Register" primary={true} style={{marginTop: "15px",}} />
+           <RaisedButton label="Register" primary={true} style={{marginTop: "15px",}} onClick={(event) => this.signup(event)}/>
            </Link>
           </div>
          </MuiThemeProvider>
       </div>
     );
+  }
+  signup(e){
+      e.preventDefault();
+      Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
+      .then((u)=>{
+        alert("registered: "+u);})
+      .catch((error) =>{
+        alert(error);
+      });
   }
 }
 export default Register;
