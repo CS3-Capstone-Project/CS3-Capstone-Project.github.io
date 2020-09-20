@@ -1,0 +1,89 @@
+@import "~bootstrap/scss/bootstrap";
+
+.logo{
+	padding-top: 5px;
+	height: 45px!important;
+	padding-left: 10px;
+}
+
+.logo-wrapper{
+	width: 8em;
+}
+
+.buttons{
+	border: none!important;
+	outline: none!important;
+}
+
+.navbar{
+	z-index: 999;
+	
+	padding-bottom: 7px;
+	padding-top: 5px;
+	background-color: white;
+	/*overflow: hidden;*/
+	position: fixed;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	top: 0;
+	width: 100%;
+
+	/*justify-content: center;*/
+}
+
+#navbar-middle{
+	width: 20em;
+	
+	justify-content: right;
+	
+}
+
+#collapse-button, #collapse-button:active{
+	margin-top: 1px;
+	text-decoration: none;
+	background-color: transparent;
+	color: black;
+	border:none;
+	outline: none;
+	box-shadow: none;
+}
+
+#collapse-button:hover{
+	color: grey;
+}
+
+.student{
+	padding-top: 7px;
+}
+
+.links{
+	text-decoration: none;
+	color:black;
+}
+
+.links:hover{
+	color: grey;
+}
+
+.navbar-item{
+	padding-left: 1em;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	color: black;
+}
+
+.navbar-item:hover{
+	text-decoration: none;
+	color: grey;
+}
+
+#first-navbar-item{
+	padding-top: 7px;
+}
+
+#collapse-id{
+	display: none;
+}
+
+.searchBar{
+
+}

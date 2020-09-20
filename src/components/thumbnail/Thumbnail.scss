@@ -20,8 +20,10 @@ $buttonColour: #4B8BBE;
 }
 
 .a, .a:hover{
+	cursor: pointer;
 	text-decoration: none;
 	color: black;
+	width: 250px;
 }
 
 .thumbnail{

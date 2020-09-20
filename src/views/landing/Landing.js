@@ -22,6 +22,11 @@ import "./Landing.scss";
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 import SearchBar from "../../components/SearchBar.js";
+import Header from "../../components/header/Header.js";
+import FloatingButton from "../../components/floatingButton/FloatingButton.js";
+
+//Resources
+import { resources } from "../resources/data.js";
 
 //Views
 //import questionnaire from "../questionnaire/questionnaire.js";
@@ -30,8 +35,10 @@ export default class Landing extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-				<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>
+				<Header/>
+				{/*<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>*/}
 				<hr/>
+				<FloatingButton/>
 			<Container className="wrapper">
 			 	<Jumbotron>
 			 		<h3 style={{textDecoration:"none"}}>Python Description</h3>
@@ -46,24 +53,34 @@ export default class Landing extends Component{
 			 		<a style={{textDecoration:"none"}} href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank"><Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>More about Python</Button></a>
 			 	</Jumbotron>
 
-			 	<div style={{textAlign:"center", backgroundColor:"", paddingLeft:"36%", paddingBottom:"10px"}}>
-			 		<SearchBar/>
-			 	</div>
-
 				<div><h3>Beginner</h3></div>
 				<div><h5>YouTube Videos</h5></div>
+				
 				<Row>
 					<Col>
-						<Thumbnail id="1" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
+						{
+							resources.map((data,key) => {
+								return(
+									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
+									</Thumbnail>
+								);
+							})
+						}
+					</Col>
+				</Row>
+
+				<Row>
+					<Col>
+						<Thumbnail id="1" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/embed/xFhQvsLw9oc" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail id="2" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
+						<Thumbnail id="2" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/embed/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail id="3" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
+						<Thumbnail id="3" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/embed/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 					<Col>
-						<Thumbnail id="4" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
+						<Thumbnail id="4" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/embed/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
 					</Col>
 				</Row>
 
@@ -256,12 +273,12 @@ export default class Landing extends Component{
 				</div>
 
 			</Container>
-				<div className="bottom-nav">
+				{/*<div className="bottom-nav">
     				<h6>Hi, are you a</h6>
     				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
     					&nbsp; or a &nbsp;
     				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    			</div>
+    			</div>*/}
 			</Container>
 		);
 	}
