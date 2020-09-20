@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
+import Fire from "./config/fire";
 
 class Login extends React.Component {
 
@@ -47,12 +48,20 @@ class Login extends React.Component {
                  />
                <br/>
                <Link to="/">
-                <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}}/>
+                <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}} onClick={event =>this.login(event)}/>
                </Link>
            </div>
            </MuiThemeProvider>
         </div>
       );
+    }
+    login(e){
+      e.preventDefault();
+      Fire.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then((u)=>{
+        alert("hello :"+u);
+      }).catch((error) =>{
+        alert(error);
+      });
     }
 }
 export default Login;
