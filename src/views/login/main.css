@@ -1,35 +1,19 @@
-<<<<<<< HEAD
 .Main {
   text-align: center;
 }
 
 .Main-logo {
-=======
-.App {
-  text-align: center;
-}
-
-.App-logo {
->>>>>>> 4dc49e7192960bc0a6de69c16ba5304f17efeb23
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-<<<<<<< HEAD
   .Main-logo {
-=======
-  .App-logo {
->>>>>>> 4dc49e7192960bc0a6de69c16ba5304f17efeb23
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-<<<<<<< HEAD
 .Main-header {
-=======
-.App-header {
->>>>>>> 4dc49e7192960bc0a6de69c16ba5304f17efeb23
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -40,11 +24,7 @@
   color: white;
 }
 
-<<<<<<< HEAD
 .Main-link {
-=======
-.App-link {
->>>>>>> 4dc49e7192960bc0a6de69c16ba5304f17efeb23
   color: #61dafb;
 }
 
