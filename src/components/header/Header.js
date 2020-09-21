@@ -42,13 +42,13 @@ export default class Header extends Component{
 							</Nav.Link>
 							<NavDropdown title="Resources" id="collapsible-nav-dropdown" className="links">
 								<NavDropdown.Item>
-									<Link to="/" className="links">Beginner</Link>
+									<Link to="/beginner" className="links">Beginner</Link>
 								</NavDropdown.Item>
 								<NavDropdown.Item>
-									<Link to="/" className="links">Intermediate</Link>
+									<Link to="/intermediate" className="links">Intermediate</Link>
 								</NavDropdown.Item>
 								<NavDropdown.Item>
-									<Link to="/" className="links">Advanced</Link>
+									<Link to="/advanced" className="links">Advanced</Link>
 								</NavDropdown.Item>
 							</NavDropdown>
 							<Nav.Link>
