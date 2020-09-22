@@ -39,10 +39,6 @@ export default class Landing extends Component{
 		super(props);
 	}
 
-	generateThumbnail(){
-
-	}
-
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>

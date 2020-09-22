@@ -52,10 +52,10 @@ export default class Header extends Component{
 								</NavDropdown.Item>
 							</NavDropdown>
 							<Nav.Link>
-								<Link to="/" className="links">Student</Link> 
+								<Link to="/questionnaire" className="links">Student</Link> 
 							</Nav.Link>
 							<Nav.Link>
-								<Link to="/questionnaire" className="links">Expert</Link> 
+								<Link to="/login" className="links">Expert</Link> 
 							</Nav.Link>
 						</Nav>
 					
