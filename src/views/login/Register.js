@@ -97,6 +97,20 @@ class Register extends Component {
   }
   signup(e){
       e.preventDefault();
+      if (this.state.person=="Student") {
+        Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
+        .then((u)=>{
+          Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
+            FirstName:this.state.first_name,
+            LastName:this.state.last_name,
+            Email:this.state.email,
+            Password:this.state.password,
+          });
+          alert("registered: "+u);})
+        .catch((error) =>{
+          alert(error);
+        });
+      } else {
         Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
         .then((u)=>{
           Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
@@ -110,6 +124,8 @@ class Register extends Component {
         .catch((error) =>{
           alert(error);
         });
+      }
+
   }
 }
 const style = {
