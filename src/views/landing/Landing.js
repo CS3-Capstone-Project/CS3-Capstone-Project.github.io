@@ -72,7 +72,13 @@ export default class Landing extends Component{
 						beginnerRes[0].videos.map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -86,7 +92,13 @@ export default class Landing extends Component{
 						beginnerRes[1].webpages.map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -122,7 +134,7 @@ export default class Landing extends Component{
 						intermediateRes[0].videos.map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -136,7 +148,7 @@ export default class Landing extends Component{
 						intermediateRes[1].webpages.map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -150,7 +162,7 @@ export default class Landing extends Component{
 						intermediateRes[2].ebooks.map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -163,68 +175,48 @@ export default class Landing extends Component{
 				</div>
 				<hr/>
 				<div><h3>Advanced</h3></div>
-				<div><h5>YouTube Videos</h5></div>
+				
+				<div><h5>Youtube Videos</h5></div>
+				
 				<Row>
-					<Col>
-						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-				</Row>
-
-				<div><h5>YouTube Playlists</h5></div>
-				<Row>
-					<Col>
-						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
+					{
+						advancedRes[0].videos.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
+					{
+						advancedRes[1].webpages.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail source="W3 Schools" desc="Machine Learning is making the computer learn from studying data and statistics." url = "https://www.w3schools.com/python/python_ml_getting_started.asp" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Python.org" desc = "While The Python Language Reference describes the exact syntax and semantics of the Python language, this..." url="https://docs.python.org/3.9/library/index.html" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Eudureka" desc="This Edureka video on Advanced Python tutorial covers all the important aspects of using Python for..." url = "https://www.youtube.com/watch?v=O1gZc-erLjg" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail source="Techbeamers" desc="This tutorial covers the following topic – Python Zip. It describes the syntax of the zip() function in Python. Also, it explains" url="https://www.techbeamers.com/python-tutorial-step-by-step/" style={{backgroundColor:"rgba(255,56,0,0.3)"}}/>
-					</Col>
+					{
+						advancedRes[2].ebooks.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 				<div style={{textAlign:"center"}}>
 					<Link to="advanced" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
