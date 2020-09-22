@@ -22,11 +22,6 @@ class Login extends React.Component {
         <div style={{backgroundColor:"#f5f5f5"}}>
           <MuiThemeProvider>
             <div>
-            {/*<AppBar
-               title="Login"
-               showMenuIconButton={false}
-               style={{ background: 'linear-gradient(to right,#2E3B55,#ffe873,#ffd43b,#646464)' }}
-             />*/}
 <div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
         <hr/>
         <div style={{textAlign:"center"}}><div ><h3>Login</h3></div></div>
