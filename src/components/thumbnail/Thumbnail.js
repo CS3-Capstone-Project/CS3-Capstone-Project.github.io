@@ -15,7 +15,7 @@ import {Jumbotron} from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 
 //React Js Popup
-import Popup from "reactjs-popup";
+//import Popup from "reactjs-popup";
 
 //Images
 

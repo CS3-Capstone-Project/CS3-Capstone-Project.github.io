@@ -10,6 +10,8 @@ import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
 import Advanced from "./levels/Advanced.js";
+import Quiz1 from "./questionnaire/Quiz1.js";
+import Quiz2 from "./questionnaire/Quiz2.js";
 
 //Styles
 import "./App.scss";
@@ -49,6 +51,12 @@ export default class App extends Component {
    				<Route path="/advanced">
    					<Advanced/>
    				</Route>
+          <Route path="/Quiz1">
+            <Quiz1/>
+          </Route>
+          <Route path="/Quiz2">
+            <Quiz2/>
+          </Route>
    			</Switch>
     	</Router>
     );
