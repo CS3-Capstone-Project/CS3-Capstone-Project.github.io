@@ -8,6 +8,7 @@ import 'react-dropdown/style.css';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import Fire from "./login/config/fire";
 
 const DOC = /docx|doc|pdf|txt/;
 const SPREADSHEET = /xlsx|csv/;
