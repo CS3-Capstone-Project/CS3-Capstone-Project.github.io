@@ -42,6 +42,7 @@ class ForgotPassword extends Component {
   reset(e){
     e.preventDefault();
     Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
+      alert("Check your emails");
     }).catch((error)=>{
       alert(error)
     });
