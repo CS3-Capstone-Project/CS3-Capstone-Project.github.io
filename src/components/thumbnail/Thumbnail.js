@@ -11,6 +11,7 @@ import "./Thumbnail.scss";
 // Material UI API
 import Rating from '@material-ui/lab/Rating';
 import ShareIcon from '@material-ui/icons/Share';
+import CloseIcon from '@material-ui/icons/Close';
 
 //React Bootstrap API
 import {Jumbotron} from 'react-bootstrap';
@@ -26,8 +27,12 @@ export default class Thumbnail extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			visible: false
+			visible: false,
+			ratingValue: this.props.rating,
+			totalRatings: 0
 		}
+
+		this.calcRating = this.calcRating.bind(this)
 	}
 
 	openModal(){
@@ -40,6 +45,21 @@ export default class Thumbnail extends Component{
 		this.setState({
 			visible: false
 		});
+	}
+
+	calcRating(v){
+		this.setState((state) => {
+			var decimal = ((state.ratingValue + v)/2) - Math.floor((state.ratingValue+v)/2);
+			console.log("value: " + state.ratingValue + " Floored value: " + Math.floor(state.ratingValue));
+			if(decimal == 0.5){
+				return{ratingValue:Math.floor((state.ratingValue + v)/2)}
+			}
+			else{
+				return{ratingValue:Math.round((state.ratingValue + v)/2)}
+			}
+		})
+		
+		console.log(v);
 	}
 
 	copy = () => {
@@ -59,8 +79,12 @@ export default class Thumbnail extends Component{
 
 				<Modal visible={this.state.visible} width="95%" height="600px" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
-                        <h2>Title</h2>
-                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                    	<div style={{display:"flex"}}>
+                    		<div style={{paddingLeft:"10px"}}>
+                        		<h2 >{this.props.source}</h2>
+                        	</div>
+                        	<a className="close" href="javascript:void(0);" onClick={() => this.closeModal()}><CloseIcon fontSize="large" style={{color:"black"}}/></a>
+                        </div>
                         <iframe height="500px" width="100%" src={this.props.url}></iframe>
                     </div>
                 </Modal>
@@ -68,7 +92,16 @@ export default class Thumbnail extends Component{
 				<div className="t-bottom">
 					<ShareIcon onClick={this.copy} className="shareButton"/>
 						&nbsp;
-					<Rating style={{backgroundColor:""}} name = {this.props.id} size="large" precision={1} />
+					<Rating 
+						defaultValue={this.state.ratingValue} 
+						value={this.state.ratingValue} 
+						style={{backgroundColor:""}} 
+						name = {this.props.id} 
+						size="large" 
+						onChange={(event,value) => { 
+							this.calcRating(value);
+						}}
+						precision={1} />
 					{/*<p></p>
 					<p>Description of: {this.props.name}</p>*/}
 				</div>

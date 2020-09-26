@@ -24,7 +24,7 @@ export default class Header extends Component{
 
 	render(){
 		return(
-			<Navbar style={{backgroundColor:"white"}} expand="xl">
+			<Navbar className="my-nav-styles" expand="lg">
 				<Navbar.Brand>
 					<Link to="/">
 						<div className="logo-wrapper">
@@ -41,13 +41,13 @@ export default class Header extends Component{
 								<Link to="/" className="links">Home</Link> 
 							</Nav.Link>
 							<NavDropdown title="Resources" id="collapsible-nav-dropdown" className="links">
-								<NavDropdown.Item>
+								<NavDropdown.Item href="beginner">
 									<Link to="/beginner" className="links">Beginner</Link>
 								</NavDropdown.Item>
-								<NavDropdown.Item>
+								<NavDropdown.Item href="intermediate">
 									<Link to="/intermediate" className="links">Intermediate</Link>
 								</NavDropdown.Item>
-								<NavDropdown.Item>
+								<NavDropdown.Item href="advanced">
 									<Link to="/advanced" className="links">Advanced</Link>
 								</NavDropdown.Item>
 							</NavDropdown>

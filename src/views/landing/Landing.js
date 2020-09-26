@@ -26,10 +26,10 @@ import Header from "../../components/header/Header.js";
 import FloatingButton from "../../components/floatingButton/FloatingButton.js";
 
 //Resources
-//import { resources } from "../resources/data.js";
-import { beginnerRes } from "../resources/beginnerResources.js";
-import { intermediateRes } from "../resources/intermediateResources.js";
-import { advancedRes } from "../resources/advancedResources.js";
+import { resources } from "../resources/data.js";
+//import { beginnerRes } from "../resources/beginnerResources.js";
+//import { intermediateRes } from "../resources/intermediateResources.js";
+//import { advancedRes } from "../resources/advancedResources.js";
 
 //Views
 //import questionnaire from "../questionnaire/questionnaire.js";
@@ -39,12 +39,20 @@ export default class Landing extends Component{
 		super(props);
 	}
 
+	getTopFour(resourceArray){
+		resourceArray.sort(
+			function(a,b){
+				return a - b;
+			}
+		);
+
+		return resourceArray.slice(0,4);
+	}
+
 	render(){
 		return(
-			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
+			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px",position:"absolute"}}>
 				<Header/>
-				{/*<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>*/}
-				<hr/>
 				<FloatingButton/>
 			<Container className="wrapper">
 			 	<Jumbotron>
@@ -57,15 +65,19 @@ export default class Landing extends Component{
 			 			Its language constructs and object-oriented approach aim to help programmers write clear, 
 			 			logical code for small and large-scale projects.
 			 		</p>
-			 		<a style={{textDecoration:"none"}} href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank"><Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>More about Python</Button></a>
+			 		<a style={{textDecoration:"none"}} href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank">
+				 		<Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>
+				 			More about Python
+				 		</Button>
+			 		</a>
 			 	</Jumbotron>
-			 	<h2>{this.props.loginStatus}</h2>
+			 	
 				<div><h3>Beginner</h3></div>
 				<div><h5>Youtube Videos</h5></div>
 				
 				<Row>
 					{
-						beginnerRes[0].videos.map((data,key) => {
+						resources.beginner.videos.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
@@ -74,6 +86,7 @@ export default class Landing extends Component{
 									source = {data.source} 
 									desc = {data.desc} 
 									url = {data.url} 
+									rating = {data.rating}
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -85,7 +98,7 @@ export default class Landing extends Component{
 				<div><h5>Webpages</h5></div>
 				<Row>
 					{
-						beginnerRes[1].webpages.map((data,key) => {
+						resources.beginner.webpages.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
@@ -94,6 +107,7 @@ export default class Landing extends Component{
 									source = {data.source} 
 									desc = {data.desc} 
 									url = {data.url} 
+									rating = {data.rating}
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -105,10 +119,17 @@ export default class Landing extends Component{
 				<div><h5>eBooks</h5></div>
 				<Row>
 					{
-						beginnerRes[2].ebooks.map((data,key) => {
+						resources.beginner.ebooks.slice(0,4).map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -127,10 +148,17 @@ export default class Landing extends Component{
 				
 				<Row>
 					{
-						intermediateRes[0].videos.map((data,key) => {
+						resources.intermediate.videos.slice(0,4).map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url}
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -141,10 +169,17 @@ export default class Landing extends Component{
 				<div><h5>Webpages</h5></div>
 				<Row>
 					{
-						intermediateRes[1].webpages.map((data,key) => {
+						resources.intermediate.webpages.slice(0,4).map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									rating = {data.rating}
+									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -155,10 +190,17 @@ export default class Landing extends Component{
 				<div><h5>eBooks</h5></div>
 				<Row>
 					{
-						intermediateRes[2].ebooks.map((data,key) => {
+						resources.intermediate.ebooks.slice(0,4).map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url}
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -176,10 +218,17 @@ export default class Landing extends Component{
 				
 				<Row>
 					{
-						advancedRes[0].videos.map((data,key) => {
+						resources.advanced.videos.slice(0,4).map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									rating = {data.rating}
+									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -190,10 +239,17 @@ export default class Landing extends Component{
 				<div><h5>Webpages</h5></div>
 				<Row>
 					{
-						advancedRes[1].webpages.map((data,key) => {
+						resources.advanced.webpages.slice(0,4).map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url}
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -204,10 +260,17 @@ export default class Landing extends Component{
 				<div><h5>eBooks</h5></div>
 				<Row>
 					{
-						advancedRes[2].ebooks.map((data,key) => {
+						resources.advanced.ebooks.slice(0,4).map((data,key) => {
 							return(
 								<Col>
-									<Thumbnail key={data.id} id = {data.id} source = {data.source} desc = {data.desc} url = {data.url} style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url}
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
 							);
@@ -219,12 +282,6 @@ export default class Landing extends Component{
 				</div>
 
 			</Container>
-				{/*<div className="bottom-nav">
-    				<h6>Hi, are you a</h6>
-    				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
-    					&nbsp; or a &nbsp;
-    				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    			</div>*/}
 			</Container>
 		);
 	}

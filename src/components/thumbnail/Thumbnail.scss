@@ -27,7 +27,7 @@ $buttonColour: #4B8BBE;
 }
 
 .thumbnail{
-
+	width: 250px;
 }
 
 .shareButton{
@@ -53,4 +53,11 @@ $buttonColour: #4B8BBE;
 
 .desc{
 	text-align: center;
+}
+
+.close{
+	margin-left: auto;
+	order: 2;
+	padding: 6px;
+	height: 20px;
 }
