@@ -32,12 +32,20 @@ class ForgotPassword extends Component {
             />
           <br/>
           <Link to="/">
-           <RaisedButton label="send" primary={true} style={{marginTop: "15px",}} onClick={event =>this.login(event)}/>
+           <RaisedButton label="send" primary={true} style={{marginTop: "15px",}} onClick={event =>this.reset(event)}/>
           </Link>
          </div>
         </MuiThemeProvider>
       </div>
     );
+  }
+  reset(e){
+    e.preventDefault();
+    Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
+      alert("Check your emails");
+    }).catch((error)=>{
+      alert(error)
+    });
   }
 }
 export default ForgotPassword;
