@@ -109,15 +109,15 @@ export default class Questionnaire extends Component{
                     <Button onClick={() => this.openModal()}> More options </Button>
                     <hr/>
                     <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-                    <Modal visible={this.state.visible} width="185" height="200" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
-                        <p style={{fontWeight:"bold"}}>If you are not sure which level to select, take quiz 1. Quiz 2 is for testing your general knowledge on python.</p>
+                    <Modal backgroundColor="#5bc0de" visible={this.state.visible} width="400" height="200" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+                        <p style={{fontWeight:"bold"}}>If you are not sure which level to select, take level quiz, or test your python understanding.</p>
                         <hr/>
                         <Container style={{display:"flex", backgroundColor: "#f5f5f0"}}>
                             <div className="float-left" style={{display:"flex"}}>
                                 <Link className="links" to="/Quiz1">
                                     &nbsp;&nbsp;&nbsp;
                                     <Button className="btn btn-primary btn-lg float-left" style={{backgroundColor:"#5bc0de"}}>
-                                        Quiz 1
+                                        Level Quiz
                                     </Button>
                                 </Link>
                             </div>
@@ -125,13 +125,13 @@ export default class Questionnaire extends Component{
                                 <Link className="links" to="/Quiz2">
                                     &nbsp;&nbsp;&nbsp;
                                     <Button className="btn btn-primary btn-lg float-right"style={{backgroundColor:"#5bc0de"}}>
-                                        Quiz 2
+                                        Test your python skills
                                     </Button>
                                 </Link>
                             </div>
                         </Container>
                         <hr/>
-                        <Button onClick={() => this.closeModal()} style={{backgroundColor:"#5bc0de"}}>Cancel</Button>
+                        <Button className="btn btn-primary btn-lg" onClick={() => this.closeModal()} style={{backgroundColor:"#5bc0de"}}>Cancel</Button>
                     </Modal>
                 </Container>
             </Container>
