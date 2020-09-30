@@ -14,7 +14,8 @@ class Login extends React.Component {
     super(props);
     this.state={
     username:'',
-    password:''
+    password:'',
+    userid:""
     }
    }
   render() {
@@ -22,30 +23,31 @@ class Login extends React.Component {
         <div style={{backgroundColor:"#f5f5f5"}}>
           <MuiThemeProvider>
             <div>
-<div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
-        <hr/>
-        <div style={{textAlign:"center"}}><div ><h3>Login</h3></div></div>
-             <div >
-     					<img style={{width:"21em",margin:"10px"}} src={loginImg}/>
-     				 </div>
-             <TextField
-               hintText="Enter your Username"
-               floatingLabelText="Username"
-               onChange = {(event,newValue) => this.setState({username:newValue})}
-               />
-             <br/>
+            <div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
+          <hr/>
+          <div style={{textAlign:"center"}}><div ><h3>Login</h3></div></div>
+               <div >
+       					<img style={{width:"21em",margin:"10px"}} src={loginImg}/>
+       				 </div>
                <TextField
-                 type="password"
-                 hintText="Enter your Password"
-                 floatingLabelText="Password"
-                 color="primary"
-                 onChange = {(event,newValue) => this.setState({password:newValue})}
-                 />
+                 hintText="Enter your Username"
+                 floatingLabelText="Username"
+                 onChange = {(event,newValue) => this.setState({username:newValue})}
+                 required/>
                <br/>
-               <Link to="/">
-                <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}} onClick={event =>this.login(event)}/>
-               </Link>
-           </div>
+                 <TextField
+                   type="password"
+                   hintText="Enter your Password"
+                   floatingLabelText="Password"
+                   color="primary"
+                   onChange = {(event,newValue) => this.setState({password:newValue})}
+                   required
+                   />
+                 <br/>
+                 <Link to="/">
+                  <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}} onClick={event =>this.login(event)}/>
+                 </Link>
+             </div>
            </MuiThemeProvider>
         </div>
       );
@@ -53,10 +55,22 @@ class Login extends React.Component {
     login(e){
       e.preventDefault();
       Fire.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then((u)=>{
-        alert("hello :"+u);
+        var user = Fire.auth().currentUser;
+        Fire.auth().onAuthStateChanged(user => {
+          alert(user.FirstName);
+            if (user) {
+                this.getUserData(user.uid)
+                this.setState({userid:user.uid})
+            }
+        })
       }).catch((error) =>{
         alert(error);
       });
+    }
+    getUserData(uid) {
+      Fire.database().ref('User/' + uid).once("value", snap => {
+          alert(snap.val().FirstName) // returns the name of the person logged in
+      })
     }
 }
 export default Login;
