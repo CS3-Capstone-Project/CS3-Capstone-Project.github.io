@@ -14,7 +14,8 @@ class Login extends React.Component {
     super(props);
     this.state={
     username:'',
-    password:''
+    password:'',
+    userid:""
     }
    }
   render() {
@@ -32,7 +33,7 @@ class Login extends React.Component {
                  hintText="Enter your Username"
                  floatingLabelText="Username"
                  onChange = {(event,newValue) => this.setState({username:newValue})}
-                 />
+                 required/>
                <br/>
                  <TextField
                    type="password"
@@ -40,6 +41,7 @@ class Login extends React.Component {
                    floatingLabelText="Password"
                    color="primary"
                    onChange = {(event,newValue) => this.setState({password:newValue})}
+                   required
                    />
                  <br/>
                  <Link to="/">
@@ -53,17 +55,20 @@ class Login extends React.Component {
     login(e){
       e.preventDefault();
       Fire.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then((u)=>{
+        var user = Fire.auth().currentUser;
+        Fire.auth().onAuthStateChanged(user => {
+          alert(user.FirstName);
+            if (user) {
+                this.getUserData(user.uid)
+                this.setState({userid:user.uid})
+            }
+        })
       }).catch((error) =>{
         alert(error);
       });
-      Fire.auth().onAuthStateChanged(user => {
-          if (user) {
-              this.getUserData(user.uid)
-          }
-      })
     }
     getUserData(uid) {
-      Fire.database().ref('User/Student/' + uid).once("value", snap => {
+      Fire.database().ref('User/' + uid).once("value", snap => {
           alert(snap.val().FirstName) // returns the name of the person logged in
       })
     }

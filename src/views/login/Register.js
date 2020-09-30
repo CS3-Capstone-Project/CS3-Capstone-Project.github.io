@@ -61,6 +61,7 @@ class Register extends Component {
                 cols="50"
                 value={this.state.content}
                 onChange={this.handleChange}
+                required
               />
             </div>
            <TextField
@@ -68,6 +69,7 @@ class Register extends Component {
              type="email"
              floatingLabelText="Email"
              onChange = {(event,newValue) => this.setState({email:newValue})}
+             required
              />
            <br/>
            <TextField
@@ -75,6 +77,7 @@ class Register extends Component {
              hintText="Enter your Password"
              floatingLabelText="Password"
              onChange = {(event,newValue) => this.setState({password:newValue})}
+             required
              />
            <br/>
            <Link to="/">
@@ -97,36 +100,21 @@ class Register extends Component {
   }
   signup(e){
       e.preventDefault();
-      if (this.state.person=="Student") {
-        Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
-        .then((u)=>{
-          Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
-            FirstName:this.state.first_name,
-            LastName:this.state.last_name,
-            Email:this.state.email,
-            Password:this.state.password,
-          });
-          alert("registered: "+u);})
-        .catch((error) =>{
-          alert(error);
+      Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
+      .then((u)=>{
+        Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
+          FirstName:this.state.first_name,
+          LastName:this.state.last_name,
+          Email:this.state.email,
+          Password:this.state.password,
+          Role:this.state.person,
+          Description:this.state.description,
         });
-      } else {
-        Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
-        .then((u)=>{
-          Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
-            FirstName:this.state.first_name,
-            LastName:this.state.last_name,
-            Email:this.state.email,
-            Password:this.state.password,
-            Description:this.state.description,
-          });
-          alert("registered: "+u);})
+        alert("registered: "+u);})
         .catch((error) =>{
           alert(error);
         });
       }
-
-  }
 }
 const style = {
   margin: 15,
