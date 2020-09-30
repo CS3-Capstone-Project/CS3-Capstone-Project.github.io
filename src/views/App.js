@@ -10,6 +10,7 @@ import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
 import Advanced from "./levels/Advanced.js";
+import Addresource from "./addresource/Addresource.js";
 
 //Styles
 import "./App.scss";
@@ -48,6 +49,13 @@ export default class App extends Component {
           <Questionnaire { ...props} loginStatus={this.state.loginStatus}/>
           )}>
    				</Route>
+
+          <Route 
+          path={"/addresource"}
+          render = {props =>(
+          <Addresource { ...props} loginStatus={this.state.loginStatus}/>
+          )}>
+          </Route>
 
    				<Route path={"/login"}
             render = {props =>(

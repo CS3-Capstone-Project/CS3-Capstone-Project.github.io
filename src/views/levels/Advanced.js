@@ -17,6 +17,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
+import Header from "../../components/header/Header.js";
 
 import { resources } from "../resources/data.js";
 
@@ -24,10 +25,9 @@ export default class Advanced extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-			<div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
-				<hr/>
-				<div style={{textAlign:"center"}}><div ><h3>Advanced</h3></div></div>
+			<Header/>
 			<Container className="wrapper">
+				<div style={{textAlign:"center"}}><div ><h3>Advanced</h3></div></div>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					{
@@ -91,13 +91,6 @@ export default class Advanced extends Component{
 					}
 				</Row>
 			</Container>
-			{/*
-			<div className="bottom-nav">
-    				<h6>Hi, are you a</h6>
-    				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
-    					&nbsp; or a &nbsp;
-    				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    		</div> */}
     		</Container>
 		);
 	}

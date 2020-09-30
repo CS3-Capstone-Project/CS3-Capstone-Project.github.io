@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 //React Bootstrap API
-import {Container} from 'reactstrap';
-import {Row} from 'reactstrap';
-import {Col} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
 import {Image} from 'react-bootstrap';
 
 //Styles
@@ -17,6 +15,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
+import Header from "../../components/header/Header.js";
 
 import { resources } from "../resources/data.js";
 
@@ -24,12 +23,9 @@ export default class Beginner extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-			
-			<div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
-				<hr/>
-				<div style={{textAlign:"center"}}><div ><h3>Beginner</h3></div></div>
-			
+				<Header/>
 			<Container className="wrapper">
+				<div style={{textAlign:"center"}}><div ><h3>Beginner</h3></div></div>
 				<div><h5>Videos</h5></div>
 				<Row>
 					{

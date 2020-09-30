@@ -68,7 +68,7 @@ export default class Thumbnail extends Component{
 	}
 	render(){
 		return(
-			<div className="thumbnail">
+			<div style={{zIndex:"999"}} className="thumbnail">
 
 				<span className="a" onClick={() => this.openModal()}>
 					<div className="ttop" style = {this.props.style}>
@@ -77,7 +77,7 @@ export default class Thumbnail extends Component{
 					</div>
 				</span>
 
-				<Modal visible={this.state.visible} width="95%" height="600px" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+				<Modal style={{zIndex:"999"}} visible={this.state.visible} width="95%" height="600px" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
                     	<div style={{display:"flex"}}>
                     		<div style={{paddingLeft:"10px"}}>

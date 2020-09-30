@@ -5,17 +5,24 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Modal from 'react-awesome-modal';
 import CloseIcon from '@material-ui/icons/Close';
 
+//Components
+import Thumbnail from "./thumbnail/Thumbnail.js";
+
 import "./searchBar.scss";
 
-class displayResults extends Component{
+class SearchResult extends Component {
   constructor(props){
     super(props);
+
   }
 
   render(){
     return(
-      <div>Deep Shit</div>
-    );
+      <div>
+        <div> Deep Shit : {this.props.request}</div>
+        <Thumbnail/>
+      </div>
+    ); 
   }
 }
 
@@ -64,7 +71,7 @@ export default class SearchBar extends Component {
 
         <div id="modalWrapper" style={{display: `${this.state.displayy}` }}>
           <Modal visible={this.state.visible} width="95%" height="600px" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-            <div>
+            <div className="modal-container">
               <div style={{display:"flex"}}>
                 <div style={{paddingLeft:"10px"}}>
                   <h2>{this.state.selection}</h2>
@@ -73,7 +80,9 @@ export default class SearchBar extends Component {
                   <a href="javascript:void(0);" onClick={() => this.closeModal()}><CloseIcon fontSize="large" style={{color:"black"}}/></a>
                 </div>
               </div>
-              <div>Deep shit</div>
+              <hr/>
+
+              <SearchResult request={this.state.selection}/>
             </div>
           </Modal>
         </div>
@@ -83,49 +92,52 @@ export default class SearchBar extends Component {
 }
 
 const commonSearchs = [
-  { name: '_future'},
-  { name: '_main' },
-  { name: '_dummy_thread' },
-  { name: '_thread' },
-  { name: 'abc' },
-  { name: 'aifc' },
+  { name: 'library'},
+  { name: 'functions' },
+  { name: 'IDE' },
+  { name: 'installation' },
+  { name: 'comments' },
+  { name: 'variables' },
+  { name: 'data types' },
+  { name: 'numbers' },
+  { name: 'casting' },
+  { name: 'operator'},
+  { name: 'list'},
+  { name: 'tuple'},
+  { name: 'set'},
+  { name: 'if...else'},
+  { name: 'while loop' },
+  { name: 'for loop' },
+  { name: 'function' },
+  { name: 'lambda' },
   { name: 'array' },
-  { name: 'ast' },
-  { name: 'audiooop' },
-  { name: 'bdb'},
-  { name: 'for loop'},
-  { name: 'while loop'},
-
-  { name: 'base64'},
-  { name: 'binascii'},
-  { name: 'calendar' },
-  { name: 'cmath' },
-  { name: 'copy' },
-  { name: 'copyreg' },
-  { name: 'dataClasses' },
-  { name: 'decimal' },
-  { name: 'dis' },
-  { name: 'difflib'},
-
-  { name: 'email'},
-  { name: 'enum'},
-  { name: 'errno' },
-  { name: 'for loops' },
-  { name: 'loops' },
-  { name: 'http' },
+  { name: 'class/object' },
+  { name: 'inheritance' },
+  { name: 'iterator'},
+  { name: 'scope'},
+  { name: 'module'},
+  { name: 'date' },
+  { name: 'JSON' },
+  { name: 'regex' },
+  { name: 'math' },
   { name: 'io' },
-  { name: 'import' },
-  { name: 'json' },
-  { name: 'keyword'},
-
-  { name: 'math'},
-  { name: 'mmap'},
-  { name: 'nis' },
-  { name: 'os' },
-  { name: 'pdp' },
-  { name: 'pty' },
-  { name: 'posix' },
-  { name: 'queue' },
+  { name: 'PIP' },
+  { name: 'user input' },
+  { name: 'try..expect'},
+  { name: 'string'},
+  { name: 'read file'},
+  { name: 'delete file' },
+  { name: 'write/create file' },
   { name: 'numpy' },
-  { name: 'conditions'},
+  { name: 'scipy' },
+  { name: 'machine learning' },
+  { name: 'queue' },
+  { name: 'methods' },
+  { name: 'keywords'},
+  { name: 'integer'},
+  { name: 'float'},
+  { name: 'double'},
+  { name: 'print'},
+  { name: 'import'},
+
 ];

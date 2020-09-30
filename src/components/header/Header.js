@@ -51,12 +51,13 @@ export default class Header extends Component{
 									<Link to="/advanced" className="links">Advanced</Link>
 								</NavDropdown.Item>
 							</NavDropdown>
+							{/*
 							<Nav.Link>
 								<Link to="/questionnaire" className="links">Student</Link> 
 							</Nav.Link>
 							<Nav.Link>
 								<Link to="/login" className="links">Expert</Link> 
-							</Nav.Link>
+							</Nav.Link>*/}
 						</Nav>
 					
 
