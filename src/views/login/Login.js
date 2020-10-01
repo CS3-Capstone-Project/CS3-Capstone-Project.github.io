@@ -34,11 +34,7 @@ class Login extends React.Component {
                  hintText="Enter your Username"
                  floatingLabelText="Username"
                  onChange = {(event,newValue) => this.setState({username:newValue})}
-<<<<<<< HEAD
-                 />
-=======
                  required/>
->>>>>>> d2bea17743eb65fecee023e5dcf5a2fe13617136
                <br/>
                  <TextField
                    type="password"
