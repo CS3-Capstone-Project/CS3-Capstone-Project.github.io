@@ -1,145 +1,236 @@
+import React from 'react';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import React from 'react';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import { TextField, MenuItem } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import Fire from "./login/config/fire";
 
-const DOC = /docx|doc|pdf|txt/;
-const SPREADSHEET = /xlsx|csv/;
-const PRESENTATION = /ppt|pptx/;
+//Firebase
+import fire from "../login/config/fire.js";
+
+//Components
+import Header from "../../components/header/Header.js";
+import {Col,Container,Row, Jumbotron} from 'reactstrap';
+//import Fire from "./login/config/fire";
+
 class Addresource extends React.Component{
   constructor(props) {
     super(props)
     this.state={
-      nameOfResource:"",
-      link:"",
-      selectedFile: null,
-      description:""
+      source:"",
+      url:"",
+      topic: "",
+      description:"",
+      difficulty:"",
+      type:"",
+      rating:0,
+      totalRatings:0
     }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  // On file select (from the pop up)
-    onFileChange = event => {
+ 
+  handleChange(event){
+    this.setState({
+      [event.target.name] : event.target.value
+    });
+  }
 
-      // Update the state
-      this.setState({ selectedFile: event.target.files[0] });
+  handleSubmit(event){
+    event.preventDefault();
+    const resourcesRef = fire.database().ref('resource/' + this.state.difficulty + "/" + this.state.type);
+    const resource = {
+      source: this.state.source,
+      url: this.state.url,
+      topic: this.state.topic,
+      description: this.state.description,
+      rating:this.state.rating,
+      totalRatings:this.state.totalRatings
+    }
+    resourcesRef.push(resource);
+    this.setState({
+      source:"",
+      url:"",
+      topic: "",
+      description:"",
+      difficulty:"",
+      type:"",
+      rating:0,
+      totalRatings:0
+    });
+    alert("Resource added successfully");
 
-    };
+    setTimeout(() => {
+      window.location.replace('/');
+    }, 2500);
+    //window.location.replace('/');
+  }
 
-    // On file upload (click the upload button)
-    onFileUpload = () => {
 
-      // Create an object of formData
-      const formData = new FormData();
 
-      // Update the formData object
-      if (this.state.selectedFile) {
-        formData.append(
-          "myFile",
-          this.state.selectedFile,
-          this.state.selectedFile.name
-        );
-      }
-      else {
-        return (
-          <div>
-            <br />
-            <h4>Choose before Pressing the Upload button</h4>
-          </div>
-        );
-      }
-      // Details of the uploaded file
-      console.log(this.state.selectedFile);
-
-      // Request made to the backend api
-      // Send formData object
-      axios.post("api/uploadfile", formData);
-    };
-
-    // File content to be displayed after
-    // file upload is complete
-    fileData = () => {
-
-      if (this.state.selectedFile) {
-
-        return (
-          <div>
-            <h2>File Details:</h2>
-            <p>File Name: {this.state.selectedFile.name}</p>
-            <p>File Type: {this.state.selectedFile.type}</p>
-            <p>
-              Last Modified:{" "}
-              {this.state.selectedFile.lastModifiedDate.toDateString()}
-            </p>
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            <br />
-            <h4>Choose before Pressing the Upload button</h4>
-          </div>
-        );
-      }
-    };
   render(){
-    const options = [
-        'PDF', 'Website', 'Video'
-      ];
-      const defaultOption = options[0];
-
-      const handleChange = (event) => {
-        const name = event.target.name;
-        this.setState({
-          ...this.state,
-          [name]: event.target.value,
-        });
-      };
     return (
-      <div>
-      <MuiThemeProvider>
-      <div>
-      <AppBar
-      title="Add Resource"/>
-      <label htmlFor="myInput">Name of Resource </label>
-      <input id="myInput" type="text" /><br/><br/>
-      <label htmlFor="myInput">Link to Resource </label>
-      <input id="myInput" type="link" /><br/><br/>
-      <label htmlFor="myInput"> Type of Resource</label>
-      <Select
-          native
-          value={this.state.type}
-          onChange={handleChange}
-          inputProps={{
-            type:"Type..."
-          }}
-          style={{width:"157px",
-          justifyContent: "center",
-          alignItems: "center"}}
-        >
-          <option style={{display:"flex",justifyContent: "center",alignItems: "center"}} value="Type">Type..</option>
-          <option value="Video">Video</option>
-          <option value="Website">Website</option>
-          <option value="PDF">PDF</option>
-        </Select><br/><br/>
-        <div>
-                <input type="file" onChange={this.onFileChange} />
-                <button onClick={this.onFileUpload}>
-                  Upload!
-                </button>
-            </div>
-          {this.fileData()}
-          <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-      </div>
-      </MuiThemeProvider>
-      </div>
+      <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
+        <Header/>
+        <Container className="wrapper">
+          <form onSubmit={this.handleSubmit}>
+            <h2 style={{textAlign:"center"}}>Add Resource</h2>
+            <br/>
+
+            <TextField 
+               
+              variant="outlined" 
+              size="small" 
+              fullWidth="true"
+              required="true"
+              label="Source"
+              name="source"
+              onChange={this.handleChange}
+              /> <br/> <br/>
+
+            <TextField 
+              label="Url" 
+              variant="outlined" 
+              size="small" 
+              fullWidth="true"
+              required="true"
+              name="url"
+              onChange={this.handleChange}
+              /> <br/> <br/>
+            
+            <TextField
+              label="Topic" 
+              id="topic"
+              variant="outlined" 
+              size="small" 
+              fullWidth="true"
+              required="true"
+              name="topic"
+              onChange={this.handleChange}
+              select> 
+              {commonSearchs.map((t) => (
+                <MenuItem key={t} value={t}>
+                  {t}
+                </MenuItem>
+              ))}
+              </TextField>
+            <br/> <br/>
+            <TextField 
+              label="Level of difficulty" 
+              id="difficulty"
+              variant="outlined" 
+              size="small"
+              fullWidth="true" 
+              required="true" 
+              name="difficulty"
+              onChange={this.handleChange}
+              select> 
+
+                <MenuItem value="beginner">Beginner</MenuItem>
+                <MenuItem value="intermediate">Intermediate</MenuItem>
+                <MenuItem value="advanced">Advanced</MenuItem>
+
+              </TextField>
+              <br/> <br/>
+
+              <TextField 
+              label="Resource type" 
+              id="type"
+              variant="outlined" 
+              size="small"
+              fullWidth="true" 
+              required="true" 
+              name="type"
+              onChange={this.handleChange}
+              select> 
+
+                <MenuItem value="videos">Video</MenuItem>
+                <MenuItem value="webpages">Webpage</MenuItem>
+                <MenuItem value="ebooks">eBook</MenuItem>
+
+              </TextField>
+              <br/> <br/>
+
+            <TextField 
+              label="Description"
+              multiline="true"
+              variant="outlined"
+              rows="3"
+              required="true"
+              name="description"
+              onChange={(event) => this.setState({description:event.target.value})}
+              fullWidth="true"/> <br/> <br/>
+
+            <Button 
+              fullWidth="true"
+              size = "medium" 
+              className="buttons" 
+              type="submit"
+              value="Submit"
+              style={{backgroundColor:"#5bc0de"}}
+              > 
+                Submit
+            </Button>
+
+          </form>         
+        </Container>
+      </Container>
     );
   }
-
 }
 export default Addresource;
+
+const commonSearchs = [
+  'library',
+  'functions',
+  'IDE',
+  'installation',
+  'comments',
+  'variables',
+  'data types',
+  'numbers',
+  'casting',
+  'operator',
+  'list',
+  'tuple',
+  'set',
+  'if...else',
+  'while loop',
+  'for loop',
+  'function',
+  'lambda',
+  'array',
+  'class/object',
+  'inheritance',
+  'iterator',
+  'scope',
+  'module',
+  'date' ,
+  'JSON' ,
+  'regex' ,
+  'math' ,
+  'io' ,
+  'PIP' ,
+  'user input' ,
+  'try..expect',
+  'string',
+  'read file',
+  'delete file' ,
+  'write/create file' ,
+  'numpy' ,
+  'scipy' ,
+  'machine learning' ,
+  'queue' ,
+  'methods' ,
+  'keywords',
+  'integer',
+  'float',
+  'double',
+  'print',
+  'import',
+
+];

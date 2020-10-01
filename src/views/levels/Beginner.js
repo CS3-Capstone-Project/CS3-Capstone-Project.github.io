@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 //React Bootstrap API
-import {Container} from 'reactstrap';
-import {Row} from 'reactstrap';
-import {Col} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
 import {Image} from 'react-bootstrap';
 
 //Styles
@@ -17,79 +15,78 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
+import Header from "../../components/header/Header.js";
+
+import { resources } from "../resources/data.js";
 
 export default class Beginner extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-			
-			<div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
-				<hr/>
-				<div style={{textAlign:"center"}}><div ><h3>Beginner</h3></div></div>
-			
+				<Header/>
 			<Container className="wrapper">
-				<div><h5>YouTube Videos</h5></div>
+				<div style={{textAlign:"center"}}><div ><h3>Beginner</h3></div></div>
+				<div><h5>Videos</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail id="1" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="2" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="3" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="4" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-				</Row>
-
-				<div><h5>YouTube Playlists</h5></div>
-				<Row>
-					<Col>
-						<Thumbnail id="5" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="6" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="7" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="8" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
+					{
+						resources.beginner.videos.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									rating = {data.rating}
+									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail id="9" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="10" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="11" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="12" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
+					{
+						resources.beginner.webpages.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									rating = {data.rating}
+									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail id="13" source="freeCodeCamp.org" desc = "This course will give you a full introduction into all of the core concepts in python. Follow along with the video..." url="https://www.youtube.com/watch?v=rfscVS0vtbw" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="14" source="Hitesh Choudhary" desc= "Python is a great programming language and if you have decided that you will learn python in 2019, that's..." url="https://www.youtube.com/watch?v=7UeRnuGo-pg" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="15" source="CS Dojo" desc="Python Tutorial for Absolute Beginners #1 - What Are Variables?" url="https://www.youtube.com/watch?v=Z1Yd7upQsXY" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id="16" source="Edureka" desc="Python Tutorial for Beginners | Python Programming Language Tutorial | Python Training | Edureka" url="https://www.youtube.com/watch?v=N0lxfilGfak" style={{backgroundColor:"rgba(34,139,34,0.3)"}}/>
-					</Col>
+					{
+						resources.beginner.ebooks.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 			</Container>
 			{/*

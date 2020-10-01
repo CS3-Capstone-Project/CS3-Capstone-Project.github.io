@@ -18,77 +18,78 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
+import Header from "../../components/header/Header.js";
+
+import { resources } from "../resources/data.js";
 
 export default class Intermediate extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-			<div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
-				<hr/>
-				<div style={{textAlign:"center"}}><div ><h3>Intermediate</h3></div></div>
+			<Header/>	
 			<Container className="wrapper">
-				<div><h5>YouTube Videos</h5></div>
+				<div style={{textAlign:"center"}}><div ><h3>Intermediate</h3></div></div>
+				<div><h5>Youtube Videos</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail id = "001" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "002" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "003" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "004" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-				</Row>
-
-				<div><h5>YouTube Playlists</h5></div>
-				<Row>
-					<Col>
-						<Thumbnail id = "005" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "006" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "007" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "008" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
+					{
+						resources.intermediate.videos.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url}
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 
 				<div><h5>Webpages</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail id = "009" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "010" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "011" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "012" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
+					{
+						resources.intermediate.webpages.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url} 
+									rating = {data.rating}
+									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 
 				<div><h5>eBooks</h5></div>
 				<Row>
-					<Col>
-						<Thumbnail id = "013" source="Corery Schafer" desc="Introduction - Intermediate Python Programming p. 1" url="https://www.youtube.com/watch?v=0VdzZQdaZ28" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "014" desc="A RegEx, regular Expression, is a sequence of characters that..." source = "W3 Schools" url = "https://www.w3schools.com/python/python_regex.asp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "015" source = "GeeksForGeeks" desc="Containers are objects that hold objects. They provide a way to access the contained objects and iterate over them" url="https://www.geeksforgeeks.org/counters-in-python-set-1/?ref=lbp" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
-					<Col>
-						<Thumbnail id = "016" source = "Python.org" desc="Another useful data type built into Python is the dictionary" url="https://docs.python.org/3.8/tutorial/datastructures.html#dictionaries" style={{backgroundColor:"rgba(255,159,0,0.3)"}}/>
-					</Col>
+					{
+						resources.intermediate.ebooks.map((data,key) => {
+							return(
+								<Col>
+									<Thumbnail 
+									key={data.id} 
+									id = {data.id} 
+									source = {data.source} 
+									desc = {data.desc} 
+									url = {data.url}
+									rating = {data.rating} 
+									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
+									</Thumbnail>
+								</Col>
+							);
+						})
+					}
 				</Row>
 			</Container>
 			{/*

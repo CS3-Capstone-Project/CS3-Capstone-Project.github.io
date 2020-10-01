@@ -29,7 +29,7 @@ class ForgotPassword extends Component {
             hintText="Enter your email"
             floatingLabelText="Email"
             onChange = {(event,newValue) => this.setState({email:newValue})}
-            required
+            required = "true"
             />
           <br/>
           <Link to="/">

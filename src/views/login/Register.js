@@ -43,15 +43,17 @@ class Register extends Component {
              hintText="Enter your First Name"
              floatingLabelText="First Name"
              onChange = {(event,newValue) => this.setState({first_name:newValue})}
+             required = "true"
              />
            <br/>
            <TextField
              hintText="Enter your Last Name"
              floatingLabelText="Last Name"
              onChange = {(event,newValue) => this.setState({last_name:newValue})}
+             required = "true"
              />
            <br/>
-           <div onChange={this.onChangeValue} className="container" >
+           <div onChange={this.onChangeValue} className="container" required = "true">
               <input type="radio" value="Student" name="gender" /> Student &nbsp;
               <input type="radio" value="Expert" name="gender" /> Expert
             </div>
@@ -69,7 +71,7 @@ class Register extends Component {
              type="email"
              floatingLabelText="Email"
              onChange = {(event,newValue) => this.setState({email:newValue})}
-             required
+             required = "true"
              />
            <br/>
            <TextField
@@ -77,7 +79,7 @@ class Register extends Component {
              hintText="Enter your Password"
              floatingLabelText="Password"
              onChange = {(event,newValue) => this.setState({password:newValue})}
-             required
+             required = "true"
              />
            <br/>
            <Link to="/">
