@@ -1,0 +1,15 @@
+.buttonWrapper{
+	background-color: transparent;
+	bottom: 0;
+	right:0;
+	margin-right: 5px;
+	margin-bottom: 8px;
+	position: fixed;
+	display: block;
+	z-index: 999;
+}
+
+#button{
+	border: 0!important;
+	outline: none;
+}
