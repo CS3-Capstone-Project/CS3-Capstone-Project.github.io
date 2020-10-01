@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
 import Fire from "./config/fire";
+import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
 
@@ -44,7 +45,7 @@ class Login extends React.Component {
                    required
                    />
                  <br/>
-                 <Link to="/">
+                 <Link to="/Landing">
                   <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}} onClick={event =>this.login(event)}/>
                  </Link>
              </div>
@@ -57,20 +58,30 @@ class Login extends React.Component {
       Fire.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then((u)=>{
         var user = Fire.auth().currentUser;
         Fire.auth().onAuthStateChanged(user => {
-          alert(user.FirstName);
+          //alert(user.FirstName);
             if (user) {
+                //this.props.parentCallback(user.uid);
                 this.getUserData(user.uid)
                 this.setState({userid:user.uid})
+                this.done();
             }
         })
       }).catch((error) =>{
         alert(error);
       });
     }
+    sendData = () => {
+      var user = Fire.auth().currentUser;
+      this.props.parentCallback(user.uid);
+    }
+
     getUserData(uid) {
       Fire.database().ref('User/' + uid).once("value", snap => {
           alert(snap.val().FirstName) // returns the name of the person logged in
       })
+    }
+    done(){
+      return <Redirect to="./Landing"/>
     }
 }
 export default Login;
