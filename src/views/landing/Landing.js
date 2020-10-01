@@ -38,12 +38,9 @@ export default class Landing extends Component{
 
 	 getUserData(){
 		 firebase.auth().onAuthStateChanged(user => {
-			 //alert(user.FirstName);
 				 if (user) {
-						 //this.props.parentCallback(user.uid);
 						 firebase.database().ref('User/' + user.uid).once("value", snap => {
 							 this.setState({userid:user.uid});
-								// alert(snap.val().FirstName) // returns the name of the person logged in
 						 })
 				 }
 				 else {
