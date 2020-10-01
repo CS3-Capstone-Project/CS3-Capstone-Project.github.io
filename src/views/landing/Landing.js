@@ -25,22 +25,49 @@ import SearchBar from "../../components/SearchBar.js";
 
 //Views
 //import questionnaire from "../questionnaire/questionnaire.js";
-
+import firebase from "../login/config/fire.js";
+import login from "../login/Login";
 export default class Landing extends Component{
+	constructor(props){
+    super(props);
+    this.state={
+    userid:"not set yet"
+    }
+
+   }
+
+	 getUserData(){
+		 firebase.auth().onAuthStateChanged(user => {
+			 //alert(user.FirstName);
+				 if (user) {
+						 //this.props.parentCallback(user.uid);
+						 firebase.database().ref('User/' + user.uid).once("value", snap => {
+							 this.setState({userid:user.uid});
+								// alert(snap.val().FirstName) // returns the name of the person logged in
+						 })
+				 }
+				 else {
+				 	this.setState({userid:"unknown"});
+				 }
+		 })
+
+	 }
 	render(){
+		var user = firebase.auth().currentUser;
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
 				<div style={{textAlign:"center"}}><div ><Image className="logo" src="./img/python.png"/></div></div>
 				<hr/>
 			<Container className="wrapper">
 			 	<Jumbotron>
+					<span>"hello world"{this.getUserData()}{this.state.userid}</span>
 			 		<h3 style={{textDecoration:"none"}}>Python Description</h3>
 			 		<hr/>
 			 		<p>
-			 			Python is an interpreted, high-level, general-purpose programming language. 
-			 			Created by Guido van Rossum and first released in 1991, Python's design 
+			 			Python is an interpreted, high-level, general-purpose programming language.
+			 			Created by Guido van Rossum and first released in 1991, Python's design
 			 			philosophy emphasizes code readability with its notable use of significant whitespace.
-			 			Its language constructs and object-oriented approach aim to help programmers write clear, 
+			 			Its language constructs and object-oriented approach aim to help programmers write clear,
 			 			logical code for small and large-scale projects.
 			 		</p>
 			 		<a style={{textDecoration:"none"}} href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank"><Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>More about Python</Button></a>
