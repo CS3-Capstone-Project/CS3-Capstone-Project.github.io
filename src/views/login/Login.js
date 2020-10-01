@@ -34,11 +34,8 @@ class Login extends React.Component {
                  hintText="Enter your Username"
                  floatingLabelText="Username"
                  onChange = {(event,newValue) => this.setState({username:newValue})}
-<<<<<<< HEAD
-                 />
-=======
-                 required/>
->>>>>>> d2bea17743eb65fecee023e5dcf5a2fe13617136
+                 required="true"/>
+
                <br/>
                  <TextField
                    type="password"
@@ -63,7 +60,6 @@ class Login extends React.Component {
 
         var user = Fire.auth().currentUser;
         Fire.auth().onAuthStateChanged(user => {
-          alert(user.FirstName);
             if (user) {
                 this.getUserData(user.uid)
                 this.setState({userid:user.uid})

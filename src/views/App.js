@@ -11,6 +11,7 @@ import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
 import Advanced from "./levels/Advanced.js";
 import Addresource from "./addresource/Addresource.js";
+import Ebooks from "./ebooks/Ebooks.js";
 
 //Styles
 import "./App.scss";
@@ -49,6 +50,13 @@ export default class App extends Component {
           <Questionnaire { ...props} loginStatus={this.state.loginStatus}/>
           )}>
    				</Route>
+
+          <Route 
+          path={"/ebooks"}
+          render = {props =>(
+          <Ebooks { ...props} loginStatus={this.state.loginStatus}/>
+          )}>
+          </Route>
 
           <Route 
           path={"/addresource"}

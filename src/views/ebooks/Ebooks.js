@@ -6,7 +6,7 @@ import {Container, Row, Col} from 'reactstrap';
 import {Image} from 'react-bootstrap';
 
 //Styles
-import "./levels.scss";
+
 
 //Material UI API
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,7 @@ import Header from "../../components/header/Header.js";
 
 import { resources } from "../resources/data.js";
 
-export default class Beginner extends Component{
+export default class Ebooks extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>

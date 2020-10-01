@@ -58,9 +58,7 @@ class Addresource extends React.Component{
       topic: "",
       description:"",
       difficulty:"",
-      type:"",
-      rating:0,
-      totalRatings:0
+      type:""
     });
     alert("Resource added successfully");
 
@@ -82,7 +80,6 @@ class Addresource extends React.Component{
             <br/>
 
             <TextField 
-               
               variant="outlined" 
               size="small" 
               fullWidth="true"
@@ -162,7 +159,7 @@ class Addresource extends React.Component{
               rows="3"
               required="true"
               name="description"
-              onChange={(event) => this.setState({description:event.target.value})}
+              onChange={this.handleChange}
               fullWidth="true"/> <br/> <br/>
 
             <Button 
