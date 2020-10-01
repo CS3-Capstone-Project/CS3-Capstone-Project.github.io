@@ -16,12 +16,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 //Styles
 import "./Header.scss";
-
-<<<<<<< HEAD
-// firebase
+//firebase
 import firebase from "../../views/login/config/fire.js";
-=======
->>>>>>> landing
 export default class Header extends Component{
 	constructor(props){
 		super(props);
