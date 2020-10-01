@@ -43,26 +43,15 @@ class Register extends Component {
              hintText="Enter your First Name"
              floatingLabelText="First Name"
              onChange = {(event,newValue) => this.setState({first_name:newValue})}
-<<<<<<< HEAD
-             required = "true"
-=======
->>>>>>> landing
              />
            <br/>
            <TextField
              hintText="Enter your Last Name"
              floatingLabelText="Last Name"
              onChange = {(event,newValue) => this.setState({last_name:newValue})}
-<<<<<<< HEAD
-             required = "true"
-             />
-           <br/>
-           <div onChange={this.onChangeValue} className="container" required = "true">
-=======
              />
            <br/>
            <div onChange={this.onChangeValue} className="container" >
->>>>>>> landing
               <input type="radio" value="Student" name="gender" /> Student &nbsp;
               <input type="radio" value="Expert" name="gender" /> Expert
             </div>
@@ -72,10 +61,6 @@ class Register extends Component {
                 cols="50"
                 value={this.state.content}
                 onChange={this.handleChange}
-<<<<<<< HEAD
-                required
-=======
->>>>>>> landing
               />
             </div>
            <TextField
@@ -83,10 +68,6 @@ class Register extends Component {
              type="email"
              floatingLabelText="Email"
              onChange = {(event,newValue) => this.setState({email:newValue})}
-<<<<<<< HEAD
-             required = "true"
-=======
->>>>>>> landing
              />
            <br/>
            <TextField
@@ -94,10 +75,6 @@ class Register extends Component {
              hintText="Enter your Password"
              floatingLabelText="Password"
              onChange = {(event,newValue) => this.setState({password:newValue})}
-<<<<<<< HEAD
-             required = "true"
-=======
->>>>>>> landing
              />
            <br/>
            <Link to="/">
@@ -120,19 +97,6 @@ class Register extends Component {
   }
   signup(e){
       e.preventDefault();
-<<<<<<< HEAD
-      Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
-      .then((u)=>{
-        Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
-          FirstName:this.state.first_name,
-          LastName:this.state.last_name,
-          Email:this.state.email,
-          Password:this.state.password,
-          Role:this.state.person,
-          Description:this.state.description,
-        });
-        alert("registered: "+u);})
-=======
       if (this.state.person=="Student") {
         Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
         .then((u)=>{
@@ -157,16 +121,12 @@ class Register extends Component {
             Description:this.state.description,
           });
           alert("registered: "+u);})
->>>>>>> landing
         .catch((error) =>{
           alert(error);
         });
       }
-<<<<<<< HEAD
-=======
 
   }
->>>>>>> landing
 }
 const style = {
   margin: 15,
