@@ -5,12 +5,15 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 import {Image} from 'react-bootstrap';
 import './LP_button.scss';
+import Modal from 'react-awesome-modal';
 
 export default class Quiz2 extends Component {
 	constructor(props){
         super(props);
         this.state ={
-        	level: 2,
+        	visible: false,
+        	points:0,
+        	level: 1,
         	answer1:"",
         	answer2:"",
         	answer3:"",
@@ -25,33 +28,70 @@ export default class Quiz2 extends Component {
         this.levelChange1 = this.levelChange1.bind(this);
         this.levelChange2 = this.levelChange2.bind(this);
         this.levelChange3 = this.levelChange3.bind(this);
+        this.intLevel = this.intLevel.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     onAnsChange = e=>{
     	this.setState({[e.target.name]: e.target.value});
     }
     levelChange1(){
-    	if(this.state.answer1==="10, 11, 12, 13, 14," && this.state.answer2==="True" && this.state.answer3==="25 and 125" && this.state.answer4==="Salary: 12000 Salary: 8000" && this.state.answer5==="maJ" && this.state.answer6==="True" && this.state.answer7==="yn" && this.state.answer8==="The program executed with error" && this.state.answer9==="182.0" && this.state.answer10=="secrets.token_hex(32)"){
-    		return(2);
+    	if(this.state.answer1==="10, 11, 12, 13, 14," && this.state.answer2==="True" && this.state.answer3==="25 and 125" && this.state.answer4==="Salary: 12000 Salary: 8000" && this.state.answer5==="maJ" && this.state.answer6==="True" && this.state.answer7==="yn" && this.state.answer8==="The program executed with error" && this.state.answer9==="182.0" && this.state.answer10==="secrets.token_hex(32)"){
+    		this.openModal();
     	}
     	else{
-    		return(1);
+    		alert("Make sure you get all answers right!");
     	}
     }
     levelChange2(){
-    	if(this.state.answer1==="10, 11, 12, 13, 14," && this.state.answer2==="True" && this.state.answer3==="25 and 125" && this.state.answer4==="Salary: 12000 Salary: 8000" && this.state.answer5==="maJ" && this.state.answer6==="True" && this.state.answer7==="yn" && this.state.answer8==="The program executed with error" && this.state.answer9==="182.0" && this.state.answer10=="secrets.token_hex(32)"){
-    		return(3);
+    	if(this.state.answer1==="input()" && this.state.answer2==="Create a file, returns an error if the file exists" && this.state.answer3==="Syntax Error" && this.state.answer4==="Salary: 12000 Salary: 8000" && this.state.answer5==="[A]" && this.state.answer6==="True" && this.state.answer7==="NaN, NaN, NaN, NaN," && this.state.answer8==="aaa" && this.state.answer9==="11 undefined 11.22" && this.state.answer10==="t+"){
+    		this.openModal();
     	}
     	else{
-    		return(2);
+    		alert("Make sure you answer all answers right!");
     	}
     }
-    levelChange3(){}
+    levelChange3(){
+    	if(this.state.answer1==="‘a’" && this.state.answer2==="else clause of for loop is executed when the loop terminates naturally" && this.state.answer3==="21" && this.state.answer4==="num * fact(num - 1)" && this.state.answer5==="False" && this.state.answer6==="You cannot use print(self) as a function name." && this.state.answer7==="Foo" && this.state.answer8==="re" && this.state.answer9==="interpreter/ compile time" && this.state.answer10==="False True"){
+    		this.openModal();
+    	}
+    	else {
+    		alert("Make sure you get all answers right!");
+    	}
+    }
+    intLevel(){
+    	this.closeModal();
+    	if(this.state.level===1){
+	    	this.setState({
+	    		level:2
+	    	});
+    	}
+    	else if(this.state.level===2){
+    		this.setState({
+    			level:3
+    		});
+    	}
+    	else{
+    		return 0;
+    	}
+    }
+    openModal(){
+        this.setState({
+            visible : true
+        });
+    }
+    closeModal(){
+        this.setState({
+            visible : false
+        });
+    }
   render() {
   	//Beginner level quize--------------------------------------------------------------------------------------------
   		if(this.state.level===1){
 		    return (
 		    	<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-		    		<div style={{display:"flex"}}>
+		    		<Container style={{backgroundColor: "#A2E8A9"}}>
+		    			<div style={{display:"flex"}}>
 		                <Link className="links" to="/questionnaire">
 		                    <ArrowBackIcon style={{marginTop:"35px"}}/> 
 		                </Link>
@@ -63,7 +103,6 @@ export default class Quiz2 extends Component {
 		            <Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Advanced</Button>
 		            <hr/>
 		            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-		    		<Container style={{backgroundColor: "#A2E8A9"}}>
 		    			<h1>Beginner level learning path</h1>
 		    			<div>
 			    			<p style={{fontSize:"16px", fontWeight:"bold"}}>1. What is the output of the following code?</p>
@@ -460,9 +499,20 @@ export default class Quiz2 extends Component {
 							</label>
 						</div>
 						<hr/>
-						<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Submit</Button>
+						<Button onClick={this.levelChange1} className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Submit</Button>
 		    		</Container>
 		    		<hr/>
+		    		<Modal visible={this.state.visible} width="500" height="100" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+		    			<Container style={{backgroundColor: "#12AB18"}}>
+		    				<div>
+		    					<p>Congradulations you have passed the Beginners level, now you can move to Intermediate level!</p>
+		    				</div>
+		    			</Container>
+		    			<Container>
+		    				<Button onClick={()=> this.closeModal()}>Cancel</Button>
+		    				<Button onClick={this.intLevel}>Next level</Button>
+		    			</Container>
+		    		</Modal>
 		    	</Container>
 		    );
 		}
@@ -472,6 +522,18 @@ export default class Quiz2 extends Component {
 		else if(this.state.level===2){
 			return(
 	    		<Container style={{backgroundColor: "#FAD8A3"}}>
+	    			<div style={{display:"flex"}}>
+		                <Link className="links" to="/questionnaire">
+		                    <ArrowBackIcon style={{marginTop:"35px"}}/> 
+		                </Link>
+		                <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/>
+		            </div>
+		            <hr/>
+		            <Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Beginner</Button>&nbsp;&nbsp;
+		            <Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Intermediate</Button>&nbsp;&nbsp;
+		            <Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Advanced</Button>
+		            <hr/>
+		            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 	    			<h1>Intermediate level learning path</h1>
 	    			<div>
 		    			<p style={{fontSize:"16px", fontWeight:"bold"}}>1. In Python3, which functions are used to accept input from the user</p>
@@ -839,6 +901,16 @@ export default class Quiz2 extends Component {
 						    &nbsp; 11 ’22’ 11.22
 						</label>
 						<br/>
+						<label>
+						    <input type="radio"
+						            value="11 undefined 11.22"
+						            name="answer9"
+						            checked={this.state.answer9==="11 undefined 11.22"}
+						            onChange={this.onAnsChange}
+						    />
+						    &nbsp; 11 undefined 11.22
+						</label>
+						<br/>
 					</div>
 					<hr/>
 					<div>
@@ -884,7 +956,18 @@ export default class Quiz2 extends Component {
 						</label>
 					</div>
 					<hr/>
-					<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Submit</Button>
+					<Button onClick={this.levelChange2} className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Submit</Button>
+	    			<Modal visible={this.state.visible} width="500" height="100" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+		    			<Container style={{backgroundColor: "#12AB18"}}>
+		    				<div>
+		    					<p>Congradulations you have passed the Intermediate level, now you can move to Advanced level!</p>
+		    				</div>
+		    			</Container>
+		    			<Container>
+		    				<Button onClick={()=> this.closeModal()}>Cancel</Button>
+		    				<Button onClick={this.intLevel}>Next level</Button>
+		    			</Container>
+		    		</Modal>
 	    		</Container>
 	    	);
 		}
@@ -894,6 +977,18 @@ export default class Quiz2 extends Component {
 		else{
 			return(
 	    		<Container style={{backgroundColor: "#F0A2A2"}}>
+	    			<div style={{display:"flex"}}>
+		                <Link className="links" to="/questionnaire">
+		                    <ArrowBackIcon style={{marginTop:"35px"}}/> 
+		                </Link>
+		                <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/>
+		            </div>
+		            <hr/>
+		            <Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Beginner</Button>&nbsp;&nbsp;
+		            <Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Intermediate</Button>&nbsp;&nbsp;
+		            <Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Advanced</Button>
+		            <hr/>
+		            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 	    			<h1>Advanced level learning path</h1>
 	    			<div>
 		    			<p style={{fontSize:"16px", fontWeight:"bold"}}>1. What is the output of the following?</p>
@@ -1348,7 +1443,17 @@ export default class Quiz2 extends Component {
 						</label>
 					</div>
 					<hr/>
-					<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Submit</Button>
+					<Button onClick={this.levelChange3} className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Submit</Button>
+	    			<Modal visible={this.state.visible} width="500" height="100" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+		    			<Container style={{backgroundColor: "#12AB18"}}>
+		    				<div>
+		    					<p>Congradulations you have passed our short learning path!</p>
+		    				</div>
+		    			</Container>
+		    			<Container>
+		    				<Button onClick={()=> this.closeModal()}>Ok</Button>
+		    			</Container>
+		    		</Modal>
 	    		</Container>
 	    	);
 		}
