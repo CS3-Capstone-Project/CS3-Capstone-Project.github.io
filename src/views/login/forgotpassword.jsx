@@ -29,11 +29,18 @@ class ForgotPassword extends Component {
             hintText="Enter your email"
             floatingLabelText="Email"
             onChange = {(event,newValue) => this.setState({email:newValue})}
+<<<<<<< HEAD
             required = "true"
             />
           <br/>
           <Link to="/">
            <RaisedButton label="Reset password" primary={true} style={{marginTop: "15px",}} onClick={event =>this.reset(event)}/>
+=======
+            />
+          <br/>
+          <Link to="/">
+           <RaisedButton label="send" primary={true} style={{marginTop: "15px",}} onClick={event =>this.reset(event)}/>
+>>>>>>> landing
           </Link>
          </div>
         </MuiThemeProvider>
@@ -42,6 +49,7 @@ class ForgotPassword extends Component {
   }
   reset(e){
     e.preventDefault();
+<<<<<<< HEAD
     if (this.state.email != "") {
       Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
         alert("Check your emails:");
@@ -52,6 +60,13 @@ class ForgotPassword extends Component {
       alert("email not sent");
     }
 
+=======
+    Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
+      alert("Check your emails");
+    }).catch((error)=>{
+      alert(error)
+    });
+>>>>>>> landing
   }
 }
 export default ForgotPassword;

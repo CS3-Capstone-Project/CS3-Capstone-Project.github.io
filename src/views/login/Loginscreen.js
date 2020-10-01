@@ -60,6 +60,12 @@ class Loginscreen extends React.Component {
                      isLogin:false
                    })
     }
+<<<<<<< HEAD
+=======
+    else if (true) {
+
+    }
+>>>>>>> landing
     else{
       var loginscreen=[];
       loginscreen.push(<Login parentContext={this}/>);
