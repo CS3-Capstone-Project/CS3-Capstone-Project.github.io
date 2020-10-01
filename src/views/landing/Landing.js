@@ -60,7 +60,7 @@ export default class Landing extends Component{
 				<hr/>
 			<Container className="wrapper">
 			 	<Jumbotron>
-					<span>"hello world"{this.getUserData()}{this.state.userid}</span>
+					<span>"hello "{this.getUserData()}{this.state.userid}</span>
 			 		<h3 style={{textDecoration:"none"}}>Python Description</h3>
 			 		<hr/>
 			 		<p>
