@@ -16,6 +16,8 @@ import Header from "../../components/header/Header.js";
 import {Col,Container,Row, Jumbotron} from 'reactstrap';
 //import Fire from "./login/config/fire";
 
+import { commonSearchs } from "../resources/commonsearchs.js";
+
 class Addresource extends React.Component{
   constructor(props) {
     super(props)
@@ -42,16 +44,32 @@ class Addresource extends React.Component{
 
   handleSubmit(event){
     event.preventDefault();
-    const resourcesRef = fire.database().ref('resource/' + this.state.difficulty + "/" + this.state.type);
-    const resource = {
-      source: this.state.source,
-      url: this.state.url,
-      topic: this.state.topic,
-      description: this.state.description,
-      rating:this.state.rating,
-      totalRatings:this.state.totalRatings
+    let resourcesRef;
+    let resource;
+    if(this.state.type == "ebooks"){
+      resourcesRef = fire.database().ref('ebooks/');
+      resource = {
+        source: this.state.source,
+        url: this.state.url,
+        description: this.state.description,
+        rating:this.state.rating,
+        totalRatings:this.state.totalRatings
+      }
     }
+    else{
+      resourcesRef = fire.database().ref('resource/' + this.state.difficulty + "/" + this.state.type);
+      resource = {
+        source: this.state.source,
+        url: this.state.url,
+        topic: this.state.topic,
+        description: this.state.description,
+        rating:this.state.rating,
+        totalRatings:this.state.totalRatings
+      }
+    }
+
     resourcesRef.push(resource);
+    alert("Thank you, your resource is added.");
     this.setState({
       source:"",
       url:"",
@@ -60,15 +78,13 @@ class Addresource extends React.Component{
       difficulty:"",
       type:""
     });
-    alert("Resource added successfully");
+    
 
     setTimeout(() => {
       window.location.replace('/');
-    }, 2500);
+    }, 2550);
     //window.location.replace('/');
   }
-
-
 
   render(){
     return (
@@ -97,41 +113,7 @@ class Addresource extends React.Component{
               required="true"
               name="url"
               onChange={this.handleChange}
-              /> <br/> <br/>
-            
-            <TextField
-              label="Topic" 
-              id="topic"
-              variant="outlined" 
-              size="small" 
-              fullWidth="true"
-              required="true"
-              name="topic"
-              onChange={this.handleChange}
-              select> 
-              {commonSearchs.map((t) => (
-                <MenuItem key={t} value={t}>
-                  {t}
-                </MenuItem>
-              ))}
-              </TextField>
-            <br/> <br/>
-            <TextField 
-              label="Level of difficulty" 
-              id="difficulty"
-              variant="outlined" 
-              size="small"
-              fullWidth="true" 
-              required="true" 
-              name="difficulty"
-              onChange={this.handleChange}
-              select> 
-
-                <MenuItem value="beginner">Beginner</MenuItem>
-                <MenuItem value="intermediate">Intermediate</MenuItem>
-                <MenuItem value="advanced">Advanced</MenuItem>
-
-              </TextField>
+              /> 
               <br/> <br/>
 
               <TextField 
@@ -149,6 +131,43 @@ class Addresource extends React.Component{
                 <MenuItem value="webpages">Webpage</MenuItem>
                 <MenuItem value="ebooks">eBook</MenuItem>
 
+              </TextField>
+
+              <br/> <br/>
+            <TextField 
+              label="Level of difficulty" 
+              id="difficulty"
+              variant="outlined" 
+              size="small"
+              fullWidth="true" 
+              required="true" 
+              name="difficulty"
+              onChange={this.handleChange}
+              select> 
+                <MenuItem value="all">All</MenuItem>
+                <MenuItem value="beginner">Beginner</MenuItem>
+                <MenuItem value="intermediate">Intermediate</MenuItem>
+                <MenuItem value="advanced">Advanced</MenuItem>
+
+              </TextField>
+
+              <br/> <br/>
+            
+            <TextField
+              label="Topic" 
+              id="topic"
+              variant="outlined" 
+              size="small" 
+              fullWidth="true"
+              required="true"
+              name="topic"
+              onChange={this.handleChange}
+              select> 
+              {commonSearchs.map((t) => (
+                <MenuItem key={t} value={t}>
+                  {t}
+                </MenuItem>
+              ))}
               </TextField>
               <br/> <br/>
 
@@ -180,54 +199,3 @@ class Addresource extends React.Component{
   }
 }
 export default Addresource;
-
-const commonSearchs = [
-  'library',
-  'functions',
-  'IDE',
-  'installation',
-  'comments',
-  'variables',
-  'data types',
-  'numbers',
-  'casting',
-  'operator',
-  'list',
-  'tuple',
-  'set',
-  'if...else',
-  'while loop',
-  'for loop',
-  'function',
-  'lambda',
-  'array',
-  'class/object',
-  'inheritance',
-  'iterator',
-  'scope',
-  'module',
-  'date' ,
-  'JSON' ,
-  'regex' ,
-  'math' ,
-  'io' ,
-  'PIP' ,
-  'user input' ,
-  'try..expect',
-  'string',
-  'read file',
-  'delete file' ,
-  'write/create file' ,
-  'numpy' ,
-  'scipy' ,
-  'machine learning' ,
-  'queue' ,
-  'methods' ,
-  'keywords',
-  'integer',
-  'float',
-  'double',
-  'print',
-  'import',
-
-];

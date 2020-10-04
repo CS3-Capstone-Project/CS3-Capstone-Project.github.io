@@ -8,6 +8,8 @@ import CloseIcon from '@material-ui/icons/Close';
 //Components
 import Thumbnail from "./thumbnail/Thumbnail.js";
 
+import { commonSearchs } from "../views/resources/commonsearchs.js";
+
 import "./searchBar.scss";
 
 class SearchResult extends Component {
@@ -39,7 +41,7 @@ export default class SearchBar extends Component {
   openModal(v){
     this.setState({
       visible: true,
-      selection: v.name,
+      selection: v,
       displayy:"inline"
     });
   }
@@ -57,7 +59,7 @@ export default class SearchBar extends Component {
       <Autocomplete
         id="searchBar"
         options={commonSearchs}
-        getOptionLabel={(option) => option.name}
+        getOptionLabel={(option) => option}
         style={{ width: 200 }}
         renderInput={(params) => <TextField {...params} color="primary" label="Search" variant="outlined" fullWidth/>}
         onChange={(event,value) => {
@@ -90,54 +92,3 @@ export default class SearchBar extends Component {
     );
   }
 }
-
-const commonSearchs = [
-  { name: 'library'},
-  { name: 'functions' },
-  { name: 'IDE' },
-  { name: 'installation' },
-  { name: 'comments' },
-  { name: 'variables' },
-  { name: 'data types' },
-  { name: 'numbers' },
-  { name: 'casting' },
-  { name: 'operator'},
-  { name: 'list'},
-  { name: 'tuple'},
-  { name: 'set'},
-  { name: 'if...else'},
-  { name: 'while loop' },
-  { name: 'for loop' },
-  { name: 'function' },
-  { name: 'lambda' },
-  { name: 'array' },
-  { name: 'class/object' },
-  { name: 'inheritance' },
-  { name: 'iterator'},
-  { name: 'scope'},
-  { name: 'module'},
-  { name: 'date' },
-  { name: 'JSON' },
-  { name: 'regex' },
-  { name: 'math' },
-  { name: 'io' },
-  { name: 'PIP' },
-  { name: 'user input' },
-  { name: 'try..expect'},
-  { name: 'string'},
-  { name: 'read file'},
-  { name: 'delete file' },
-  { name: 'write/create file' },
-  { name: 'numpy' },
-  { name: 'scipy' },
-  { name: 'machine learning' },
-  { name: 'queue' },
-  { name: 'methods' },
-  { name: 'keywords'},
-  { name: 'integer'},
-  { name: 'float'},
-  { name: 'double'},
-  { name: 'print'},
-  { name: 'import'},
-
-];

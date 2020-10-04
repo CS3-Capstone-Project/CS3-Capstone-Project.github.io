@@ -35,6 +35,7 @@ export default class Thumbnail extends Component{
 		this.calcRating = this.calcRating.bind(this)
 	}
 
+	/*
 	openModal(){
 		this.setState({
 			visible: true
@@ -45,7 +46,7 @@ export default class Thumbnail extends Component{
 		this.setState({
 			visible: false
 		});
-	}
+	} */
 
 	calcRating(v){
 		this.setState((state) => {
@@ -69,14 +70,15 @@ export default class Thumbnail extends Component{
 	render(){
 		return(
 			<div style={{zIndex:"999"}} className="thumbnail">
-
-				<span className="a" onClick={() => this.openModal()}>
-					<div className="ttop" style = {this.props.style}>
-						<div className="source">{this.props.source}</div>
-						<p className="desc">{this.props.desc}</p>
-					</div>
-				</span>
-
+				<a className="links" href={this.props.url} target="_blank">
+					<span className="a">
+						<div className="ttop" style = {this.props.style}>
+							<div className="source">{this.props.source}</div>
+							<p className="desc">{this.props.desc}</p>
+						</div>
+					</span>
+				</a>
+				{/*
 				<Modal style={{zIndex:"999"}} visible={this.state.visible} width="95%" height="600px" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
                     	<div style={{display:"flex"}}>
@@ -87,7 +89,7 @@ export default class Thumbnail extends Component{
                         </div>
                         <iframe height="500px" width="100%" src={this.props.url}></iframe>
                     </div>
-                </Modal>
+                </Modal> */}
 
 				<div className="t-bottom">
 					<ShareIcon onClick={this.copy} className="shareButton"/>

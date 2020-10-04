@@ -8,9 +8,6 @@ import {Image} from 'react-bootstrap';
 //import Row from 'react-bootstrap/Row';
 import {Col,Container,Row, Jumbotron} from 'reactstrap';
 
-//import Jumbotron from 'react-bootstrap/Jumbotron';
-//import Button from 'react-bootstrap/Button';
-
 //Material UI API
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -27,12 +24,12 @@ import FloatingButton from "../../components/floatingButton/FloatingButton.js";
 
 //Resources
 import { resources } from "../resources/data.js";
-//import { beginnerRes } from "../resources/beginnerResources.js";
-//import { intermediateRes } from "../resources/intermediateResources.js";
-//import { advancedRes } from "../resources/advancedResources.js";
 
 //Views
 //import questionnaire from "../questionnaire/questionnaire.js";
+
+//Firebase
+import fire from "../login/config/fire.js";
 
 export default class Landing extends Component{
 	constructor(props){

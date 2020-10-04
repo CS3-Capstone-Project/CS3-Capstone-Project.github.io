@@ -7,6 +7,8 @@ import {Image} from 'react-bootstrap';
 
 //Styles
 
+//Firebase
+import fire from "../login/config/fire.js";
 
 //Material UI API
 import Button from '@material-ui/core/Button';
@@ -19,83 +21,67 @@ import Header from "../../components/header/Header.js";
 import { resources } from "../resources/data.js";
 
 export default class Ebooks extends Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			res : [],
+			source:"",
+		    url:"",
+		    description:"",
+		    rating:0,
+		    totalRatings:0,
+
+		}
+	}
+
+	componentDidMount() {
+		const baseRef = fire.database().ref('ebooks');
+		baseRef.on('value', (currentfire) => {
+	    let base = currentfire.val();
+	    let temp = [];
+	    for (let data in base) {
+	      temp.push({
+	        id: data,
+	        source: base[data].source,
+	        description: base[data].description,
+	        url: base[data].url,
+	        rating: base[data].rating,
+	        totalRatings: base[data].totalRatings,
+	      });
+	    }
+	    this.setState({
+	      res: temp
+	    });
+	  });
+	}
+
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
 				<Header/>
-			<Container className="wrapper">
-				<div style={{textAlign:"center"}}><div ><h3>Beginner</h3></div></div>
-				<div><h5>Videos</h5></div>
-				<Row>
-					{
-						resources.beginner.videos.map((data,key) => {
-							return(
-								<Col>
-									<Thumbnail 
-									key={data.id} 
-									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
-									url = {data.url} 
-									rating = {data.rating}
-									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
-									</Thumbnail>
-								</Col>
-							);
-						})
-					}
-				</Row>
+				<Container className="wrapper">
+					<div style={{textAlign:"center", paddingBottom:"40px"}}><div ><h2>eBooks</h2></div></div>
+					<Row>
+						{
+							this.state.res.map((data,key) => {
+								return(
+									<Col>
+										<Thumbnail 
+										key={data.id} 
+										id = {data.id} 
+										source = {data.source} 
+										desc = {data.description} 
+										url = {data.url} 
+										rating = {data.rating}
+										style={{backgroundColor:"rgba(0, 40, 132,0.3)"}}> 
+										</Thumbnail>
+									</Col>
+								);
+							})
+						}
+					</Row>
 
-				<div><h5>Webpages</h5></div>
-				<Row>
-					{
-						resources.beginner.webpages.map((data,key) => {
-							return(
-								<Col>
-									<Thumbnail 
-									key={data.id} 
-									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
-									url = {data.url} 
-									rating = {data.rating}
-									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
-									</Thumbnail>
-								</Col>
-							);
-						})
-					}
-				</Row>
-
-				<div><h5>eBooks</h5></div>
-				<Row>
-					{
-						resources.beginner.ebooks.map((data,key) => {
-							return(
-								<Col>
-									<Thumbnail 
-									key={data.id} 
-									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
-									url = {data.url} 
-									rating = {data.rating} 
-									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
-									</Thumbnail>
-								</Col>
-							);
-						})
-					}
-				</Row>
-			</Container>
-			{/*
-			<div className="bottom-nav">
-    				<h6>Hi, are you a</h6>
-    				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
-    					&nbsp; or a &nbsp;
-    				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    		</div> */}
-
+				</Container>
     		</Container>
 		);
 	}
