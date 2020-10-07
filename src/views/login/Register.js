@@ -5,11 +5,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import Login from './Login';
-import loginImg from "./Login.svg"
+import loginImg from "./Login.svg";
 import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
-
+import Fire from "./config/fire";
+import "./register.css";
 class Register extends Component {
   constructor(props){
     super(props);
@@ -17,8 +18,11 @@ class Register extends Component {
       first_name:'',
       last_name:'',
       email:'',
-      password:''
-    }
+      password:'',
+      person:"",
+      description:"",
+    };
+    this.onChangeValue = this.onChangeValue.bind(this);
   }
   render() {
     return (
@@ -47,6 +51,18 @@ class Register extends Component {
              onChange = {(event,newValue) => this.setState({last_name:newValue})}
              />
            <br/>
+           <div onChange={this.onChangeValue} className="container" >
+              <input type="radio" value="Student" name="gender" /> Student &nbsp;
+              <input type="radio" value="Expert" name="gender" /> Expert
+            </div>
+            <div className="textedit" id="ed">
+              <textarea
+                rows="5"
+                cols="50"
+                value={this.state.content}
+                onChange={this.handleChange}
+              />
+            </div>
            <TextField
              hintText="Enter your Email"
              type="email"
@@ -62,12 +78,57 @@ class Register extends Component {
              />
            <br/>
            <Link to="/">
-           <RaisedButton label="Register" primary={true} style={{marginTop: "15px",}} />
+           <RaisedButton label="Register" primary={true} style={{marginTop: "15px",}} onClick={(event) => this.signup(event)}/>
            </Link>
           </div>
          </MuiThemeProvider>
       </div>
     );
   }
+   onChangeValue(event) {
+     this.setState({person:event.target.value});
+    if (event.target.value=="Expert") {
+      var el = document.getElementById("ed");
+      el.style.display = "block";
+    }else {
+      var el = document.getElementById("ed");
+      el.style.display = "none";
+    }
+  }
+  signup(e){
+      e.preventDefault();
+      if (this.state.person=="Student") {
+        Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
+        .then((u)=>{
+          Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
+            FirstName:this.state.first_name,
+            LastName:this.state.last_name,
+            Email:this.state.email,
+            Password:this.state.password,
+          });
+          alert("registered: "+u);})
+        .catch((error) =>{
+          alert(error);
+        });
+      } else {
+        Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
+        .then((u)=>{
+          Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
+            FirstName:this.state.first_name,
+            LastName:this.state.last_name,
+            Email:this.state.email,
+            Password:this.state.password,
+            Description:this.state.description,
+          });
+          alert("registered: "+u);})
+        .catch((error) =>{
+          alert(error);
+        });
+      }
+
+  }
 }
+const style = {
+  margin: 15,
+};
 export default Register;

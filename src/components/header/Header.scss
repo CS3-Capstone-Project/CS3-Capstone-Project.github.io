@@ -1,0 +1,38 @@
+@import "~bootstrap/scss/bootstrap";
+
+.logo{
+	padding-top: 5px;
+	height: 45px!important;
+	padding-left: 10px;
+}
+
+.logo-wrapper{
+	width: 8em;
+}
+
+.buttons{
+	border: none!important;
+	outline: none!important;
+}
+
+.my-nav-styles{
+	z-index: 1;
+	background-color: white;
+	position: fixed;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	top: 0;
+	width: 100%;
+}
+
+.links{
+	text-decoration: none;
+	color:black;
+}
+
+.links:hover{
+	color: grey;
+}
+
+.searchBar{
+
+}

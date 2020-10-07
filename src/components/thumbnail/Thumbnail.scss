@@ -20,12 +20,14 @@ $buttonColour: #4B8BBE;
 }
 
 .a, .a:hover{
+	cursor: pointer;
 	text-decoration: none;
 	color: black;
+	width: 250px;
 }
 
 .thumbnail{
-
+	width: 250px;
 }
 
 .shareButton{
@@ -51,4 +53,11 @@ $buttonColour: #4B8BBE;
 
 .desc{
 	text-align: center;
+}
+
+.close{
+	margin-left: auto;
+	order: 2;
+	padding: 6px;
+	height: 20px;
 }
