@@ -10,7 +10,6 @@ import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
 import Advanced from "./levels/Advanced.js";
-<<<<<<< HEAD
 import Quiz1 from "./questionnaire/Quiz1.js";
 import Quiz2 from "./questionnaire/Quiz2.js";
 import Addresource from "./addresource/Addresource.js";

@@ -72,7 +72,7 @@ class Login extends React.Component {
         alert(error);
       });
       Fire.auth().onAuthStateChanged(user => {
-          if (user)
+          if (user){
               this.getUserData(user.uid)
           }
       })
