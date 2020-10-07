@@ -1,100 +1,324 @@
 
-export const resources = [
-	beginner: {
-		id:"1",
+export const resources = {
+	beginner:{
+		videos:[{
+		id:1,
 		source: "Python.org",
 		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:2,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:3,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:4,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:5,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}],
+		webpages:[{
+		id:6,
+		source: "Python.org",
+		desc: "Introduction to python, uses and advantages over other languages",
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:7,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:8,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:9,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:10,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}],
+		ebooks:[{
+		id:11,
+		source: "Python.org",
+		desc: "Introduction to python, uses and advantages over other languages",
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:12,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:13,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:14,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:15,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}]
 	},
-	{
-		id:"2",
+	intermediate:{
+		videos:[{
+		id:16,
 		source: "Python.org",
 		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:17,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:18,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:19,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:20,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}],
+		webpages:[{
+		id:21,
+		source: "Python.org",
+		desc: "Introduction to python, uses and advantages over other languages",
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:22,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:23,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:24,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:25,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}],
+		ebooks:[{
+		id:26,
+		source: "Python.org",
+		desc: "Introduction to python, uses and advantages over other languages",
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:27,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:28,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:29,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:30,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}]
 	},
-	{
-		id:"3",
+	advanced:{
+		videos:[{
+		id:31,
 		source: "Python.org",
 		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"4",
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:32,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:33,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:34,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:35,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}],
+		webpages:[{
+		id:34,
 		source: "Python.org",
 		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"5",
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:35,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:36,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:37,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:38,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}],
+		ebooks:[{
+		id:39,
 		source: "Python.org",
 		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"6",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"7",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"8",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"9",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"10",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"11",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"12",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-
-	{
-		id:"13",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"14",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"15",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
-	},
-	{
-		id:"16",
-		source: "Python.org",
-		desc: "Introduction to python, uses and advantages over other languages",
-		url: "https://docs.python.org/3.8/tutorial/appetite.html"
+		url: "https://docs.python.org/3.8/tutorial/appetite.html",
+		rating: 4,
+		},
+		{
+			id:40,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:41,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:42,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		},
+		{
+			id:43,
+			source: "Python.org",
+			desc: "Introduction to python, uses and advantages over other languages",
+			url: "https://docs.python.org/3.8/tutorial/appetite.html",
+			rating: 4,
+		}]
 	}
-]
+}

@@ -57,6 +57,7 @@ class Register extends Component {
             </div>
             <div className="textedit" id="ed">
               <p style={{fontSize:"16px", fontWeight:"bold"}}>Describe your level of expertise in python, example (I am a python lecturer at a university.)</p>
+
               <textarea
                 rows="5"
                 cols="50"
