@@ -69,7 +69,7 @@ class Addresource extends React.Component{
     }
 
     resourcesRef.push(resource);
-    alert("Thank you, your resource is added.");
+    alert("Please wait for 2.6 seconds while the resource is being uploaded.");
     this.setState({
       source:"",
       url:"",
@@ -82,7 +82,7 @@ class Addresource extends React.Component{
 
     setTimeout(() => {
       window.location.replace('/');
-    }, 2550);
+    }, 2600);
     //window.location.replace('/');
   }
 

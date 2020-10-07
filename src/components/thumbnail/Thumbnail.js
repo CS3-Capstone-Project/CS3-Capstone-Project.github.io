@@ -29,7 +29,8 @@ export default class Thumbnail extends Component{
 		this.state = {
 			visible: false,
 			ratingValue: this.props.rating,
-			totalRatings: 0
+			totalRatings: 0,
+			accumulator: 0
 		}
 
 		this.calcRating = this.calcRating.bind(this)
@@ -73,7 +74,7 @@ export default class Thumbnail extends Component{
 				<a className="links" href={this.props.url} target="_blank">
 					<span className="a">
 						<div className="ttop" style = {this.props.style}>
-							<div className="source">{this.props.source}</div>
+							<div className="source">{this.props.topic}</div>
 							<p className="desc">{this.props.desc}</p>
 						</div>
 					</span>

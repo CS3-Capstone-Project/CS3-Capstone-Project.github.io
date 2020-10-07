@@ -1,6 +1,7 @@
 export const commonSearchs = [
   'All',
   'introduction',
+  'boolean',
   'syntax',
   'library',
   'functions',

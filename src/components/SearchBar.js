@@ -10,12 +10,22 @@ import Thumbnail from "./thumbnail/Thumbnail.js";
 
 import { commonSearchs } from "../views/resources/commonsearchs.js";
 
+//Firebase
+//import fire from "../login/config/fire.js";
+
 import "./searchBar.scss";
 
 class SearchResult extends Component {
   constructor(props){
     super(props);
-
+    this.state = {
+      res : [],
+      source:"",
+      url:"",
+      description:"",
+      rating:0,
+      totalRatings:0,
+    }
   }
 
   render(){
