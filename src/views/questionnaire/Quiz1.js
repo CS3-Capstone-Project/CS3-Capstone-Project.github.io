@@ -15,8 +15,8 @@ export default class Quiz1 extends Component {
             visible : false,
             value1 :"",
             value2 : "",
-            value3 : ""
-
+            value3 : "",
+            loggedIn: false
         };
     
         this.levelChange1 = this.levelChange1.bind(this);

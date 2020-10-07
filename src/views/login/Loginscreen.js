@@ -7,7 +7,7 @@ class Loginscreen extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      username:'',
+      EmailAddress:'',
       password:'',
       loginpage:[],
       loginmessage:'',

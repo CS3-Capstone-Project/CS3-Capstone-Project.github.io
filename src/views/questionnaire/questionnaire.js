@@ -1,9 +1,9 @@
-
 import React, { Component, setState } from 'react';
 import Modal from 'react-awesome-modal';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {Form} from 'reactstrap';
 import './LP_button.scss';
+import Fire from '../login/config/fire.js';
 
 import {Container} from 'reactstrap';
 import {Image} from 'react-bootstrap';
@@ -23,13 +23,39 @@ export default class Questionnaire extends Component{
         this.state = {
             name: "level",
             selectedOption:"Beginner",
-            visible : true
+            visible : true,
+            user : {}
         };
         this.form_control={
             background: '#ffdf80'
         };
         this.onLevelChange =this.onLevelChange.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
+        this.isLoggedin = this.isLoggedin.bind(this);
+        this.checkSignedIn = this.checkSignedIn.bind(this);
+        this.openModal= this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+    componentDidMount(){
+        this.checkSignedIn();
+    }
+    checkSignedIn(){
+        Fire.auth().onAuthStateChanged((user)=>{
+            if(user){
+                this.setState({user});
+            }
+            else{
+                this.setState({user:null});
+            }
+        });
+    }
+    isLoggedin(){
+        if(this.state.user){
+            alert("You are logged in!");
+        }
+        else{
+            return("true");
+        }
     }
     onLevelChange(event){
         this.setState({
@@ -115,9 +141,9 @@ export default class Questionnaire extends Component{
                             <hr/>
                             <Container style={{display:"flex", backgroundColor: "#5bc0de"}}>
                                 <div className="float-left" style={{display:"flex"}}>
-                                    <Link className="links" to="/Quiz1">
+                                   <Link className="links" to="/Quiz1">
                                         &nbsp;&nbsp;&nbsp;
-                                        <Button className="btn btn-primary btn-lg float-left" style={{backgroundColor:"#5bc0de"}}>
+                                        <Button onClick= {this.isLoggedin} className="btn btn-primary btn-lg float-left" style={{backgroundColor:"#5bc0de"}}>
                                             Level Quiz
                                         </Button>
                                     </Link>
@@ -134,6 +160,12 @@ export default class Questionnaire extends Component{
                             <hr/>
                             <Button className="btn btn-primary btn-lg" onClick={() => this.closeModal()} style={{backgroundColor:"#5bc0de"}}>Cancel</Button>
                         </Container>
+                    </Modal>
+                    <Modal visible={this.isLoggedin}>
+                        <Link to ="/Login">
+                            <Button>Login</Button>
+                        </Link>
+                        <Button onClick={() => this.closeModal()}>Cancel</Button>
                     </Modal>
                 </Container>
             </Container>

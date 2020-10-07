@@ -7,13 +7,15 @@ import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
 import Fire from "./config/fire";
+//import Quiz1 from "questionnaire/Quiz1";
+//import axios from 'axios';
 
 class Login extends React.Component {
 
   constructor(props){
     super(props);
     this.state={
-    username:'',
+    emailAddress:'',
     password:'',
     userid:""
     }
@@ -31,10 +33,11 @@ class Login extends React.Component {
                 <img style={{width:"21em",margin:"10px"}} src={loginImg}/>
                </div>
                <TextField
-                 hintText="Enter your Username"
-                 floatingLabelText="Username"
-                 onChange = {(event,newValue) => this.setState({username:newValue})}
-                 required/>
+                 hintText="Enter your Email"
+                 floatingLabelText="Email"
+                 onChange = {(event,newValue) => this.setState({emailAddress:newValue})}
+                 required = "true"
+                 />
                <br/>
                  <TextField
                    type="password"
@@ -55,7 +58,7 @@ class Login extends React.Component {
     }
     login(e){
       e.preventDefault();
-      Fire.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then((u)=>{
+      Fire.auth().signInWithEmailAndPassword(this.state.emailAddress,this.state.password).then((u)=>{
 
         var user = Fire.auth().currentUser;
         Fire.auth().onAuthStateChanged(user => {
@@ -79,5 +82,8 @@ class Login extends React.Component {
           alert(snap.val().FirstName) // returns the name of the person logged in
       })
     }
+    /*checkLoginStatus(){
+      anxios.get()
+    }*/
 }
 export default Login;
