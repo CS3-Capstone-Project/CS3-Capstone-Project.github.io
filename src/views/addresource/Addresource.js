@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
 //Firebase
-import fire from "../login/config/fire.js";
+import fire from "../config/fire.js";
 
 //Components
 import Header from "../../components/header/Header.js";

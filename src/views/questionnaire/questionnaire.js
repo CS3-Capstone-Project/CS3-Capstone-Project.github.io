@@ -3,7 +3,6 @@ import Modal from 'react-awesome-modal';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {Form} from 'reactstrap';
 import './LP_button.scss';
-import Fire from '../login/config/fire.js';
 
 import {Container} from 'reactstrap';
 import {Image} from 'react-bootstrap';
@@ -11,6 +10,7 @@ import {Image} from 'react-bootstrap';
 //@material-ui API
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
+import Header from "../../components/header/Header.js";
 
 
 export default class Questionnaire extends Component{
@@ -31,31 +31,8 @@ export default class Questionnaire extends Component{
         };
         this.onLevelChange =this.onLevelChange.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
-        this.isLoggedin = this.isLoggedin.bind(this);
-        this.checkSignedIn = this.checkSignedIn.bind(this);
         this.openModal= this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-    }
-    componentDidMount(){
-        this.checkSignedIn();
-    }
-    checkSignedIn(){
-        Fire.auth().onAuthStateChanged((user)=>{
-            if(user){
-                this.setState({user});
-            }
-            else{
-                this.setState({user:null});
-            }
-        });
-    }
-    isLoggedin(){
-        if(this.state.user){
-            alert("You are logged in!");
-        }
-        else{
-            return("true");
-        }
     }
     onLevelChange(event){
         this.setState({
@@ -79,13 +56,7 @@ export default class Questionnaire extends Component{
     render() {
         return (
             <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-                <div style={{display:"flex"}}>
-                    <Link className="links" to="/">
-                        <ArrowBackIcon style={{marginTop:"35px"}}/> 
-                    </Link>
-                    <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/>
-                </div>
-                <hr/>
+                <Header/>
                 <Container className="formControl" style={{backgroundColor:"#D6EAF8"}}>
                     <div ><p style={{fontWeight:"bold"}}>Select level</p></div>
                     <div style={{textAlign:"left", width:"185px",position:"relative", margin:"0 auto", backgroundColor:"#F4F6F6"}}>
@@ -160,12 +131,6 @@ export default class Questionnaire extends Component{
                             <hr/>
                             <Button className="btn btn-primary btn-lg" onClick={() => this.closeModal()} style={{backgroundColor:"#5bc0de"}}>Cancel</Button>
                         </Container>
-                    </Modal>
-                    <Modal visible={this.isLoggedin}>
-                        <Link to ="/Login">
-                            <Button>Login</Button>
-                        </Link>
-                        <Button onClick={() => this.closeModal()}>Cancel</Button>
                     </Modal>
                 </Container>
             </Container>

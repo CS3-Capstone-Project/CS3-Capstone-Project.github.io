@@ -3,7 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Login from './Login';
 import Register from './Register';
-import ForgotPassword from './forgotpassword'
+
+
 class Loginscreen extends React.Component {
   constructor(props){
     super(props);
@@ -67,9 +68,6 @@ class Loginscreen extends React.Component {
       var loginscreen=[];
       loginscreen.push(<Login parentContext={this}/>);
       loginmessage = "Not Registered yet?";
-      this.setState({
-                     loginpage:loginscreen,
-      forgotpassword = "forgot password?",
       this.setState({
                      loginpage:loginscreen,
                      forgotpassword:forgotpassword,

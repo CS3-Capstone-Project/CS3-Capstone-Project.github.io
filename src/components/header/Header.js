@@ -24,7 +24,7 @@ export default class Header extends Component{
 
 	render(){
 		return(
-			<Navbar className="my-nav-styles" expand="lg">
+			<Navbar sticky="top" className="my-nav-styles" expand="lg">
 				<Navbar.Brand>
 					<Link to="/">
 						<div className="logo-wrapper">

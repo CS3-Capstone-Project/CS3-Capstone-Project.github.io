@@ -6,8 +6,9 @@ import IconButton from 'material-ui/IconButton';
 import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
-import Fire from "./config/fire";
-//import Quiz1 from "questionnaire/Quiz1";
+import Fire from "../config/fire";
+import Questionnaire from "../questionnaire/questionnaire";
+import Modal from 'react-awesome-modal';
 //import axios from 'axios';
 
 class Login extends React.Component {
@@ -15,10 +16,16 @@ class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={
-    emailAddress:'',
-    password:'',
-    userid:""
+      user:{},
+      email:"",
+      visible:false,
+      registered: false,
+      emailAddress:'',
+      password:'',
+      invalidEmail:"",
+      invalidPassword:""
     }
+    this.login=this.login.bind(this);
    }
 
   render() {
@@ -38,6 +45,7 @@ class Login extends React.Component {
                  onChange = {(event,newValue) => this.setState({emailAddress:newValue})}
                  required = "true"
                  />
+                 <p style={{color: "#DA0230", fontSize:"12px"}}>{this.state.invalidEmail}</p>
                <br/>
                  <TextField
                    type="password"
@@ -47,43 +55,117 @@ class Login extends React.Component {
                    onChange = {(event,newValue) => this.setState({password:newValue})}
                    required = "true"
                    />
+                   <p style={{color: "#DA0230", fontSize:"12px"}}>{this.state.invalidPassword}</p>
                  <br/>
-                 <Link to="/">
-                  <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}} onClick={event =>this.login(event)}/>
-                 </Link>
+                 
+                  <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}} 
+                    onClick={(event) =>{
+                    this.login()}}
+                  />
              </div>
+                <a href="#" onClick={(event) =>{this.setState({visible:true});}}> forgot password</a>
+                <Modal visible={this.state.visible} width="400" height="200" effect= "fadeInUp" onClickAway={() => this.setState({visible:false})}>
+                  <div style={{backgroundColor:"#f5f5f5"}}>
+                    <MuiThemeProvider>
+                     <div>
+                        <div style={{textAlign:"center"}}><div ><h3>Reset Password</h3></div></div>
+                        <p>A link to reset your password will be sent to your email address.</p>
+                        <TextField
+                          hintText="Enter your email"
+                          floatingLabelText="Email"
+                          onChange = {(event,newValue) => this.setState({email:newValue})}
+                        />
+                        <br/>
+                        <RaisedButton label="send" primary={true} style={{marginTop: "15px",}} onClick={event =>this.reset(event)}/>
+                     </div>
+                    </MuiThemeProvider>
+                  </div>  
+                </Modal>
            </MuiThemeProvider>
         </div>
       );
     }
-    login(e){
-      e.preventDefault();
-      Fire.auth().signInWithEmailAndPassword(this.state.emailAddress,this.state.password).then((u)=>{
-
-        var user = Fire.auth().currentUser;
-        Fire.auth().onAuthStateChanged(user => {
-          alert(user.FirstName);
-            if (user) {
-                this.getUserData(user.uid)
-                this.setState({userid:user.uid})
-            }
-        })
-      }).catch((error) =>{
-        alert(error);
+    login(){
+      this.setState({
+        invalidPassword:"",
+        invalidEmail:""
       });
-      Fire.auth().onAuthStateChanged(user => {
-          if (user) {
-              this.getUserData(user.uid)
-          }
-      })
+      Fire.auth().signInWithEmailAndPassword(this.state.emailAddress,this.state.password).then((u)=>{
+        }).catch((error) =>{
+        switch(error.code){
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            this.setState({
+              invalidEmail: error.message
+            });
+            break;
+          case "auth/wrong-password":
+            this.setState({
+              invalidPassword:error.message
+            });
+            break;
+        }
+      });
+    }
+    register(){
+      this.setState({
+        invalidPassword:"",
+        invalidEmail:""
+      });
+      Fire.auth().createUserWithEmailAndPassword(this.state.emailAddress,this.state.password).then((u)=>{
+        }).catch((error) =>{
+        switch(error.code){
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            this.setState({
+              invalidEmail: error.message
+            });
+            break;
+          case "auth/weak-password":
+            this.setState({
+              invalidPassword:error.message
+            });
+            break;
+        }
+      });
+    }
+    logout(){
+      Fire.auth().signOut();
+    }
+    authListener(){
+      this.setState({
+        invalidEmail:"",
+        invalidPassword:""
+      });
+      Fire.auth().onAuthStateChanged((user)=>{
+        if(user){
+          this.setState({
+            emailAddress:"",
+            password:"",
+            user:user
+          });
+        }
+        else{
+          this.setState({
+            user:null
+          });
+        }
+      });
+    }
+    
+    reset(e){
+      e.preventDefault();
+      Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
+        alert("Check your emails");
+      }).catch((error)=>{
+        alert(error)
+      });
     }
     getUserData(uid) {
-      Fire.database().ref('User/Student/' + uid).once("value", snap => {
+      Fire.database().ref('User/Expert/' + uid).once("value", snap => {
           alert(snap.val().FirstName) // returns the name of the person logged in
       })
     }
-    /*checkLoginStatus(){
-      anxios.get()
-    }*/
 }
 export default Login;

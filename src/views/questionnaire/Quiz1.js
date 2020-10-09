@@ -5,6 +5,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 import {Image} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
+import Header from "../../components/header/Header.js";
 
 export default class Quiz1 extends Component { 
 	constructor(props){
@@ -75,13 +76,7 @@ export default class Quiz1 extends Component {
   		if(this.state.randomNum===0){
 	  		return (
 	  			<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-				    <div style={{display:"flex"}}>
-				        <Link className="links" to="/questionnaire">
-				            <ArrowBackIcon style={{marginTop:"35px"}}/> 
-				        </Link>
-				        <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/>
-				    </div>
-				    <hr/>
+				    <Header/>
 				    <Container style={{backgroundColor: "#D7DBDD"}}>
 				    	<p style={{fontSize:"20px", fontWeight:"bold"}}>Please answer all questions on this quiz, this will help us determine your level of understanding python.</p>
 				    	<div>
@@ -252,13 +247,7 @@ export default class Quiz1 extends Component {
  		else if(this.state.randomNum===1){
 			return (
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-				    <div style={{display:"flex"}}>
-				        <Link className="links" to="/questionnaire">
-				            <ArrowBackIcon style={{marginTop:"35px"}}/> 
-				        </Link>
-				        <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/>
-				    </div>
-				    <hr/>
+				    <Header/>
 				   	<Container style={{backgroundColor: "#D7DBDD"}}>
 				    	<p style={{fontSize:"20px", fontWeight:"bold"}}>Please answer all questions on this quiz, this will help us determine your level of understanding python.</p>
 						<div>
@@ -385,13 +374,7 @@ export default class Quiz1 extends Component {
 		else{
 			return (
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-				    <div style={{display:"flex"}}>
-				        <Link className="links" to="/questionnaire">
-				            <ArrowBackIcon style={{marginTop:"35px"}}/> 
-				        </Link>
-				        <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/>
-				    </div>
-				    <hr/>
+				    <Header/>
 				   	<Container style={{backgroundColor: "#D7DBDD"}}>
 				    	<p style={{fontSize:"20px", fontWeight:"bold"}}>Please answer all questions on this quiz, this will help us determine your level of understanding python.</p>
 						<div>
