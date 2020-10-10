@@ -84,7 +84,7 @@ export default class Beginner extends Component{
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
 				<Header/>
 			<Container className="wrapper">
-				<div style={{textAlign:"center"}}><div ><h3>Beginner</h3></div></div>
+				<div style={{textAlign:"center"}}><div ><h2>Beginner</h2></div></div>
 				<div><h5>Videos</h5></div>
 				<Row>
 					{

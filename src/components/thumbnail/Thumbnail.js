@@ -76,6 +76,9 @@ export default class Thumbnail extends Component{
 						<div className="ttop" style = {this.props.style}>
 							<div className="source">{this.props.topic}</div>
 							<p className="desc">{this.props.desc}</p>
+						
+							<p className="desc" style={{color:"grey"}} >source: {this.props.source}</p>
+							
 						</div>
 					</span>
 				</a>
@@ -96,7 +99,7 @@ export default class Thumbnail extends Component{
 					<ShareIcon onClick={this.copy} className="shareButton"/>
 						&nbsp;
 					<Rating 
-						defaultValue={this.state.ratingValue} 
+						
 						value={this.state.ratingValue} 
 						style={{backgroundColor:""}} 
 						name = {this.props.id} 
@@ -105,8 +108,6 @@ export default class Thumbnail extends Component{
 							this.calcRating(value);
 						}}
 						precision={1} />
-					{/*<p></p>
-					<p>Description of: {this.props.name}</p>*/}
 				</div>
 			</div>
 		);

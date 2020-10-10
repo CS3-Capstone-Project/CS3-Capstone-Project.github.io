@@ -164,8 +164,8 @@ class Addresource extends React.Component{
               onChange={this.handleChange}
               select> 
               {commonSearchs.map((t) => (
-                <MenuItem key={t} value={t}>
-                  {t}
+                <MenuItem key={t.topic} value={t.topic}>
+                  {t.topic}
                 </MenuItem>
               ))}
               </TextField>

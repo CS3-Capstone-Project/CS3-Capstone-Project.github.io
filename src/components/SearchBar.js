@@ -8,10 +8,15 @@ import CloseIcon from '@material-ui/icons/Close';
 //Components
 import Thumbnail from "./thumbnail/Thumbnail.js";
 
+//React Bootstrap API
+import {Container} from 'reactstrap';
+import {Row} from 'reactstrap';
+import {Col} from 'reactstrap';
+
 import { commonSearchs } from "../views/resources/commonsearchs.js";
 
 //Firebase
-//import fire from "../login/config/fire.js";
+import fire from "../views/login/config/fire.js";
 
 import "./searchBar.scss";
 
@@ -19,21 +24,88 @@ class SearchResult extends Component {
   constructor(props){
     super(props);
     this.state = {
-      res : [],
+      videos : [],
+      webpages : [],
       source:"",
       url:"",
+      topic: "",
       description:"",
       rating:0,
       totalRatings:0,
     }
   }
 
+  componentDidMount() {
+    const webRef = fire.database().ref('resource/beginner/webpages');
+    const videosRef = fire.database().ref('resource/beginner/videos');
+    videosRef.on('value', (snapshot) => {
+      let vids = snapshot.val();
+      let temp = [];
+      for (let item in vids) {
+        temp.push({
+          id: item,
+          source: vids[item].source,
+          url: vids[item].url, 
+          topic: vids[item].topic,
+          description: vids[item].description,
+          rating: vids[item].rating,
+          totalRatings: vids[item].totalRatings
+        });
+      }
+      this.setState({
+        videos: temp
+      });
+    });
+
+    webRef.on('value', (snapshot) => {
+      let web = snapshot.val();
+      let wdt = [];
+      for (let item in web) {
+        wdt.push({
+          id: item,
+          source: web[item].source,
+          url: web[item].url, 
+          topic: web[item].topic,
+          description: web[item].description,
+          rating: web[item].rating,
+          totalRatings: web[item].totalRatings
+        });
+      }
+      this.setState({
+        webpages: wdt
+      });
+    });
+  }
+
   render(){
     return(
-      <div>
-        <div> Deep Shit : {this.props.request}</div>
-        <Thumbnail/>
-      </div>
+      <Container>
+        {/*<div> Deep Shit : {this.props.request}</div>*/}
+        {
+          <Row>
+          {
+            this.state.webpages.map((data,key) => {
+              console.log("This is the Topic " + data.topic);
+              if(data.topic == this.props.request){
+                return(
+                  <Col>
+                    <Thumbnail 
+                    key={data.id} 
+                    id = {data.id} 
+                    source = {data.source} 
+                    desc = {data.description} 
+                    url = {data.url} 
+                    rating = {data.rating}
+                    style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+                    </Thumbnail>
+                  </Col>
+                );
+              }
+            })
+          }
+        </Row>
+      }
+      </Container>
     ); 
   }
 }
@@ -69,13 +141,13 @@ export default class SearchBar extends Component {
       <Autocomplete
         id="searchBar"
         options={commonSearchs}
-        getOptionLabel={(option) => option}
+        getOptionLabel={(option) => option.topic}
         style={{ width: 200 }}
         renderInput={(params) => <TextField {...params} color="primary" label="Search" variant="outlined" fullWidth/>}
         onChange={(event,value) => {
           if(value != null){
             
-            this.openModal(value);
+            this.openModal(value.topic);
 
           }
         }}
