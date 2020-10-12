@@ -100,13 +100,13 @@ class Addresource extends React.Component{
               size="small" 
               fullWidth="true"
               required="true"
-              label="Source"
+              placeholder="Youtube Channel/Website/Author"
               name="source"
               onChange={this.handleChange}
               /> <br/> <br/>
 
             <TextField 
-              label="Url" 
+              placeholder="Url" 
               variant="outlined" 
               size="small" 
               fullWidth="true"
@@ -172,7 +172,7 @@ class Addresource extends React.Component{
               <br/> <br/>
 
             <TextField 
-              label="Description"
+              placeholder="Brief description"
               multiline="true"
               variant="outlined"
               rows="3"

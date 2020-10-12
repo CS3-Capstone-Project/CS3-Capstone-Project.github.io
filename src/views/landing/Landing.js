@@ -25,6 +25,8 @@ import FloatingButton from "../../components/floatingButton/FloatingButton.js";
 //Resources
 import { resources } from "../resources/data.js";
 
+import { commonSearchs } from "../resources/commonsearchs.js";
+
 //Views
 //import questionnaire from "../questionnaire/questionnaire.js";
 
@@ -34,16 +36,90 @@ import fire from "../login/config/fire.js";
 export default class Landing extends Component{
 	constructor(props){
 		super(props);
+		this.state = {
+			advv : [],
+			advw : [],
+			begv : [],
+			begw : [],
+			intv : [],
+			intw : [],
+			source:"",
+		    url:"",
+		    topic: "",
+		    description:"",
+		    rating:0,
+		    totalRatings:0,
+
+		}
 	}
 
-	getTopFour(resourceArray){
-		resourceArray.sort(
-			function(a,b){
-				return a - b;
-			}
-		);
+	componentDidMount() {
+	  const beginnerRef = fire.database().ref('resource/beginner/');
+	  const advancedRef = fire.database().ref('resource/advanced');
+	  const intermediateRef = fire.database().ref('resource/intermediate');
 
-		return resourceArray.slice(0,4);
+	  beginnerRef.orderByChild("rating").on('value', (snapshot) => {
+	  	let temp1 = [];
+	  	let temp2 = [];
+	    snapshot.forEach( function(type){
+	    	if(type.key == "videos"){
+	    		type.forEach( function(res){
+	    			temp1.push(res.val());
+	    		});
+	    	}
+	    	else if(type.key == "webpages"){
+	    		type.forEach( function(res){
+	    			temp2.push(res.val());
+	    		});
+	    	}
+	    });
+	    this.setState({
+	    	begv: temp1,
+	    	begw: temp2
+	    });
+	  });
+
+	  intermediateRef.orderByChild("rating").on('value', (snapshot) => {
+	  	let temp1 = [];
+	  	let temp2 = [];
+	    snapshot.forEach( function(type){
+	    	if(type.key == "videos"){
+	    		type.forEach( function(res){
+	    			temp1.push(res.val());
+	    		});
+	    	}
+	    	else if(type.key == "webpages"){
+	    		type.forEach( function(res){
+	    			temp2.push(res.val());
+	    		});
+	    	}
+	    });
+	    this.setState({
+	    	intv: temp1,
+	    	intw: temp2
+	    });
+	  });
+
+	  advancedRef.orderByChild("rating").on('value', (snapshot) => {
+	  	let temp1 = [];
+	  	let temp2 = [];
+	    snapshot.forEach( function(type){
+	    	if(type.key == "videos"){
+	    		type.forEach( function(res){
+	    			temp1.push(res.val());
+	    		});
+	    	}
+	    	else if(type.key == "webpages"){
+	    		type.forEach( function(res){
+	    			temp2.push(res.val());
+	    		});
+	    	}
+	    });
+	    this.setState({
+	    	advv: temp1,
+	    	advw: temp2
+	    });
+	  });
 	}
 
 	render(){
@@ -74,14 +150,15 @@ export default class Landing extends Component{
 				
 				<Row>
 					{
-						resources.beginner.videos.slice(0,4).map((data,key) => {
+						this.state.begv.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {data.desc} 
+									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description} 
+									topic = {data.topic}
 									url = {data.url} 
 									rating = {data.rating}
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
@@ -95,37 +172,17 @@ export default class Landing extends Component{
 				<div><h5>Webpages</h5></div>
 				<Row>
 					{
-						resources.beginner.webpages.slice(0,4).map((data,key) => {
+						this.state.begw.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {data.desc} 
+									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description} 
+									topic = {data.topic}
 									url = {data.url} 
 									rating = {data.rating}
-									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
-									</Thumbnail>
-								</Col>
-							);
-						})
-					}
-				</Row>
-
-				<div><h5>eBooks</h5></div>
-				<Row>
-					{
-						resources.beginner.ebooks.slice(0,4).map((data,key) => {
-							return(
-								<Col>
-									<Thumbnail 
-									key={data.id} 
-									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
-									url = {data.url} 
-									rating = {data.rating} 
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -145,14 +202,15 @@ export default class Landing extends Component{
 				
 				<Row>
 					{
-						resources.intermediate.videos.slice(0,4).map((data,key) => {
+						this.state.intv.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {data.desc} 
+									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description}
+									topic = {data.topic}
 									url = {data.url}
 									rating = {data.rating} 
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
@@ -166,37 +224,17 @@ export default class Landing extends Component{
 				<div><h5>Webpages</h5></div>
 				<Row>
 					{
-						resources.intermediate.webpages.slice(0,4).map((data,key) => {
+						this.state.intw.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {data.desc} 
+									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description} 
+									topic = {data.topic}
 									url = {data.url} 
 									rating = {data.rating}
-									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
-									</Thumbnail>
-								</Col>
-							);
-						})
-					}
-				</Row>
-
-				<div><h5>eBooks</h5></div>
-				<Row>
-					{
-						resources.intermediate.ebooks.slice(0,4).map((data,key) => {
-							return(
-								<Col>
-									<Thumbnail 
-									key={data.id} 
-									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
-									url = {data.url}
-									rating = {data.rating} 
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -215,14 +253,15 @@ export default class Landing extends Component{
 				
 				<Row>
 					{
-						resources.advanced.videos.slice(0,4).map((data,key) => {
+						this.state.advv.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {data.desc} 
+									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description}
+									topic = {data.topic} 
 									url = {data.url} 
 									rating = {data.rating}
 									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
@@ -236,14 +275,15 @@ export default class Landing extends Component{
 				<div><h5>Webpages</h5></div>
 				<Row>
 					{
-						resources.advanced.webpages.slice(0,4).map((data,key) => {
+						this.state.advw.slice(0,4).map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {data.desc} 
+									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description}
+									topic = {data.topic}
 									url = {data.url}
 									rating = {data.rating} 
 									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
@@ -254,26 +294,6 @@ export default class Landing extends Component{
 					}
 				</Row>
 
-				<div><h5>eBooks</h5></div>
-				<Row>
-					{
-						resources.advanced.ebooks.slice(0,4).map((data,key) => {
-							return(
-								<Col>
-									<Thumbnail 
-									key={data.id} 
-									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
-									url = {data.url}
-									rating = {data.rating} 
-									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
-									</Thumbnail>
-								</Col>
-							);
-						})
-					}
-				</Row>
 				<div style={{textAlign:"center"}}>
 					<Link to="advanced" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>

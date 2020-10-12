@@ -77,7 +77,7 @@ export default class Thumbnail extends Component{
 							<div className="source">{this.props.topic}</div>
 							<p className="desc">{this.props.desc}</p>
 						
-							<p className="desc" style={{color:"grey"}} >source: {this.props.source}</p>
+							<p className="desc" style={{fontWeight:"bold"}} >source: {this.props.source}</p>
 							
 						</div>
 					</span>

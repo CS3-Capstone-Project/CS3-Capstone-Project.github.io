@@ -18,6 +18,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 import Header from "../../components/header/Header.js";
+import { commonSearchs } from "../resources/commonsearchs.js";
 
 import { resources } from "../resources/data.js";
 
@@ -52,7 +53,7 @@ export default class Advanced extends Component{
 	        source: vids[item].source,
 	       	url: vids[item].url, 
 	       	topic: vids[item].topic,
-	       	description: vids[item].description,
+	       	description: (commonSearchs.find( ({ topic }) => topic == vids[item].topic )).description,
 	       	rating: vids[item].rating,
 	       	totalRatings: vids[item].totalRatings
 	      });
@@ -71,7 +72,7 @@ export default class Advanced extends Component{
 	        source: web[item].source,
 	       	url: web[item].url, 
 	       	topic: web[item].topic,
-	       	description: web[item].description,
+	       	description: (commonSearchs.find( ({ topic }) => topic == web[item].topic )).description,
 	       	rating: web[item].rating,
 	       	totalRatings: web[item].totalRatings
 	      });
@@ -97,6 +98,7 @@ export default class Advanced extends Component{
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
+									topic = {data.topic}
 									source = {data.source} 
 									desc = {data.description} 
 									url = {data.url} 
@@ -119,6 +121,7 @@ export default class Advanced extends Component{
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
+									topic = {data.topic}
 									desc = {data.description} 
 									url = {data.url}
 									rating = {data.rating} 

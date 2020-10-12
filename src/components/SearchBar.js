@@ -26,6 +26,7 @@ class SearchResult extends Component {
     this.state = {
       videos : [],
       webpages : [],
+      resources: [],
       source:"",
       url:"",
       topic: "",
@@ -38,42 +39,29 @@ class SearchResult extends Component {
   componentDidMount() {
     const webRef = fire.database().ref('resource/beginner/webpages');
     const videosRef = fire.database().ref('resource/beginner/videos');
-    videosRef.on('value', (snapshot) => {
-      let vids = snapshot.val();
-      let temp = [];
-      for (let item in vids) {
-        temp.push({
-          id: item,
-          source: vids[item].source,
-          url: vids[item].url, 
-          topic: vids[item].topic,
-          description: vids[item].description,
-          rating: vids[item].rating,
-          totalRatings: vids[item].totalRatings
+    const ref = fire.database().ref('resource');
+    let temp = [];
+
+    ref.on('value', function(snapshot) { 
+      snapshot.forEach(function(levels) { //ordered records, see comment
+        levels.forEach(function(type) {
+          let res = type.val();
+          for(let item in res){
+            temp.push({
+              id: item,
+              source: res[item].source,
+              url: res[item].url, 
+              topic: res[item].topic,
+              description: (commonSearchs.find( ({ topic }) => topic == res[item].topic )).description,
+              rating: res[item].rating,
+              totalRatings: res[item].totalRatings
+            });
+          };
         });
-      }
-      this.setState({
-        videos: temp
       });
     });
-
-    webRef.on('value', (snapshot) => {
-      let web = snapshot.val();
-      let wdt = [];
-      for (let item in web) {
-        wdt.push({
-          id: item,
-          source: web[item].source,
-          url: web[item].url, 
-          topic: web[item].topic,
-          description: web[item].description,
-          rating: web[item].rating,
-          totalRatings: web[item].totalRatings
-        });
-      }
-      this.setState({
-        webpages: wdt
-      });
+    this.setState({
+      resources: temp
     });
   }
 
@@ -84,7 +72,7 @@ class SearchResult extends Component {
         {
           <Row>
           {
-            this.state.webpages.map((data,key) => {
+            this.state.resources.map((data,key) => {
               console.log("This is the Topic " + data.topic);
               if(data.topic == this.props.request){
                 return(
@@ -92,11 +80,12 @@ class SearchResult extends Component {
                     <Thumbnail 
                     key={data.id} 
                     id = {data.id} 
+                    topic = {data.topic}
                     source = {data.source} 
                     desc = {data.description} 
                     url = {data.url} 
                     rating = {data.rating}
-                    style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+                    style={{backgroundColor:"rgba(255,255,0,0.3)"}}> 
                     </Thumbnail>
                   </Col>
                 );

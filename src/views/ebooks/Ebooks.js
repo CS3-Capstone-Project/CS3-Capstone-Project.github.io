@@ -70,10 +70,11 @@ export default class Ebooks extends Component{
 										key={data.id} 
 										id = {data.id} 
 										source = {data.source} 
+										topic = {data.topic}
 										desc = {data.description} 
 										url = {data.url} 
 										rating = {data.rating}
-										style={{backgroundColor:"rgba(0, 40, 132,0.3)"}}> 
+										style={{backgroundColor:"rgba(104, 46, 26,0.9)"}}> 
 										</Thumbnail>
 									</Col>
 								);

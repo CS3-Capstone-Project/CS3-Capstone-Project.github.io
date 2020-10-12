@@ -5,11 +5,11 @@ export const commonSearchs = [
   },
   {
     topic:'introduction',
-    description:"Python is a popular programming language. It was created by Guido van Rossum, and released in 1991."
+    description:"Python is a popular programming language. It was created by Guido van Ros..."
   },
   {
     topic:'boolean',
-    description: "Booleans represent one of two values: True or False. When you compare two values, the expression is evaluated and Python returns the Boolean answer."
+    description: "Booleans represent one of two values: True or False. When you compare two..."
   },
   {
     topic:'syntax',
@@ -17,23 +17,23 @@ export const commonSearchs = [
   },
   {
     topic:'library',
-    description:'A library is a collection of non-volatile resources used by computer programs, often for software development.'
+    description:'A library is a collection of non-volatile resources used by a computer ...'
   },
   {
     topic:'functions',
-    description: 'A function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function.'
+    description: 'A function is a block of code which only runs when it is called. You can...'
   },
   {
     topic:'IDE',
-    description: 'An integrated development environment (IDE) is a software application that provides comprehensive facilities...'
+    description: 'An integrated development environment (IDE) is a software application that...'
   },
   {
     topic:'comments',
-    description: 'Comments can be used to explain Python code, to make the code more readable, ....'
+    description: 'Comments can be used to explain Python code, to make the code more ...'
   },
   {
     topic:'variables',
-    description: 'Variables are containers for storing data values. Python has no command for declaring a variable.'
+    description: 'Variables are containers for storing data values. Python has no com...'
   },
   {
     topic:'data types',
@@ -45,23 +45,23 @@ export const commonSearchs = [
   },
   {
     topic:'casting',
-    description: 'In Python casting is used to either specify a data type to a variable or change a data type.'
+    description: 'Is used to either specify a data type of a variable or change a data type.'
   },
   {
-    topic:'operators',
+    topic:'operator',
     description: 'Operators are used to do operations or manipulate variables or values.'
   },
   {
     topic:'list',
-    description: 'A list is a collection which is ordered and changeable. In Python lists are written with square brackets.'
+    description: 'A list is a collection which is ordered and changeable. In Python lists...'
   },
   {
     topic:'tuple',
-    description:'A tuple is a collection which is ordered and unchangeable. In Python tuples are written with round brackets.'
+    description:'A tuple is a collection which is ordered and unchangeable. In Python tup...'
   },
   {
     topic:'set',
-    description:'A set is a collection which is unordered and unindexed. In Python, sets are written with curly brackets.'
+    description:'A set is a collection which is unordered and unindexed. In Python, sets...'
   },
   {
     topic:'if...else',
@@ -69,15 +69,15 @@ export const commonSearchs = [
   },
   {
     topic:'while loop',
-    description:'With the while loop we can execute a set of statements as long as a condition is true.'
+    description:'With the while loop we can execute a set of statements as long as a condition...'
   },
   {
     topic:'for loop',
-    description:'A for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string).'
+    description:'A for loop is used for iterating over a sequence (that is either a list, a tu...'
   },
   {
     topic:'lambda',
-    description:'A lambda function is a small anonymous function, it takes any number of arguments, but can only have one expression.'
+    description:'A lambda function is a small anonymous function, it takes any number of argum...'
   },
   {
     topic:'array',
@@ -89,15 +89,15 @@ export const commonSearchs = [
   },
   {
     topic:'inheritance',
-    description: 'Inheritance allows us to define a class that inherits all the methods and properties from another class.'
+    description: 'Allows us to define a class that inherits all the methods and properties from...'
   },
   {
     topic:'iterator',
-    description: 'An iterator is an object that can be iterated upon, meaning that you can traverse through all the values.'
+    description: 'Is an object that can be iterated upon, meaning that you can traverse through...'
   },
   {
     topic:'scope',
-    description:'A variable is only available from inside the region it is created. This is called scope.'
+    description:'The region in which you can access a variable, there is global and local scope...'
   },
   {
     topic:'module',
@@ -105,19 +105,19 @@ export const commonSearchs = [
   },
   {
     topic:'date' ,
-    description:'A date in Python is not a data type of its own, but we can import a module named datetime to work with dates as date objects.'
+    description:'Is not a data type of its own, but we can import a module named datetime to...'
   },
   {
     topic:'JSON' ,
-    description: 'JSON is a syntax for storing and exchanging data, its text written with JavaScript object notation'
+    description: 'Is a syntax for storing and exchanging data, its text written with JavaSc...'
   },
   {
     topic:'ReGex',
-    description: 'A RegEx, or Regular Expression, is a sequence of characters that forms a search pattern.'
+    description: 'A RegEx(Regular Expression), is a sequence of characters that forms a search...'
   },
   {
     topic:'math',
-    description: 'Python has a set of built-in math functions, including an extensive math module, that allows you to perform mathematical tasks on numbers.'
+    description: 'This allows you to perform mathematical tasks on numbers.'
   },
   {
     topic:'PIP',
@@ -129,11 +129,11 @@ export const commonSearchs = [
   },
   {
     topic:'try..expect',
-    description: 'The try block lets you test a block of code for errors. The except block lets you handle the error.'
+    description: 'Lets you test a block of code for errors. The except block lets you...'
   },
   {
     topic:'string',
-    description: 'String literals in python are surrounded by either single quotation marks, or double quotation marks.',
+    description: 'Are surrounded by either single quotation marks, or double quotation marks.',
   },
   {
     topic:'Read File',
@@ -153,7 +153,7 @@ export const commonSearchs = [
   },
   {
     topic:'scipy',
-    description: 'SciPy stands for Scientific Python. It provides functions for optimization, stats and signal processing.'
+    description: 'SciPy(Scientific Python). It provides functions for optimization, stats and signal...'
   },
   {
     topic:'machine learning',
@@ -181,6 +181,10 @@ export const commonSearchs = [
   },
   {
     topic: 'import',
+    description: ''
+  },
+  {
+    topic: '',
     description: ''
   }
 ];
