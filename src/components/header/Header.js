@@ -22,10 +22,33 @@ import "./Header.scss";
 export default class Header extends Component{
 	constructor(props){
 		super(props); 	
+		this.state={
+			signedIn:false
+		}
 		this.logout = this.logout.bind(this);
+	}
+	componentDidMount(){
+    this.authListener();
+  	}
+	authListener(){
+		Fire.auth().onAuthStateChanged((user) =>{
+			if(user){
+				this.setState({
+					signedIn:true
+				});
+			}
+			else{
+				this.setState({
+					signedIn:false
+				});
+			}
+		});
 	}
 	logout(){
 		Fire.auth().signOut();
+		this.setState({
+			signedIn:false
+		});
 	}
 	render(){
 		return(
@@ -71,14 +94,21 @@ export default class Header extends Component{
 							<SearchBar/>
 						</div>
 						&nbsp;
-						<Link to="/login" className="links">
-						<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
-	        				<AccountCircleIcon fontSize="large"/> &nbsp; Sign In
-	      				</Button>
-	      				</Link>
-	      				<Button onClick = {()=> this.logout()} style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
-	      					sign out
-	      				</Button>
+						{this.state.signedIn ? (<>
+							<Link to = "/" className="links">
+							<Button onClick = {()=> this.logout()} style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
+	      						sign out
+	      					</Button>
+	      					</Link>
+	      					</>
+							) : ( <>
+							<Link to="/login" className="links">
+								<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
+	        						<AccountCircleIcon fontSize="large"/> &nbsp; Sign In
+	      						</Button>
+	      					</Link>
+							</>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>	

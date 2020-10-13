@@ -37,6 +37,9 @@ import { resources } from "../resources/data.js";
 export default class Landing extends Component{
 	constructor(props){
 		super(props);
+		this.state={
+			userName:this.props.userName
+		}
 	}
 
 	getTopFour(resourceArray){
@@ -53,7 +56,6 @@ export default class Landing extends Component{
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px",position:"absolute"}}>
 				<Header/>
-				<p style={{fontSize:"20px", fontWeight:"bold"}}>{this.props.userName}</p>
 				<FloatingButton/>
 			<Container className="wrapper">
 			 	<Jumbotron>

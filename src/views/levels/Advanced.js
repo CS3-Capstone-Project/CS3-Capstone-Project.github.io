@@ -25,11 +25,12 @@ export default class Advanced extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-			<div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
-				<hr/>
+				<Header/>
 				<div style={{textAlign:"center"}}><div ><h3>Advanced</h3></div></div>
 			<Container className="wrapper">
-				<div style={{textAlign:"center"}}><div ><h3>Advanced</h3></div></div>
+				<Link to="/Quiz2">
+					<Button>Take a quiz</Button>
+				</Link>
 				<div><h5>YouTube Videos</h5></div>
 				<Row>
 					{

@@ -7,11 +7,13 @@ import {Image} from 'react-bootstrap';
 import './LP_button.scss';
 import Modal from 'react-awesome-modal';
 import Header from "../../components/header/Header.js";
+import Fire from "../config/fire";
 
 export default class Quiz2 extends Component {
 	constructor(props){
         super(props);
         this.state ={
+        	newLevel:"Beginner",
         	visible: false,
         	points:0,
         	level: 1,
@@ -32,7 +34,22 @@ export default class Quiz2 extends Component {
         this.intLevel = this.intLevel.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.levelUpdate=this.levelUpdate.bind(this);
     }
+  	levelUpdate(){
+  		Fire.auth().onAuthStateChanged((user) =>{
+      		if(user){
+      			this.database = Fire.database().ref().child('User/'+user.uid);
+      			this.database.on('value', snap =>{
+	      			if(snap.val().userType==="Student"){
+	      				Fire.database().ref('User/' + user.uid).set({
+	      					level:this.state.newLevel,
+	      				});
+	      			}
+      			});
+      		}
+      	});
+  	}
     onAnsChange = e=>{
     	this.setState({[e.target.name]: e.target.value});
     }
@@ -64,13 +81,17 @@ export default class Quiz2 extends Component {
     	this.closeModal();
     	if(this.state.level===1){
 	    	this.setState({
-	    		level:2
+	    		level:2,
+	    		newLevel:"Intermediate"
 	    	});
+	    	this.levelUpdate();
     	}
     	else if(this.state.level===2){
     		this.setState({
-    			level:3
+    			level:3,
+    			newLevel:"Advanced"
     		});
+    		this.levelUpdate();
     	}
     	else{
     		return 0;

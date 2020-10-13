@@ -27,9 +27,12 @@ class Register extends Component {
       page:"questionnaire",
       invalidEmail:"",
       invalidPassword:"",
+      isNew:false 
     };
     this.handleChange = this.handleChange.bind(this);
     this.onChangeValue = this.onChangeValue.bind(this);
+    this.sendData = this.sendData.bind(this);
+    this.signup = this.signup.bind(this);
   }
   render() {
     return (
@@ -107,7 +110,9 @@ class Register extends Component {
   handleChange(event) {
     this.setState({description: event.target.value});
   }
-
+  sendData(){
+    this.props.callback(this.state.isNew);
+  }
   signup(e){
       e.preventDefault();
       if (this.state.person=="Student") {
@@ -122,11 +127,13 @@ class Register extends Component {
             Email:this.state.email,
             Password:this.state.password,
             userType: "Student",
-            level:"Beginner"
+            level:"Beginner",
+            isNew:"true"
           });
           this.setState({
             visible:true,
           });
+          this.sendData();
           alert("registered: "+this.state.first_name + "as a student.");})
         .catch((error) =>{
           switch(error.code){

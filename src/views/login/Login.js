@@ -34,10 +34,9 @@ class Login extends React.Component {
   render() {
       return (
         <div style={{backgroundColor:"#f5f5f5"}}>
+          <Header/>
           <MuiThemeProvider>
             <div>
-            <div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
-          <hr/>
           <div style={{textAlign:"center"}}><div ><h3>Login</h3></div></div>
                <div >
                 <img style={{width:"21em",margin:"10px"}} src={loginImg}/>

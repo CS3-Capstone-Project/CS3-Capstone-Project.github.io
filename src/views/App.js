@@ -7,6 +7,7 @@ import Modal from 'react-awesome-modal';
 //Components
 import Questionnaire from "./questionnaire/questionnaire.js";
 import Login from "./login/main.js";
+import Register from "./login/Register.js";
 import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
@@ -34,7 +35,11 @@ export default class App extends Component {
       loginStatus:"not logged in",
       userName:"",
       userId:'',
-      level:""
+      level:"",
+      isNew:true,
+      newUserMsg:"",
+      lastActivity:"",
+      askToContinue:""
     }
   }
   componentDidMount(){
@@ -42,6 +47,9 @@ export default class App extends Component {
   }
 
   authListener(){
+    this.setState({
+      userName:""
+    });
     Fire.auth().onAuthStateChanged((user) =>{
       if(user){
         this.setState({
@@ -53,9 +61,20 @@ export default class App extends Component {
           if(snap.val().userType==="Student"){
             this.setState({
               userName:snap.val().FirstName,
-              level:snap.val().level
+              level:snap.val().level,
+              newUserMsg:"Welcome back ",
+              lastActivity:"You were on level ",
+              askToContinue:"would you like to continue?"
             });
-            //this.signedInUsers.push(snap.val().FirstName);
+            alert("This is a student");
+            this.openModal();
+          }
+          else if(snap.val().userType==="Student"){
+            this.setState({
+              userName:snap.val().FirstName,
+              level:snap.val().level,
+              newUserMsg:"Welcome" 
+            });
             alert("This is a student");
             this.openModal();
           }
@@ -63,7 +82,6 @@ export default class App extends Component {
             this.setState({
               userName:snap.val().FirstName
             });
-            //this.signedInUsers.push(snap.val().FirstName);
             alert("This is an expert.");
           }
           else{
@@ -74,6 +92,11 @@ export default class App extends Component {
       else{
         this.setState({user: null});
       }
+    });
+  }
+  callbackFunction=(justRegistered)=>{
+    this.setState({
+      isNew:justRegistered
     });
   }
   openModal(){
@@ -91,6 +114,14 @@ export default class App extends Component {
       <div>
       	<Router>
       		<Switch>
+            <Route
+              path = {"/Register"}
+              render = {props =>(
+                <Register 
+                  {...props}
+                  callback = {this.callbackFunction}/>
+                )}>
+            </Route>
       			<Route 
             exact 
             path={"/"}
@@ -163,8 +194,8 @@ export default class App extends Component {
      			</Switch>
           <Modal visible={this.state.visible} width="400" height="170" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
           <Container style={{backgroundColor:"#ccd8ff"}}>
-              <p className=" float-centre" style={{fontSize:"30px", fontWeight:"bold", color: "#009900"}}>Welcome back, {this.state.userName}</p>
-              <p style={{fontSize:"16px", fontWeight:"bold"}}>You left on {this.state.level} level, would you like to continue?</p>
+              <p className=" float-centre" style={{fontSize:"30px", fontWeight:"bold", color: "#009900"}}>{this.state.newUserMsg} {this.state.userName}</p>
+              <p style={{fontSize:"16px", fontWeight:"bold"}}>{this.state.lastActivity} {this.state.level}, {this.state.askToContinue}</p>
             <hr/>
             <Link to= {this.state.level}>
               <Button className="float-left" onClick={()=>this.closeModal()}>
