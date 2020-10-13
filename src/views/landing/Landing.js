@@ -194,8 +194,9 @@ export default class Landing extends Component{
 				<div style={{textAlign:"center"}}>
 					<Link to="beginner" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>
+			</Container>
 				<hr/>
-
+			<Container>
 				<div><h3>Intermediate</h3></div>
 				
 				<div><h5>Youtube Videos</h5></div>
@@ -246,7 +247,9 @@ export default class Landing extends Component{
 				<div style={{textAlign:"center"}}>
 					<Link to="intermediate" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>
+			</Container>
 				<hr/>
+			<Container style={{paddingBottom:"30px"}}>
 				<div><h3>Advanced</h3></div>
 				
 				<div><h5>Youtube Videos</h5></div>

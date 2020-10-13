@@ -12,6 +12,9 @@ import './style.css';
 //reactstrap API
 import {Col,Container,Row} from 'reactstrap';
 
+//Components
+import Header from "../../components/header/Header.js";
+
 class ForgotPassword extends Component {
   constructor(props) {
     super(props);
@@ -42,20 +45,36 @@ class ForgotPassword extends Component {
     Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
       alert("Check your emails");
     }).catch((error)=>{
-      alert(error)
+      let errorCode = error.code;
+        let errorMessage = error.message;
+
+        if(errorCode === 'auth/email-already-in-use'){
+          alert("This email has an account, Sign in.");
+        }
+        else if(errorCode === 'auth/invalid-email'){
+          alert("Oops, looks like this email is invalid.");
+        }
+        else if(errorCode === 'auth/weak-password'){
+          alert("Password not strong enough.");
+        }
+        else{
+          alert(errorMessage);
+        }
     });
   }
 
   render(){
     return (
-      <Container>
+      <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
+        <Header/> 
+        <Container style={{paddingTop:"78px"}}>
         <div style={{textAlign:"center"}}>
           <img style={{width:"350px",margin:"10px"}} src={loginImg}/>
         </div>
         <br/>
-        <div style={{textAlign:"center"}}><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>Sign In</h1></div></div>
+        <div style={{textAlign:"center"}}><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>Reset Password</h1></div></div>
 
-        <form>
+        <form onSubmit={this.reset}>
           <TextField
             label="Email"
             variant="outlined"
@@ -73,8 +92,7 @@ class ForgotPassword extends Component {
             type="submit"
             value="Submit"
             variant="contained"
-            onClick={this.reset}
-            style={{backgroundColor:"#5bc0de", textTransform:"none"}}
+            style={{backgroundColor:"#5bc0de", textTransform:"none",fontSize:"medium"}}
           > 
             Send me a reset link
           </Button>
@@ -82,6 +100,7 @@ class ForgotPassword extends Component {
               <p>Back to <Link className="loginLinks" to="/signin"> Sign in </Link> page</p>
           </div>
         </form>
+        </Container>
       </Container>
     );
   }

@@ -14,6 +14,9 @@ import './style.css';
 //reactstrap API
 import {Col,Container,Row} from 'reactstrap';
 
+//Components
+import Header from "../../components/header/Header.js";
+
 export default class SignIn extends React.Component {
 
   constructor(props){
@@ -70,9 +73,10 @@ export default class SignIn extends React.Component {
 
    render(){
 	   	return(
-	   		<Container>
-		       
-		        <div style={{textAlign:"center"}}>
+	   		<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
+		       	<Header/>
+		       	<Container style={{paddingTop:"70px"}}>
+		        <div style={{textAlign:"center",marginTop:"10px"}}>
        				<img style={{width:"350px",margin:"10px"}} src={loginImg}/>
        			</div>
        			<br/>
@@ -114,7 +118,7 @@ export default class SignIn extends React.Component {
 			            value="Submit"
 			            variant="contained"
 			            onClick = {this.signin}
-			        	style={{backgroundColor:"#5bc0de",textTransform:"none"}}
+			        	style={{backgroundColor:"#5bc0de",textTransform:"none", fontSize:"medium"}}
 			        > 
 			            Sign in
 			        </Button>
@@ -143,6 +147,7 @@ export default class SignIn extends React.Component {
 		        	<p>Don't have an account? <Link className="loginLinks" to="/signup">Sign up </Link> <br/>
 		        	<Link className="loginLinks" to="/forgotpassword" >Forgot Password?</Link></p>
 		        </div>
+		        </Container>
 	   		</Container>
 	   	);
   	}

@@ -13,6 +13,9 @@ import './style.css';
 //reactstrap API
 import {Col,Container,Row} from 'reactstrap';
 
+//Components
+import Header from "../../components/header/Header.js";
+
 export default class SignUp extends React.Component {
 
   constructor(props){
@@ -73,7 +76,6 @@ export default class SignUp extends React.Component {
         alert("Ingenile");
         Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
           firstname:this.state.firstname,
-          lastname:this.state.lastname,
           email:this.state.email,
           password:this.state.password,
           level: this.state.level,
@@ -85,10 +87,8 @@ export default class SignUp extends React.Component {
       else if(this.state.userType === "expert"){
         Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
           firstname:this.state.firstname,
-          lastname:this.state.lastname,
           email:this.state.email,
           password:this.state.password,
-          level: this.state.level,
           userType: this.state.userType,
           description: this.state.description,
           ratedResources: this.state.ratedResources,
@@ -119,8 +119,9 @@ export default class SignUp extends React.Component {
 
   render(){
       return(
-        <Container>
-    
+        <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
+            <Header/>
+            <Container style={{paddingTop:"70px"}}>
             <div style={{textAlign:"center"}}>
               <img style={{width:"350px",margin:"10px"}} src={loginImg}/>
             </div>
@@ -205,7 +206,7 @@ export default class SignUp extends React.Component {
                   type="submit"
                   value="Submit"
                   variant="contained"
-                style={{backgroundColor:"#5bc0de",textTransform:"none"}}
+                style={{backgroundColor:"#5bc0de",textTransform:"none", fontSize:"medium"}}
               > 
                   Sign up
               </Button>
@@ -233,6 +234,7 @@ export default class SignUp extends React.Component {
             <div style={{textAlign:"center", cursor:"default", marginTop:"5px"}}>
               <p>Already have an account? <Link className="loginLinks" to="/signin">Sign In </Link> </p>
             </div>
+            </Container>
         </Container>
       );
     }
