@@ -53,6 +53,7 @@ export default class Landing extends Component{
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px",position:"absolute"}}>
 				<Header/>
+				<p style={{fontSize:"20px", fontWeight:"bold"}}>{this.props.userName}</p>
 				<FloatingButton/>
 			<Container className="wrapper">
 			 	<Jumbotron>

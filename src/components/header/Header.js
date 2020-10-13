@@ -11,7 +11,9 @@ import {Col,Container,Row} from 'reactstrap';
 
 //Material UI API
 import Button from '@material-ui/core/Button';
+
 import SearchBar from "../../components/SearchBar.js";
+import Fire from "../../views/config/fire.js";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 //Styles 
@@ -19,9 +21,12 @@ import "./Header.scss";
 
 export default class Header extends Component{
 	constructor(props){
-		super(props);
+		super(props); 	
+		this.logout = this.logout.bind(this);
 	}
-
+	logout(){
+		Fire.auth().signOut();
+	}
 	render(){
 		return(
 			<Navbar sticky="top" className="my-nav-styles" expand="lg">
@@ -71,11 +76,12 @@ export default class Header extends Component{
 	        				<AccountCircleIcon fontSize="large"/> &nbsp; Sign In
 	      				</Button>
 	      				</Link>
+	      				<Button onClick = {()=> this.logout()} style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
+	      					sign out
+	      				</Button>
 					</Nav>
 				</Navbar.Collapse>
-				</Navbar>
-				
-	    	
+			</Navbar>	
 		);
 	}
 }

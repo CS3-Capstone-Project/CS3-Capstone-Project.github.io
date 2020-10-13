@@ -22,12 +22,13 @@ class Register extends Component {
       first_name:'',
       email:'',
       password:'',
-      person:"",
       description:"",
+      level:"",
       page:"questionnaire",
       invalidEmail:"",
-      invalidPassword:""
+      invalidPassword:"",
     };
+    this.handleChange = this.handleChange.bind(this);
     this.onChangeValue = this.onChangeValue.bind(this);
   }
   render() {
@@ -38,7 +39,7 @@ class Register extends Component {
           <div style={{display:"flex"}}> <Link to="/"><ArrowBackIcon style={{marginTop:"35px", marginLeft:"10px"}}/></Link> <Image className="logo" style={{marginLeft:"40%"}} src="./img/python.png"/> {/*<h1 style={{ marginLeft:"40%"}}>Beginner</h1>*/}</div>
         <hr/>
         <div style={{textAlign:"center"}}><div ><h3>Register</h3></div></div>
-           <div >
+           <div >``````````````````
             <img style={{width:"21em",margin:"10px"}} src={loginImg}/>
            </div>
            <TextField
@@ -102,6 +103,11 @@ class Register extends Component {
       el.style.display = "none";
     }
   }
+
+  handleChange(event) {
+    this.setState({description: event.target.value});
+  }
+
   signup(e){
       e.preventDefault();
       if (this.state.person=="Student") {
@@ -111,15 +117,17 @@ class Register extends Component {
         });
         Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
         .then((u)=>{
-          Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
+          Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
             FirstName:this.state.first_name,
             Email:this.state.email,
             Password:this.state.password,
+            userType: "Student",
+            level:"Beginner"
           });
           this.setState({
-            visible:true
+            visible:true,
           });
-          alert("registered: "+this.state.first_name);})
+          alert("registered: "+this.state.first_name + "as a student.");})
         .catch((error) =>{
           switch(error.code){
             case "auth/email-already-in-use":
@@ -142,17 +150,18 @@ class Register extends Component {
         });
         Fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{})
         .then((u)=>{
-          Fire.database().ref("User/"+this.state.person+"/"+Fire.auth().currentUser.uid).set({
+          Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
             FirstName:this.state.first_name,
             Email:this.state.email,
             Password:this.state.password,
             Description:this.state.description,
+            userType:"Expert"
           });
           this.setState({
             visible:true,
-            page:"/"
+            page:"/",
           });
-          alert("registered: "+this.state.first_name);})
+          alert("registered: "+this.state.first_name+ "as a python expert.");})
         .catch((error) =>{
           switch(error.code){
             case "auth/email-already-in-use":

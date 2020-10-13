@@ -58,7 +58,7 @@ export default class Questionnaire extends Component{
             <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
                 <Header/>
                 <Container className="formControl" style={{backgroundColor:"#D6EAF8"}}>
-                    <div ><p style={{fontWeight:"bold"}}>Select level</p></div>
+                    <div ><p style={{fontWeight:"bold"}}>Select level</p> {this.props.level}</div>
                     <div style={{textAlign:"left", width:"185px",position:"relative", margin:"0 auto", backgroundColor:"#F4F6F6"}}>
                         <Form onSubmit={this.formSubmit}>
                             <ul>

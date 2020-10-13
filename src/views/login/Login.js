@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {RaisedButton,AppBar,TextField} from 'material-ui';
 import loginImg from "./Login.svg";
@@ -9,6 +9,8 @@ import {Image} from 'react-bootstrap';
 import Fire from "../config/fire";
 import Questionnaire from "../questionnaire/questionnaire";
 import Modal from 'react-awesome-modal';
+import Header from "../../components/header/Header.js";
+
 //import axios from 'axios';
 
 class Login extends React.Component {
@@ -16,18 +18,19 @@ class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      user:{},
+      //user:{},
       email:"",
       visible:false,
-      registered: false,
+      loggedin:false,
       emailAddress:'',
       password:'',
       invalidEmail:"",
-      invalidPassword:""
+      invalidPassword:"",
+      name:"No_Name"
     }
     this.login=this.login.bind(this);
-   }
-
+    this.reset=this.reset.bind(this);
+  }
   render() {
       return (
         <div style={{backgroundColor:"#f5f5f5"}}>
@@ -57,10 +60,10 @@ class Login extends React.Component {
                    />
                    <p style={{color: "#DA0230", fontSize:"12px"}}>{this.state.invalidPassword}</p>
                  <br/>
-                 
                   <RaisedButton label="Login" primary={true} style={{marginTop: "15px",}} 
-                    onClick={(event) =>{
-                    this.login()}}
+                      onClick={(event) =>{
+                      this.login();
+                      }}
                   />
              </div>
                 <a href="#" onClick={(event) =>{this.setState({visible:true});}}> forgot password</a>
@@ -108,52 +111,6 @@ class Login extends React.Component {
         }
       });
     }
-    register(){
-      this.setState({
-        invalidPassword:"",
-        invalidEmail:""
-      });
-      Fire.auth().createUserWithEmailAndPassword(this.state.emailAddress,this.state.password).then((u)=>{
-        }).catch((error) =>{
-        switch(error.code){
-          case "auth/email-already-in-use":
-          case "auth/invalid-email":
-            this.setState({
-              invalidEmail: error.message
-            });
-            break;
-          case "auth/weak-password":
-            this.setState({
-              invalidPassword:error.message
-            });
-            break;
-        }
-      });
-    }
-    logout(){
-      Fire.auth().signOut();
-    }
-    authListener(){
-      this.setState({
-        invalidEmail:"",
-        invalidPassword:""
-      });
-      Fire.auth().onAuthStateChanged((user)=>{
-        if(user){
-          this.setState({
-            emailAddress:"",
-            password:"",
-            user:user
-          });
-        }
-        else{
-          this.setState({
-            user:null
-          });
-        }
-      });
-    }
-    
     reset(e){
       e.preventDefault();
       Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
@@ -162,10 +119,6 @@ class Login extends React.Component {
         alert(error)
       });
     }
-    getUserData(uid) {
-      Fire.database().ref('User/Expert/' + uid).once("value", snap => {
-          alert(snap.val().FirstName) // returns the name of the person logged in
-      })
-    }
+    
 }
 export default Login;
