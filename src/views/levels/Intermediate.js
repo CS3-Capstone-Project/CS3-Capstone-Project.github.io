@@ -19,31 +19,94 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
 import Header from "../../components/header/Header.js";
+import { commonSearchs } from "../resources/commonsearchs.js";
 
 import { resources } from "../resources/data.js";
 
+//Firebase
+import fire from "../login/config/fire.js";
+
 export default class Intermediate extends Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			videos : [],
+			webpages : [],
+			source:"",
+		    url:"",
+		    topic: "",
+		    description:"",
+		    rating:0,
+		    totalRatings:0,
+
+		}
+	}
+
+	componentDidMount() {
+	  const webRef = fire.database().ref('resource/intermediate/webpages');
+	  const videosRef = fire.database().ref('resource/intermediate/videos');
+	  videosRef.on('value', (snapshot) => {
+	    let vids = snapshot.val();
+	    let temp = [];
+	    for (let item in vids) {
+	      temp.push({
+	        id: item,
+	        source: vids[item].source,
+	       	url: vids[item].url, 
+	       	topic: vids[item].topic,
+	       	description: (commonSearchs.find( ({ topic }) => topic == vids[item].topic )).description,
+	       	rating: vids[item].rating,
+	       	totalRatings: vids[item].totalRatings
+	      });
+	    }
+	    this.setState({
+	      videos: temp
+	    });
+	  });
+
+	  webRef.on('value', (snapshot) => {
+	    let web = snapshot.val();
+	    let temp = [];
+	    for (let item in web) {
+	      temp.push({
+	        id: item,
+	        source: web[item].source,
+	       	url: web[item].url, 
+	       	topic: web[item].topic,
+	       	description: (commonSearchs.find( ({ topic }) => topic == web[item].topic )).description,
+	       	rating: web[item].rating,
+	       	totalRatings: web[item].totalRatings
+	      });
+	    }
+	    this.setState({
+	      webpages: temp
+	    });
+	  });
+	}
+
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-				<Header/>		
-				<div style={{textAlign:"center"}}><div ><h3>Intermediate</h3></div></div>
+				<Header/>
 			<Container className="wrapper">
 				<div style={{textAlign:"center"}}><div ><h3>Intermediate</h3></div></div>
 				<Link to="/Quiz2">
 					<Button>Take a quiz</Button>
 				</Link>
 				<div><h5>Youtube Videos</h5></div>
+				<div style={{textAlign:"center"}}><div ><h2>Intermediate</h2></div></div>
+				<div><h5>Videos</h5></div>
 				<Row>
 					{
-						resources.intermediate.videos.map((data,key) => {
+						this.state.videos.map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
+									source = {data.source}
+									topic = {data.topic} 
+									desc = {data.description} 
 									url = {data.url}
 									rating = {data.rating} 
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
@@ -57,37 +120,17 @@ export default class Intermediate extends Component{
 				<div><h5>Webpages</h5></div>
 				<Row>
 					{
-						resources.intermediate.webpages.map((data,key) => {
+						this.state.webpages.map((data,key) => {
 							return(
 								<Col>
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {data.desc} 
+									topic = {data.topic}
+									desc = {data.description} 
 									url = {data.url} 
 									rating = {data.rating}
-									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
-									</Thumbnail>
-								</Col>
-							);
-						})
-					}
-				</Row>
-
-				<div><h5>eBooks</h5></div>
-				<Row>
-					{
-						resources.intermediate.ebooks.map((data,key) => {
-							return(
-								<Col>
-									<Thumbnail 
-									key={data.id} 
-									id = {data.id} 
-									source = {data.source} 
-									desc = {data.desc} 
-									url = {data.url}
-									rating = {data.rating} 
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>

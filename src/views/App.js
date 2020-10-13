@@ -8,6 +8,9 @@ import Modal from 'react-awesome-modal';
 import Questionnaire from "./questionnaire/questionnaire.js";
 import Login from "./login/main.js";
 import Register from "./login/Register.js";
+import SignIn from "./login/signin.js";
+import SignUp from "./login/signup.js";
+import ForgotPassword from "./login/forgotpassword.js";
 import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
@@ -17,6 +20,7 @@ import Quiz2 from "./questionnaire/Quiz2.js";
 import Addresource from "./addresource/Addresource.js";
 import Fire  from "./config/fire";
 import Header from "../components/header/Header.js";
+import Ebooks from "./ebooks/Ebooks.js";
 
 //Styles
 import "./App.scss";
@@ -122,6 +126,7 @@ export default class App extends Component {
                   callback = {this.callbackFunction}/>
                 )}>
             </Route>
+
       			<Route 
             exact 
             path={"/"}
@@ -145,6 +150,7 @@ export default class App extends Component {
             />
             )}>
      				</Route>
+
             <Route 
               path={"/Header"}
               render = {props =>(
@@ -155,59 +161,83 @@ export default class App extends Component {
               />
               )}>
             </Route>
+
             <Route 
-            path={"/addresource"}
+            path={"/Addresource"}
             render = {props =>(
-            <Addresource { ...props} loginStatus={this.state.loginStatus}/>
+              <Addresource
+                {...props}
+                loginStatus = {this.state.loginStatus}/>
             )}>
             </Route>
 
-     				<Route path={"/login"}
+            <Route 
+            path={"/ebooks"}
+            render = {props =>(
+            <Ebooks { ...props} loginStatus={this.state.loginStatus}/>
+            )}>
+            </Route>
+
+     				<Route path={"/signin"}
               render = {props =>(
-              <Login { ...props} loginStatus={this.state.loginStatus}/>
+              <SignIn { ...props} loginStatus={this.state.loginStatus}/>
             )}>
      				</Route>
+
+            <Route path={"/signup"}
+              render = {props =>(
+              <SignUp { ...props} loginStatus={this.state.loginStatus}/>
+            )}>
+            </Route>
+
+            <Route path={"/forgotpassword"}
+              render = {props =>(
+              <ForgotPassword { ...props} loginStatus={this.state.loginStatus}/>
+            )}>
+            </Route>
 
      				<Route path={"/beginner"}
               render = {props =>(
-              <Beginner { ...props} loginStatus={this.state.loginStatus}/>
-            )}>
-     				</Route>
-
-     				<Route path={"/intermediate"}
-              render = {props =>(
-              <Intermediate { ...props} loginStatus={this.state.loginStatus}/>
-            )}>
-     				</Route>
-
-     				<Route path={"/advanced"}
-              render = {props =>(
-              <Advanced { ...props} loginStatus={this.state.loginStatus}/>
-            )}>
-     				</Route>
-            <Route path="/Quiz1">
-              <Quiz1/>
+              <Addresource { ...props} loginStatus={this.state.loginStatus}/>
+              )}>
             </Route>
+
+       			<Route path={"/intermediate"}
+                render = {props =>(
+                <Intermediate { ...props} loginStatus={this.state.loginStatus}/>
+              )}>
+       			</Route>
+
+       			<Route path={"/advanced"}
+                render = {props =>(
+                <Advanced { ...props} loginStatus={this.state.loginStatus}/>
+              )}>
+       			</Route>
+
+            <Route path="/Quiz1">
+                <Quiz1/>
+            </Route>
+
             <Route path="/Quiz2">
-              <Quiz2/>
+                <Quiz2/>
             </Route>
      			</Switch>
-          <Modal visible={this.state.visible} width="400" height="170" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
-          <Container style={{backgroundColor:"#ccd8ff"}}>
-              <p className=" float-centre" style={{fontSize:"30px", fontWeight:"bold", color: "#009900"}}>{this.state.newUserMsg} {this.state.userName}</p>
-              <p style={{fontSize:"16px", fontWeight:"bold"}}>{this.state.lastActivity} {this.state.level}, {this.state.askToContinue}</p>
-            <hr/>
-            <Link to= {this.state.level}>
-              <Button className="float-left" onClick={()=>this.closeModal()}>
-                Yes
+        </Router>
+            <Modal visible={this.state.visible} width="400" height="170" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+            <Container style={{backgroundColor:"#ccd8ff"}}>
+                <p className=" float-centre" style={{fontSize:"30px", fontWeight:"bold", color: "#009900"}}>{this.state.newUserMsg} {this.state.userName}</p>
+                <p style={{fontSize:"16px", fontWeight:"bold"}}>{this.state.lastActivity} {this.state.level}, {this.state.askToContinue}</p>
+              <hr/>
+              <Link to= {this.state.level}>
+                <Button className="float-left" onClick={()=>this.closeModal()}>
+                  Yes
+                </Button>
+              </Link>
+              <Button className="float-right" onClick = {()=>this.closeModal()}>
+                Cancel
               </Button>
-            </Link>
-            <Button className="float-right" onClick = {()=>this.closeModal()}>
-              Cancel
-            </Button>
-          </Container>
-        </Modal>
-      	</Router>
+            </Container>
+          </Modal>
       </div>
     );
   }

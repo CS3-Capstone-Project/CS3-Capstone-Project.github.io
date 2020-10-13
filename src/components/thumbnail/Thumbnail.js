@@ -28,38 +28,25 @@ export default class Thumbnail extends Component{
 		super(props);
 		this.state = {
 			visible: false,
-			ratingValue: this.props.rating,
-			totalRatings: 0
+			rating: this.props.rating,
+			numRatings: 0,
+			accumulator: 0
 		}
 
-		this.calcRating = this.calcRating.bind(this)
-	}
-
-	openModal(){
-		this.setState({
-			visible: true
-		});
-	}
-
-	closeModal(){
-		this.setState({
-			visible: false
-		});
+		this.calcRating = this.calcRating.bind(this);
+		
 	}
 
 	calcRating(v){
-		this.setState((state) => {
-			var decimal = ((state.ratingValue + v)/2) - Math.floor((state.ratingValue+v)/2);
-			console.log("value: " + state.ratingValue + " Floored value: " + Math.floor(state.ratingValue));
-			if(decimal == 0.5){
-				return{ratingValue:Math.floor((state.ratingValue + v)/2)}
-			}
-			else{
-				return{ratingValue:Math.round((state.ratingValue + v)/2)}
-			}
+		const {accumulator, numRatings, rating} = this.state
+		this.setState({
+			accumulator: accumulator + v,
+			numRatings: numRatings + 1,
+			rating: Math.round(accumulator/numRatings)
+		}, () => {
+			console.log("v: " + v + " accumulator: " + this.state.accumulator + " numRatings: " + this.state.numRatings);
+			console.log(this.state.accumulator/this.state.numRatings);
 		})
-		
-		console.log(v);
 	}
 
 	copy = () => {
@@ -69,14 +56,18 @@ export default class Thumbnail extends Component{
 	render(){
 		return(
 			<div style={{zIndex:"999"}} className="thumbnail">
-
-				<span className="a" onClick={() => this.openModal()}>
-					<div className="ttop" style = {this.props.style}>
-						<div className="source">{this.props.source}</div>
-						<p className="desc">{this.props.desc}</p>
-					</div>
-				</span>
-
+				<a className="links" href={this.props.url} target="_blank">
+					<span className="a">
+						<div className="ttop" style = {this.props.style}>
+							<div className="source">{this.props.topic}</div>
+							<p className="desc">{this.props.desc}</p>
+						
+							<p className="desc" style={{fontWeight:"bold"}} >source: {this.props.source}</p>
+							
+						</div>
+					</span>
+				</a>
+				{/*
 				<Modal style={{zIndex:"999"}} visible={this.state.visible} width="95%" height="600px" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
                     	<div style={{display:"flex"}}>
@@ -87,14 +78,14 @@ export default class Thumbnail extends Component{
                         </div>
                         <iframe height="500px" width="100%" src={this.props.url}></iframe>
                     </div>
-                </Modal>
+                </Modal> */}
 
 				<div className="t-bottom">
 					<ShareIcon onClick={this.copy} className="shareButton"/>
 						&nbsp;
 					<Rating 
-						defaultValue={this.state.ratingValue} 
-						value={this.state.ratingValue} 
+						
+						value={this.state.rating} 
 						style={{backgroundColor:""}} 
 						name = {this.props.id} 
 						size="large" 
@@ -102,8 +93,6 @@ export default class Thumbnail extends Component{
 							this.calcRating(value);
 						}}
 						precision={1} />
-					{/*<p></p>
-					<p>Description of: {this.props.name}</p>*/}
 				</div>
 			</div>
 		);

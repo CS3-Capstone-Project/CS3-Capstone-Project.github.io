@@ -13,14 +13,13 @@ body {
   align-items: center;
 }
 
-button {
-  margin-left: 2rem;
-  outline: none;
-  border: 0;
-  padding: 0.5rem 1rem;
-  background: coral;
-  color: #fff;
-  border-radius: 50px;
+.buttons, .buttons:hover{
+  border: none!important;
+  outline: none!important;
+}
+
+.loginLinks, .loginLinks:hover{
+  text-decoration: none;
 }
 
 /* SIDEBAR  */
