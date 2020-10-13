@@ -36,11 +36,14 @@ class Addresource extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
  
+  //Update state when one or more of the Textfields are changed 
   handleChange(event){
     this.setState({
       [event.target.name] : event.target.value
     });
   }
+
+  //Ask user for description only if they are not adding ebooks
   descrip(){
     if(this.state.type != "ebooks"){
       return <div>
@@ -57,6 +60,7 @@ class Addresource extends React.Component{
     else{ return;}
   }
 
+  //After the submit button is pressed push data to firebase
   handleSubmit(event){
     event.preventDefault();
     let resourcesRef;

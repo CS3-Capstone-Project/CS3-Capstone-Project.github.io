@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //Components
 import Questionnaire from "./questionnaire/questionnaire.js";
-import Login from "./login/main.js";
+import SignIn from "./login/signin.js";
+import SignUp from "./login/signup.js";
+import ForgotPassword from "./login/forgotpassword.js";
 import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
@@ -65,11 +67,23 @@ export default class App extends Component {
           )}>
           </Route>
 
-   				<Route path={"/login"}
+   				<Route path={"/signin"}
             render = {props =>(
-            <Login { ...props} loginStatus={this.state.loginStatus}/>
+            <SignIn { ...props} loginStatus={this.state.loginStatus}/>
           )}>
    				</Route>
+
+          <Route path={"/signup"}
+            render = {props =>(
+            <SignUp { ...props} loginStatus={this.state.loginStatus}/>
+          )}>
+          </Route>
+
+          <Route path={"/forgotpassword"}
+            render = {props =>(
+            <ForgotPassword { ...props} loginStatus={this.state.loginStatus}/>
+          )}>
+          </Route>
 
    				<Route path={"/beginner"}
             render = {props =>(

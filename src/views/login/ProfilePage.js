@@ -12,15 +12,12 @@ import './style.css';
 //reactstrap API
 import {Col,Container,Row} from 'reactstrap';
 
-class ForgotPassword extends Component {
+class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state={
       email:""
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.reset = this.reset.bind(this);
   }
 
   //Update state when email address is entered 
@@ -31,28 +28,19 @@ class ForgotPassword extends Component {
   }
 
   //
-  handleSubmit(event){
-      event.preventDefault();
-      this.reset(this.state.email);    
-  }
-
-  //Send password reset email
-  reset(e){
-    e.preventDefault();
-    Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
-      alert("Check your emails");
-    }).catch((error)=>{
-      alert(error)
-    });
-  }
-
+  handleSubmit(e){
+      e.preventDefault();
+      alert(this.state.email);
+      this.reset(this.state.email);
+        
+   }
   render(){
     return (
       <Container>
         <div style={{textAlign:"center"}}>
           <img style={{width:"350px",margin:"10px"}} src={loginImg}/>
         </div>
-        <br/>
+
         <div style={{textAlign:"center"}}><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>Sign In</h1></div></div>
 
         <form>
@@ -68,22 +56,18 @@ class ForgotPassword extends Component {
           <br/><br/>
           <Button 
             fullWidth="true"
-            size = "small" 
+            size = "medium" 
             className="buttons" 
             type="submit"
             value="Submit"
-            variant="contained"
-            onClick={this.reset}
-            style={{backgroundColor:"#5bc0de", textTransform:"none"}}
+            style={{backgroundColor:"#5bc0de"}}
           > 
-            Send me a reset link
+            Submit
           </Button>
-          <div style={{textAlign:"center", cursor:"default", marginTop:"5px"}}>
-              <p>Back to <Link className="loginLinks" to="/signin"> Sign in </Link> page</p>
-          </div>
+
         </form>
       </Container>
     );
   }
 }
-export default ForgotPassword;
+export default ProfilePage;
