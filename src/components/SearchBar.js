@@ -52,7 +52,7 @@ class SearchResult extends Component {
               source: res[item].source,
               url: res[item].url, 
               topic: res[item].topic,
-              description: (commonSearchs.find( ({ topic }) => topic == res[item].topic )).description,
+              description: (commonSearchs.find( function({ topic }){ return topic == res[item].topic;})).description,
               rating: res[item].rating,
               totalRatings: res[item].totalRatings
             });
@@ -130,7 +130,14 @@ export default class SearchBar extends Component {
       <Autocomplete
         id="searchBar"
         options={commonSearchs}
-        getOptionLabel={(option) => option.topic}
+        getOptionLabel={function(option){
+          if(option.topic == "All"){
+            return "";
+          }
+          else{
+            return option.topic;
+          }
+        }}
         style={{ width: 200 }}
         renderInput={(params) => <TextField {...params} color="primary" label="Search" variant="outlined" fullWidth/>}
         onChange={(event,value) => {

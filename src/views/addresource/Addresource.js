@@ -41,6 +41,21 @@ class Addresource extends React.Component{
       [event.target.name] : event.target.value
     });
   }
+  descrip(){
+    if(this.state.type != "ebooks"){
+      return <div>
+        <TextField 
+          placeholder="Brief description"
+          multiline="true"
+          variant="outlined"
+          rows="3"
+          required="true"
+          name="description"
+          onChange={this.handleChange}
+          fullWidth="true"/> <br/> <br/> </div>
+    }
+    else{ return;}
+  }
 
   handleSubmit(event){
     event.preventDefault();
@@ -171,15 +186,8 @@ class Addresource extends React.Component{
               </TextField>
               <br/> <br/>
 
-            <TextField 
-              placeholder="Brief description"
-              multiline="true"
-              variant="outlined"
-              rows="3"
-              required="true"
-              name="description"
-              onChange={this.handleChange}
-              fullWidth="true"/> <br/> <br/>
+            
+            {this.descrip()}
 
             <Button 
               fullWidth="true"

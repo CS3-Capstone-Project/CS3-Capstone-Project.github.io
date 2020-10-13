@@ -28,40 +28,25 @@ export default class Thumbnail extends Component{
 		super(props);
 		this.state = {
 			visible: false,
-			ratingValue: this.props.rating,
-			totalRatings: 0,
+			rating: this.props.rating,
+			numRatings: 0,
 			accumulator: 0
 		}
 
-		this.calcRating = this.calcRating.bind(this)
+		this.calcRating = this.calcRating.bind(this);
+		
 	}
-
-	/*
-	openModal(){
-		this.setState({
-			visible: true
-		});
-	}
-
-	closeModal(){
-		this.setState({
-			visible: false
-		});
-	} */
 
 	calcRating(v){
-		this.setState((state) => {
-			var decimal = ((state.ratingValue + v)/2) - Math.floor((state.ratingValue+v)/2);
-			console.log("value: " + state.ratingValue + " Floored value: " + Math.floor(state.ratingValue));
-			if(decimal == 0.5){
-				return{ratingValue:Math.floor((state.ratingValue + v)/2)}
-			}
-			else{
-				return{ratingValue:Math.round((state.ratingValue + v)/2)}
-			}
+		const {accumulator, numRatings, rating} = this.state
+		this.setState({
+			accumulator: accumulator + v,
+			numRatings: numRatings + 1,
+			rating: Math.round(accumulator/numRatings)
+		}, () => {
+			console.log("v: " + v + " accumulator: " + this.state.accumulator + " numRatings: " + this.state.numRatings);
+			console.log(this.state.accumulator/this.state.numRatings);
 		})
-		
-		console.log(v);
 	}
 
 	copy = () => {
@@ -100,7 +85,7 @@ export default class Thumbnail extends Component{
 						&nbsp;
 					<Rating 
 						
-						value={this.state.ratingValue} 
+						value={this.state.rating} 
 						style={{backgroundColor:""}} 
 						name = {this.props.id} 
 						size="large" 

@@ -74,7 +74,7 @@ export default class Ebooks extends Component{
 										desc = {data.description} 
 										url = {data.url} 
 										rating = {data.rating}
-										style={{backgroundColor:"rgba(104, 46, 26,0.9)"}}> 
+										style={{backgroundColor:"rgba(104, 46, 26,0.6)"}}> 
 										</Thumbnail>
 									</Col>
 								);
