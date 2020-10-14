@@ -47,11 +47,13 @@ export default class SignIn extends React.Component {
 		        let user = Fire.auth().currentUser;
 		        if(user){
 		        	Fire.database().ref('User/' + user.uid).once("value", snap => {
-				        alert(snap.val().firstname)
+		        		this.props.handleUser(snap.val().firstname);
+				        alert("Hey " + snap.val().firstname + ", you are now signed in.");
+				        window.location.replace('/');
 				    })
 		        }
-
       		})
+      		//Catch all of the errors here and display appropriate error message
       		.catch((error) =>{
 	      		let errorCode = error.code;
 	      		let errorMessage = error.message;
@@ -74,15 +76,15 @@ export default class SignIn extends React.Component {
    render(){
 	   	return(
 	   		<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-		       	<Header/>
-		       	<Container style={{paddingTop:"70px"}}>
+		       	
+		       	<Container style={{paddingTop:"78px"}}>
 		        <div style={{textAlign:"center",marginTop:"10px"}}>
        				<img style={{width:"350px",margin:"10px"}} src={loginImg}/>
        			</div>
        			<br/>
        			<div style={{textAlign:"center"}}><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>Sign In</h1></div></div>
             	
-
+       			{this.props.user}
 		        <form>
 		            <TextField
 		                label="Email"
@@ -123,21 +125,23 @@ export default class SignIn extends React.Component {
 			            Sign in
 			        </Button>
 		        </form>
-		        {/*<div style={{textAlign:"center"}}><p>or</p>
+
+		        {/*<div style={{textAlign:"center", marginTop:"10px"}}>
+		        	<p>or</p>
 		        	<Button 
-			            
+			            variant="contained"
 			            size = "medium" 
 			            className="buttons" 
-			        	style={{backgroundColor:"red"}}
+			        	style={{backgroundColor:"#FF6666", textTransform:"none", fontSize:"medium"}}
 			        > 
 			            Sign in with Google
 			        </Button>
 			        &nbsp; 
 			        <Button 
-			            
+			            variant="contained"
 			            size = "medium" 
 			            className="buttons" 
-			        	style={{backgroundColor:"blue"}}
+			        	style={{backgroundColor:"#0080FF", textTransform:"none", fontSize:"medium"}}
 			        > 
 			            Sign in with Facebook
 			        </Button>

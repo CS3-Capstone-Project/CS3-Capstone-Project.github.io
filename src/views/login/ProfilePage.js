@@ -20,52 +20,13 @@ class ProfilePage extends Component {
     };
   }
 
-  //Update state when email address is entered 
-  handleChange(event){
-    this.setState({
-      [event.target.name] : event.target.value
-    });
-  }
-
-  //
-  handleSubmit(e){
-      e.preventDefault();
-      alert(this.state.email);
-      this.reset(this.state.email);
-        
-   }
   render(){
     return (
-      <Container>
-        <div style={{textAlign:"center"}}>
-          <img style={{width:"350px",margin:"10px"}} src={loginImg}/>
-        </div>
-
-        <div style={{textAlign:"center"}}><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>Sign In</h1></div></div>
-
-        <form>
-          <TextField
-            label="Email"
-            variant="outlined"
-            fullWidth="true"
-            required="true"
-            size="medium"
-            name="email"
-            onChange={this.handleChange}
-          />
-          <br/><br/>
-          <Button 
-            fullWidth="true"
-            size = "medium" 
-            className="buttons" 
-            type="submit"
-            value="Submit"
-            style={{backgroundColor:"#5bc0de"}}
-          > 
-            Submit
-          </Button>
-
-        </form>
+      <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
+        <Container style={{paddingTop:"85px"}}>
+          <div ><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>{this.props.user}</h1></div></div>
+          <div>{this.props.description}</div>
+        </Container>
       </Container>
     );
   }

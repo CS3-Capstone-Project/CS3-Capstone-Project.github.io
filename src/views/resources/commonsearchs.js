@@ -1,3 +1,5 @@
+/*a list of all types of resources are in the catalog 
+and that can be added in the catalogue and their descriptions*/ 
 export const commonSearchs = [
   {
     topic:'All',
@@ -5,11 +7,11 @@ export const commonSearchs = [
   },
   {
     topic:'introduction',
-    description:"Python is a popular programming language. It was created by Guido van Ros..."
+    description:"Python is a popular programming language. It was created by Guido van..."
   },
   {
     topic:'boolean',
-    description: "Booleans represent one of two values: True or False. When you compare two..."
+    description: "Booleans represent one of two values: True or False. When you compare..."
   },
   {
     topic:'syntax',
@@ -21,11 +23,11 @@ export const commonSearchs = [
   },
   {
     topic:'functions',
-    description: 'A function is a block of code which only runs when it is called. You can...'
+    description: 'A function is a block of code which only runs when it is called. You ...'
   },
   {
     topic:'IDE',
-    description: 'An integrated development environment (IDE) is a software application that...'
+    description: 'An integrated development environment (IDE) is a software application...'
   },
   {
     topic:'comments',
@@ -41,11 +43,11 @@ export const commonSearchs = [
   },
   {
     topic:'numbers',
-    description: 'In Python there are three numeric types in Python: int, float and complex'
+    description: 'In Python there are three numeric types in Python: int, float and ...'
   },
   {
     topic:'casting',
-    description: 'Is used to either specify a data type of a variable or change a data type.'
+    description: 'Is used to either specify a data type of a variable or change a data...'
   },
   {
     topic:'operator',
@@ -53,11 +55,11 @@ export const commonSearchs = [
   },
   {
     topic:'list',
-    description: 'A list is a collection which is ordered and changeable. In Python lists...'
+    description: 'A list is a collection which is ordered and changeable. In Python...'
   },
   {
     topic:'tuple',
-    description:'A tuple is a collection which is ordered and unchangeable. In Python tup...'
+    description:'A tuple is a collection which is ordered and unchangeable. In Python...'
   },
   {
     topic:'set',
@@ -65,19 +67,19 @@ export const commonSearchs = [
   },
   {
     topic:'if...else',
-    description:'The if/else statement executes a block of code if a specified condition is true.'
+    description:'The if/else statement executes a block of code if a specified condition...'
   },
   {
     topic:'while loop',
-    description:'With the while loop we can execute a set of statements as long as a condition...'
+    description:'With the while loop we can execute a set of statements as long as a they...'
   },
   {
     topic:'for loop',
-    description:'A for loop is used for iterating over a sequence (that is either a list, a tu...'
+    description:'A for loop is used for iterating over a sequence (that is either a list...'
   },
   {
     topic:'lambda',
-    description:'A lambda function is a small anonymous function, it takes any number of argum...'
+    description:'A lambda function is a small anonymous function, it takes any number of...'
   },
   {
     topic:'array',
@@ -89,31 +91,31 @@ export const commonSearchs = [
   },
   {
     topic:'inheritance',
-    description: 'Allows us to define a class that inherits all the methods and properties from...'
+    description: 'Allows us to define a class that inherits all the methods and properties...'
   },
   {
     topic:'iterator',
-    description: 'Is an object that can be iterated upon, meaning that you can traverse through...'
+    description: 'Is an object that can be iterated upon, meaning that you can traverse...'
   },
   {
     topic:'scope',
-    description:'The region in which you can access a variable, there is global and local scope...'
+    description:'The region in which you can access a variable, there is global and local...'
   },
   {
     topic:'module',
-    description:'A file containing a set of functions you want to include in your application.'
+    description:'A file containing a set of functions you want to include in your appl...'
   },
   {
     topic:'date' ,
-    description:'Is not a data type of its own, but we can import a module named datetime to...'
+    description:'Is not a data type of its own, but we can import a module named datet...'
   },
   {
     topic:'JSON' ,
-    description: 'Is a syntax for storing and exchanging data, its text written with JavaSc...'
+    description: 'Is a syntax for storing and exchanging data, its text written with...'
   },
   {
     topic:'ReGex',
-    description: 'A RegEx(Regular Expression), is a sequence of characters that forms a search...'
+    description: 'A RegEx(Regular Expression), is a sequence of characters that forms a...'
   },
   {
     topic:'math',
@@ -141,7 +143,7 @@ export const commonSearchs = [
   },
   {
     topic:'delete file',
-    description: 'To delete a file, you must import the OS module, and run its os.remove() function:'
+    description: 'To delete a file, you must import the OS module, and run its os.remove()...'
   },
   {
     topic:'write/create file',
@@ -153,7 +155,7 @@ export const commonSearchs = [
   },
   {
     topic:'scipy',
-    description: 'SciPy(Scientific Python). It provides functions for optimization, stats and signal...'
+    description: 'SciPy(Scientific Python). It provides functions for optimization, stats and...'
   },
   {
     topic:'machine learning',

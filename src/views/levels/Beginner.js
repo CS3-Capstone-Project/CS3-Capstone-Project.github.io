@@ -14,7 +14,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
-import Header from "../../components/header/Header.js";
 
 import { commonSearchs } from "../resources/commonsearchs.js";
 
@@ -37,12 +36,14 @@ export default class Beginner extends Component{
 		}
 	}
 
+	//After the page is rendered load beginner resources
 	componentDidMount() {
 	  const webRef = fire.database().ref('resource/beginner/webpages');
 	  const videosRef = fire.database().ref('resource/beginner/videos');
 	  videosRef.on('value', (snapshot) => {
 	    let vids = snapshot.val();
 	    let temp = [];
+	    //iterate through all videos resources in the database and append them to a temporary array
 	    for (let item in vids) {
 	      temp.push({
 	        id: item,
@@ -54,11 +55,13 @@ export default class Beginner extends Component{
 	       	totalRatings: vids[item].totalRatings
 	      });
 	    }
+	    //set temporary array to be equal to the global array
 	    this.setState({
 	      videos: temp
 	    });
 	  });
 
+      //iterate through all webpage resources in the database and append them to a temporary array
 	  webRef.on('value', (snapshot) => {
 	    let web = snapshot.val();
 	    let temp = [];
@@ -73,16 +76,17 @@ export default class Beginner extends Component{
 	       	totalRatings: web[item].totalRatings
 	      });
 	    }
+	    //set temporary array to be equal to the global array
 	    this.setState({
 	      webpages: temp
 	    });
 	  });
 	}
 
+	//Display page with advanced Python reasources
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-				<Header/>
 			<Container className="wrapper">
 				<div style={{textAlign:"center"}}><div ><h2>Beginner</h2></div></div>
 				<div><h5>Videos</h5></div>

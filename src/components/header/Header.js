@@ -1,13 +1,18 @@
+//React stuff
 import React, { Component, useState } from "react";
 import { Link } from 'react-router-dom';
 
+//Firebase 
+import Fire from "../../views/login/config/fire";
+
 //React Bootstrap API
-//import Container from 'react-bootstrap/Container';
 import {Image, Navbar, Dropdown, DropdownButton, Nav, NavDropdown} from 'react-bootstrap';
 
 //Reactstrap API
 import {Col,Container,Row} from 'reactstrap';
 
+//Components
+import FloatingButton from "../floatingButton/FloatingButton.js";
 
 //Material UI API
 import Button from '@material-ui/core/Button';
@@ -20,11 +25,42 @@ import "./Header.scss";
 export default class Header extends Component{
 	constructor(props){
 		super(props);
+
+		this.signout = this.signout.bind(this);
+		this.addResButton = this.addResButton.bind(this);
 	}
 
+	//Sign out user
+	signout(){
+		Fire.auth().signOut()
+		.then(()=>{
+			//If current user is signed in sign them out
+			if(this.props.user != null){
+				this.props.handleUser(null);
+				alert("Signing out");
+				window.location.replace('/');
+			}
+
+		}).catch((error)=>{
+			let errorCode = error.code;
+	      	let errorMessage = error.message;
+	      	alert(errorMessage);
+		});
+	}
+
+
+	addResButton(){
+		if(this.props.userType == "expert"){
+			return <FloatingButton/>
+		}
+		else return;
+	}
+
+	//Display the navigation bar
 	render(){
 		return(
 			<Navbar className="my-nav-styles" expand="lg">
+				{this.addResButton()}
 				<Navbar.Brand>
 					<Link to="/">
 						<div className="logo-wrapper">
@@ -61,22 +97,32 @@ export default class Header extends Component{
 							</Nav.Link>*/}
 						</Nav>
 					
-
 					<Nav style={{display:"flex"}}>
 						<div className="searchBar">
 							<SearchBar/>
 						</div>
 						&nbsp;
-						<Link to="/signin" className="links">
-						<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
-	        				<AccountCircleIcon fontSize="large"/> &nbsp; Sign In
-	      				</Button>
-	      				</Link>
+						{this.props.user ?
+							<div>
+							<Button onClick={this.signout} style={{padding:"7px", paddingRight:"17px" ,outline:"none"}} variant="outlined" color="primary">
+		        				 &nbsp; Sign Out
+		      				</Button>
+		      				&nbsp;
+		      				<Link to="/profilepage" className="links">
+		      					<AccountCircleIcon style={{height:"40px"}} color="primary" fontSize="large"/>
+		      				</Link>
+
+		      				</div>
+		      				:
+		      				<Link to="/signin" className="links">
+							<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
+		        				<AccountCircleIcon fontSize="large" /> &nbsp; Sign In
+		      				</Button>
+		      				</Link>
+	      				}
 					</Nav>
 				</Navbar.Collapse>
 				</Navbar>
-				
-	    	
 		);
 	}
 }
