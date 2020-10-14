@@ -7,6 +7,7 @@ import Modal from 'react-awesome-modal';
 //Icons
 import { MdShare } from 'react-icons/md';
 import { BsStar, BsStarHalf, BsStarFill } from 'react-icons/bs';
+
 //Styles
 import "./Thumbnail.scss";
 
@@ -19,8 +20,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import {Jumbotron} from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 
-//React Js Popup
-import Popup from "reactjs-popup";
+//Firebase
+import fire from "../../views/login/config/fire.js";
 
 export default class Thumbnail extends Component{
 	constructor(props){
@@ -29,13 +30,26 @@ export default class Thumbnail extends Component{
 			visible: false,
 			rating: this.props.rating,
 			numRatings: 0,
-			accumulator: 0
+			accumulator: 0,
+			watched:false,
 		}
 
 		this.calcRating = this.calcRating.bind(this);
 		
 	}
 
+	//Get details of the currently logged in user
+	componentDidMount(){
+		fire.auth().onAuthStateChanged((u)=>{
+        if(u){
+          fire.database().ref('User/'+u.uid+"/ratedResources").set({
+          	
+          });
+        }
+      });
+	}
+
+	//Calculate rating for this resource
 	calcRating(v){
 		const {accumulator, numRatings, rating} = this.state
 		this.setState({
@@ -48,6 +62,7 @@ export default class Thumbnail extends Component{
 		})
 	}
 
+	//Copy resource url to user clipboard
 	copy = () => {
 		navigator.clipboard.writeText(this.props.url);
 		alert("Link to " + this.props.url + " copied to clipboard");
@@ -60,9 +75,8 @@ export default class Thumbnail extends Component{
 						<div className="ttop" style = {this.props.style}>
 							<div className="source">{this.props.topic}</div>
 							<p className="desc">{this.props.desc}</p>
-						
-							<p className="desc" style={{fontWeight:"bold"}} >source: {this.props.source}</p>
 							
+							<p className="desc" style={{fontWeight:"bold"}} >source: {this.props.source}</p>
 						</div>
 					</span>
 				</a>
@@ -82,8 +96,8 @@ export default class Thumbnail extends Component{
 				<div className="t-bottom">
 					<ShareIcon onClick={this.copy} className="shareButton"/>
 						&nbsp;
+					{ this.props.user ?
 					<Rating 
-						
 						style={{backgroundColor:""}} 
 						name = {this.props.id} 
 						size="large" 
@@ -91,6 +105,17 @@ export default class Thumbnail extends Component{
 							this.calcRating(value);
 						}}
 						precision={1} />
+						:
+						<Rating 
+						readOnly
+						style={{backgroundColor:""}} 
+						name = {this.props.id} 
+						size="large" 
+						onChange={(event,value) => { 
+							this.calcRating(value);
+						}}
+						precision={1} />
+					}
 				</div>
 			</div>
 		);

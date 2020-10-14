@@ -43,7 +43,7 @@ export default class SignIn extends React.Component {
 		        let user = Fire.auth().currentUser;
 		        if(user){
 		        	Fire.database().ref('User/' + user.uid).once("value", snap => {
-		        		this.props.handleUser(snap.val().firstname);
+		        		//this.props.handleUser(snap.val().firstname);
 				        alert("Hey " + snap.val().firstname + ", you are now signed in.");
 				        window.location.replace('/');
 				    })
