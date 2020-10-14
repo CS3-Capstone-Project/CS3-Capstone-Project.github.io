@@ -56,7 +56,6 @@ export default class Questionnaire extends Component{
     render() {
         return (
             <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-                <Header/>
                 <Container className="formControl" style={{backgroundColor:"#D6EAF8"}}>
                     <div ><p style={{fontWeight:"bold"}}>Select level</p> {this.props.level}</div>
                     <div style={{textAlign:"left", width:"185px",position:"relative", margin:"0 auto", backgroundColor:"#F4F6F6"}}>
@@ -112,7 +111,7 @@ export default class Questionnaire extends Component{
                             <hr/>
                             <Container style={{display:"flex", backgroundColor: "#5bc0de"}}>
                                 <div className="float-left" style={{display:"flex"}}>
-                                   <Link className="links" to="/Quiz1">
+                                   <Link className="links" to="/LevelQuiz">
                                         &nbsp;&nbsp;&nbsp;
                                         <Button onClick= {this.isLoggedin} className="btn btn-primary btn-lg float-left" style={{backgroundColor:"#5bc0de"}}>
                                             Level Quiz
@@ -120,7 +119,7 @@ export default class Questionnaire extends Component{
                                     </Link>
                                 </div>
                                 <div className="float-right" style={{display:"flex"}}>
-                                    <Link className="links" to="/Quiz2">
+                                    <Link className="links" to="/PycatTest">
                                         &nbsp;&nbsp;&nbsp;
                                         <Button className="btn btn-primary btn-lg float-right"style={{backgroundColor:"#5bc0de"}}>
                                             Test your python skills

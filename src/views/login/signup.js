@@ -9,7 +9,7 @@ import {Button,TextField,
         FormControlLabel
         } from '@material-ui/core';
 import IconButton from 'material-ui/IconButton';
-
+import Modal from 'react-awesome-modal';
 import loginImg from "./Login.svg";
 
 import {Link} from 'react-router-dom';
@@ -28,12 +28,12 @@ export default class SignUp extends React.Component {
   constructor(props){
     super(props);
     this.state={
+      visible:false,
       email:'',
       password:'',
       firstname:"",
       lastname:"",
       userType:"",
-      level:"Beginner",
       description:"",
       ratedResources:{},
       myResources:{}
@@ -94,8 +94,7 @@ export default class SignUp extends React.Component {
             if(user){
               Fire.database().ref('User/' + user.uid).once("value", snap => {
                 this.props.handleUser(snap.val().firstname);
-                alert("Welcome " + snap.val().firstname + ", you are now signed in.");
-                window.location.replace('/');
+                this.openModal();
             })
           }
 
@@ -152,7 +151,18 @@ export default class SignUp extends React.Component {
         }
       }); 
   }
-
+  //Opens the modal welcoming new student users.
+   openModal(){
+        this.setState({
+            visible : true
+        });
+    }
+    //Closes the modal welcoming new student users.
+    closeModal(){
+        this.setState({
+            visible : false
+        });
+    }
   //Display the sign up page
   render(){
       return(
@@ -199,17 +209,6 @@ export default class SignUp extends React.Component {
                 />
                 <br/><br/>
 
-                {/*<TextField
-                    label="Last Name"
-                    variant="outlined"
-                    fullWidth="true"
-                    required="true"
-                    size="medium"
-                    name="lastname"
-                    onChange={this.handleChange}
-                />
-                <br/><br/>*/}
-
                 <TextField
                     label="Email"
                     variant="outlined"
@@ -248,32 +247,25 @@ export default class SignUp extends React.Component {
                   Sign up
               </Button>
             </form>
-
-            {/*<div style={{textAlign:"center", marginTop:"10px"}}>
-              <p>or</p>
-              <Button 
-                  variant="contained"
-                  size = "medium" 
-                  className="buttons" 
-                style={{backgroundColor:"#FF6666", textTransform:"none", fontSize:"medium"}}
-              > 
-                  Sign up with Google
-              </Button>
-              &nbsp; 
-              <Button 
-                  variant="contained"
-                  size = "medium" 
-                  className="buttons" 
-                style={{backgroundColor:"#0080FF", textTransform:"none", fontSize:"medium"}}
-              > 
-                  Sign up with Facebook
-              </Button>
-            </div>*/}
-
             <div style={{textAlign:"center", cursor:"default", marginTop:"5px"}}>
               <p>Already have an account? <Link className="loginLinks" to="/signin">Sign In </Link> </p>
             </div>
             </Container>
+            <Modal visible={this.state.visible} width="400" height="200" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+              <Container>
+                <div>
+                  <h1>Welcome {this.state.firstname}</h1>
+                </div>
+                <div>
+                  <p>You have openned for yourself a door to fully experience our features.</p>
+                  <li>Now you can rate resources after you have viewed them.</li>
+                  <li>You can check your understanding of python concepts based on their level of difficulty.</li>
+                  <li>You can monitor your progress.</li>
+                </div>
+                <div><h1>Enjoy</h1></div>
+              </Container>
+              <div><Link to="/questionnaire"><Button>continue</Button></Link></div>
+            </Modal>
         </Container>
       );
     }

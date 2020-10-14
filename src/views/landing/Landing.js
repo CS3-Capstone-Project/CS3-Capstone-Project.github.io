@@ -136,7 +136,6 @@ export default class Landing extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px",position:"absolute"}}>
-			<Header/>
 			<Container className="wrapper">
 			 	<Jumbotron>
 			 		<h3 style={{textDecoration:"none"}}>Python Description</h3>
@@ -202,7 +201,6 @@ export default class Landing extends Component{
 				</Row>
 
 				<div style={{textAlign:"center"}}>
-					<Link to="Beginner" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 					<Link to="beginner" className="links"><Button  variant="contained" size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>
 			</Container>

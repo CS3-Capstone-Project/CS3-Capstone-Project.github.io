@@ -103,15 +103,14 @@ export default class Intermediate extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-				<Header/>
 			<Container className="wrapper">
 				{this.state.student ?(
 					<>
-						<Link to="/Quiz2">
-							<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Take a learning path</Button>
+						<Link to="/PycatTest">
+							<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Questions</Button>
 						</Link>
 					</>) : (
-					<><p>Enjoy.</p></>)}
+					<><p></p></>)}
 				<div style={{textAlign:"center"}}><div ><h2>Intermediate</h2></div></div>
 				<div><h5>Videos</h5></div>
 				<Row>

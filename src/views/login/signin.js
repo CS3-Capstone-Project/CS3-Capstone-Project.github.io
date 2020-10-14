@@ -4,8 +4,9 @@ import {Button,TextField} from '@material-ui/core';
 import loginImg from "./Login.svg";
 import IconButton from 'material-ui/IconButton';
 import {Link} from 'react-router-dom';
+import Modal from 'react-awesome-modal';
 import {Image} from 'react-bootstrap';
-import Fire from "../../views/config/fire.js";;
+import Fire from "../../views/config/fire.js";
 // eslint-disable-next-line import/first
 import Col,{Container,Row} from 'reactstrap';
 
@@ -25,8 +26,11 @@ export default class SignIn extends React.Component {
   constructor(props){
     super(props);
     this.state={
+    	visible:false,
 	    email:'',
 	    password:'',
+	    name:"",
+	    level:"",
 	    userid:""
     }
     this.handleChange = this.handleChange.bind(this);
@@ -51,8 +55,12 @@ export default class SignIn extends React.Component {
 		        if(user){
 		        	Fire.database().ref('User/' + user.uid).once("value", snap => {
 		        		this.props.handleUser(snap.val().firstname);
-				        alert("Hey " + snap.val().firstname + ", you are now signed in.");
-				        window.location.replace('/');
+		        		if(snap.val().userType==="student"){
+		        			window.location.replace(snap.val().level);
+		        		}
+		        		else{
+				        	window.location.replace('/');
+				    	}
 				    })
 		        }
       		})
@@ -73,9 +81,17 @@ export default class SignIn extends React.Component {
 	      			alert(errorMessage);
 	      		}
 	    	});
-
     }
-
+    openModal(){
+    this.setState({
+      visible : true
+    });
+  }
+  closeModal(){
+    this.setState({
+    visible : false
+    });
+  }
    render(){
 	   	return(
 	   		<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
@@ -98,9 +114,7 @@ export default class SignIn extends React.Component {
 		                name="email"
 		                onChange={this.handleChange}
 		            />
-
-		            <br/><br/>
-		            
+		            <br/><br/>    
 		            <TextField
 		                type="password"
 		                label="Password"
@@ -113,8 +127,6 @@ export default class SignIn extends React.Component {
 		                onChange={this.handleChange}
 		            />
 		            <br/><br/>
-
-		            
 		            <Button 
 			            fullWidth="true"
 			            size = "small" 
@@ -128,28 +140,6 @@ export default class SignIn extends React.Component {
 			            Sign in
 			        </Button>
 		        </form>
-
-		        {/*<div style={{textAlign:"center", marginTop:"10px"}}>
-		        	<p>or</p>
-		        	<Button 
-			            variant="contained"
-			            size = "medium" 
-			            className="buttons" 
-			        	style={{backgroundColor:"#FF6666", textTransform:"none", fontSize:"medium"}}
-			        > 
-			            Sign in with Google
-			        </Button>
-			        &nbsp; 
-			        <Button 
-			            variant="contained"
-			            size = "medium" 
-			            className="buttons" 
-			        	style={{backgroundColor:"#0080FF", textTransform:"none", fontSize:"medium"}}
-			        > 
-			            Sign in with Facebook
-			        </Button>
-		        </div>*/}
-
 		        <div style={{textAlign:"center", cursor:"default",marginTop:"5px"}}>
 		        	<p>Don't have an account? <Link className="loginLinks" to="/signup">Sign up </Link> <br/>
 		        	<Link className="loginLinks" to="/forgotpassword" >Forgot Password?</Link></p>

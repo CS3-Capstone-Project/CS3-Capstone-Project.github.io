@@ -7,7 +7,7 @@ import {Image} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 import Header from "../../components/header/Header.js";
 
-export default class Quiz1 extends Component { 
+export default class LevelQuiz extends Component { 
 	constructor(props){
         super(props);
         this.state ={

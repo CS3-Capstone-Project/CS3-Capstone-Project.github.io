@@ -9,7 +9,7 @@ import Modal from 'react-awesome-modal';
 import Header from "../../components/header/Header.js";
 import Fire from "../config/fire";
 
-export default class Quiz2 extends Component {
+export default class PycatTest extends Component {
 	constructor(props){
         super(props);
         this.state ={
@@ -36,22 +36,21 @@ export default class Quiz2 extends Component {
         this.levelUpdate=this.levelUpdate.bind(this);
     }
   	levelUpdate(){
-  		Fire.auth().onAuthStateChanged((user) =>{
-      		if(user){
-      			this.database = Fire.database().ref().child('User/'+user.uid);
-      			this.database.on('value', snap =>{
-	      			if(snap.val().userType==="student"){
-	      				Fire.database().ref('User/' + user.uid).set({
-	      					email:snap.val().email,
-	      					firstname:snap.val().firstname,
-	      					level:this.state.newLevel,
-	      					password:snap.val().password,
-	      					userType:"student"
-	      				});
-	      			}
-      			});
-      		}
-      	});
+  		let user = Fire.auth().currentUser;
+      	if(user){
+      		this.database = Fire.database().ref().child('User/'+user.uid);
+      		this.database.on('value', snap =>{
+	      		if(snap.val().userType==="student"){
+	      			Fire.database().ref('User/' + user.uid).set({
+	      				email:snap.val().email,
+	      				firstname:snap.val().firstname,
+	      				level:this.state.newLevel,
+	      				password:snap.val().password,
+	      				userType:"student"
+	      			});
+	      		}
+      		});
+      	}
   	}
     onAnsChange = e=>{
     	this.setState({[e.target.name]: e.target.value});
@@ -79,6 +78,18 @@ export default class Quiz2 extends Component {
     	else {
     		alert("Make sure you get all answers right!");
     	}
+    }
+    setLevel1(){
+    	this.setState({
+	    	newLevel:"Intermediate"
+	    });
+	    this.levelUpdate();
+    }
+    setLevel2(){
+    	this.setState({
+	    	newLevel:"Advanced"
+	    });
+	    this.levelUpdate();
     }
     intLevel(){
     	this.closeModal();
@@ -111,11 +122,10 @@ export default class Quiz2 extends Component {
         });
     }
   render() {
-  	//Beginner level quize--------------------------------------------------------------------------------------------
+  	//Beginner level quiz--------------------------------------------------------------------------------------------
   		if(this.state.level===1){
 		    return (
 		    	<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-		        	<Header/>
 		        	<hr/>
 		    		<Container style={{backgroundColor: "#A2E8A9"}}>
 		            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
@@ -527,6 +537,7 @@ export default class Quiz2 extends Component {
 		    			<Container>
 		    				<Button onClick={()=> this.closeModal()}>Cancel</Button>
 		    				<Button onClick={this.intLevel}>Next level</Button>
+		    				<Button onClick={this.setLevel1}>Save</Button>
 		    			</Container>
 		    		</Modal>
 		    	</Container>
@@ -973,6 +984,7 @@ export default class Quiz2 extends Component {
 			    			<Container>
 			    				<Button onClick={()=> this.closeModal()}>Cancel</Button>
 			    				<Button onClick={this.intLevel}>Next level</Button>
+			    				<Button onClick={this.setLevel2}>Save</Button>
 			    			</Container>
 			    		</Modal>
 		    		</Container>

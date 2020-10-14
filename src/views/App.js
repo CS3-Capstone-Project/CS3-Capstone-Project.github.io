@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-//Views
-//import Landing from "./landing/Landing.js";
+//React stuff
+import React, { Component, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Modal from 'react-awesome-modal';
 
 //Components
 import Questionnaire from "./questionnaire/questionnaire.js";
@@ -13,200 +11,164 @@ import Landing from "./landing/Landing.js";
 import Beginner from "./levels/Beginner.js";
 import Intermediate from "./levels/Intermediate.js";
 import Advanced from "./levels/Advanced.js";
-import Quiz1 from "./questionnaire/Quiz1.js";
-import Quiz2 from "./questionnaire/Quiz2.js";
 import Addresource from "./addresource/Addresource.js";
-import Fire  from "./config/fire";
-import Header from "../components/header/Header.js";
 import Ebooks from "./ebooks/Ebooks.js";
+import ProfilePage from "./login/ProfilePage.js";
+import Header from "../components/header/Header.js";
+import LevelQuiz from "./questionnaire/LevelQuiz.js";
+import PycatTest from "./questionnaire/PycatTest.js";
+
 
 //Styles
 import "./App.scss";
 
-//Bootstrap React API
-import {Container} from 'reactstrap';
+//Firebase
+import fire from "./config/fire.js";
 
 //Material UI API
 import Button from '@material-ui/core/Button';
 
-export default class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      visible:false,
-      loginStatus:"not logged in",
-      userName:"",
-      userId:'',
-      level:"",
-      isNew:true,
-    }
-  }
-  componentDidMount(){
-    this.authListener();
-  }
 
-  authListener(){
-    this.setState({
-      userName:""
-    });
-    Fire.auth().onAuthStateChanged((user) =>{
-      if(user){
-        this.setState({
-          userId:user.uid,
-          loginStatus: "logged in"
-        });
-        this.database = Fire.database().ref().child('User/'+user.uid);
-        this.database.on('value', snap =>{
-          if(snap.val().userType==="student"){
-            this.setState({
-              userName:snap.val().firstname,
-              level:snap.val().level,
-              newUserMsg:"Welcome" 
-            });
-            alert("This is a student");
-            this.openModal();
-          }
-          else if(snap.val().userType==="expert"){
-            this.setState({
-              userName:snap.val().firstname
-            });
-            alert("This is an expert.");
-          }
-          else{
-            alert("User not found!");
-          }
-        });
-      }
-      else{
-        this.setState({user: null});
-      }
-    });
-  }
-  openModal(){
-    this.setState({
-      visible : true
-    });
-  }
-  closeModal(){
-    this.setState({
-    visible : false
-    });
-  }
-  render() {
+export default function App(){
+    //Update the value of user
+    const [user, setUser] = useState(null)
+    const [userType, setUserType] = useState(null)
+    const [userLevel, setUserLevel] = useState(null)
+    const [userDescription, setUserD] = useState(null)
+    const [userRated, setUserRat] = useState(null)
+    const [userResourses, setUserRes] = useState(null)
+    const [userEmail, setUserE] = useState(null)
+
+    //Take user details and call setUser to update them
+    const handleUser = (userDetails) => {
+      setUser(userDetails);
+    }  
+
+    const [userObject, setUserObject] = useState([0])
+
+    //ensure that login status persists after refreshing page
+    useEffect(() => {
+      fire.auth().onAuthStateChanged((u)=>{
+        if(u){
+          const userRef =fire.database().ref('User/'+u.uid); 
+          userRef.on('value', (userData) => {
+            setUserD(userData.val().description);
+            setUserLevel(userData.val().level);
+            setUserType(userData.val().userType);
+            setUser(userData.val().firstname);
+            setUserE(userData.val().email);
+          });
+        }
+      });
+    });  
+
     return (
-      	<Router>
-      		<Switch>
-      			<Route 
-              exact 
-              path={"/"}
-        			render = {props =>(
-                <Landing 
-                  { ...props} 
-                  loginStatus={this.state.loginStatus}
-                  userName = {this.state.userName}
-                />
-              )}>
-      			</Route>
+      <Router>
 
-      			<Route 
-              path={"/questionnaire"}
-              render = {props =>(
-              <Questionnaire 
-                { ...props} 
-                loginStatus={this.state.loginStatus}
-                userName = {this.state.userName}
-                level = {this.state.level}
-              />
-              )}>
-     				</Route>
+        <Header 
+          user={user} 
+          userType={userType} 
+          userObject={userObject} 
+          handleUser={handleUser}
+        />
 
-            <Route 
-              path={"/Header"}
-              render = {props =>(
-              <Header 
-                { ...props} 
-                logout={this.state.logout}
-                userName = {this.state.userName}
-              />
-              )}>
-            </Route>
+        <Switch>
+          <Route 
+          exact 
+          path={"/"}
+          render = {props =>(
+            <Landing user={user} { ...props} />
+          )}>
+          </Route>
 
-            <Route 
-              path={"/Addresource"}
-              render = {props =>(
-                <Addresource
-                  {...props}
-                  loginStatus = {this.state.loginStatus}/>
-              )}>
-            </Route>
+          <Route 
+          path={"/questionnaire"}
+          render = {props =>(
+          <Questionnaire user={user} userLevel={userLevel} { ...props} />
+          )}>
+          </Route>
 
-            <Route 
-              path={"/ebooks"}
-              render = {props =>(
-              <Ebooks { ...props} loginStatus={this.state.loginStatus}/>
-              )}>
-            </Route>
+          <Route 
+          path={"/profilepage"}
+          render = {props =>(
+          <ProfilePage 
+            user={user} 
+            userEmail={userEmail} 
+            userLevel={userLevel}
+            userType={userType} 
+            description={userDescription} 
+            userRated={userRated}
+            userResourses={userResourses}
+            { ...props} 
+          />
+          )}>
+          </Route>
 
-     				<Route path={"/signin"}
-              render = {props =>(
-              <SignIn { ...props} loginStatus={this.state.loginStatus}/>
-            )}>
-     				</Route>
+          <Route 
+          path={"/ebooks"}
+          render = {props =>(
+          <Ebooks { ...props} />
+          )}>
+          </Route>
 
-            <Route path={"/signup"}
-              render = {props =>(
-              <SignUp { ...props} loginStatus={this.state.loginStatus}/>
-            )}>
-            </Route>
+          <Route 
+          path={"/addresource"}
+          render = {props =>(
+          <Addresource user={user} { ...props} />
+          )}>
+          </Route>
 
-            <Route path={"/forgotpassword"}
-              render = {props =>(
-              <ForgotPassword { ...props} loginStatus={this.state.loginStatus}/>
-            )}>
-            </Route>
+          <Route path={"/signin"}
+            render = {props =>(
+            <SignIn { ...props} user={user}  handleUser={handleUser} />
+          )}>
+          </Route>
 
-     				<Route path={"/beginner"}
-              render = {props =>(
-              <Addresource { ...props} loginStatus={this.state.loginStatus}/>
-              )}>
-            </Route>
+          <Route path={"/signup"}
+            render = {props =>(
+            <SignUp { ...props} handleUser={handleUser} />
+          )}>
+          </Route>
 
-       			<Route path={"/intermediate"}
-                render = {props =>(
-                <Intermediate { ...props} loginStatus={this.state.loginStatus}/>
-              )}>
-       			</Route>
+          <Route path={"/forgotpassword"}
+            render = {props =>(
+            <ForgotPassword { ...props} />
+          )}>
+          </Route>
 
-       			<Route path={"/advanced"}
-                render = {props =>(
-                <Advanced { ...props} loginStatus={this.state.loginStatus}/>
-              )}>
-       			</Route>
+          <Route path={"/beginner"}
+            render = {props =>(
+            <Beginner { ...props} />
+          )}>
+          </Route>
 
-            <Route path="/Quiz1">
-                <Quiz1/>
-            </Route>
+          <Route path={"/intermediate"}
+            render = {props =>(
+            <Intermediate { ...props} />
+          )}>
+          </Route>
 
-            <Route path="/Quiz2">
-                <Quiz2/>
-            </Route>
-     			</Switch>
-            <Modal visible={this.state.visible} width="400" height="170" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
-            <Container style={{backgroundColor:"#ccd8ff"}}>
-                <p className=" float-centre" style={{fontSize:"30px", fontWeight:"bold", color: "#009900"}}>Welcome {this.state.userName}</p>
-                <p style={{fontSize:"16px", fontWeight:"bold"}}>You on {this.state.level}'s level, continue?</p>
-              <hr/>
-              <Link to= {this.state.level}>
-                <Button className="float-left" onClick={()=>this.closeModal()}>
-                  Yes
-                </Button>
-              </Link>
-              <Button className="float-right" onClick = {()=>this.closeModal()}>
-                Cancel
-              </Button>
-            </Container>
-          </Modal>
-        </Router>
+          <Route path={"/advanced"}
+            render = {props =>(
+            <Advanced { ...props} />
+          )}>
+          </Route>
+          <Route 
+          path={"/LevelQuiz"}
+          render = {props =>(
+          <LevelQuiz user={user} { ...props} />
+          )}>
+          </Route>
+          <Route 
+          path={"/PycatTest"}
+          render = {props =>(
+          <PycatTest
+             user={user} { ...props} 
+             userLevel= {userLevel} {...props}
+            />
+          )}>
+          </Route>
+        </Switch>
+      </Router>
     );
-  }
 }
