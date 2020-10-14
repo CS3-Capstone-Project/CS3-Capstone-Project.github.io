@@ -170,6 +170,7 @@ export default class Landing extends Component{
 									topic = {data.topic}
 									url = {data.url} 
 									rating = {data.rating}
+									user={this.props.user}
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -192,6 +193,7 @@ export default class Landing extends Component{
 									topic = {data.topic}
 									url = {data.url} 
 									rating = {data.rating}
+									user={this.props.user}
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -223,6 +225,7 @@ export default class Landing extends Component{
 									topic = {data.topic}
 									url = {data.url}
 									rating = {data.rating} 
+									user={this.props.user}
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -245,6 +248,7 @@ export default class Landing extends Component{
 									topic = {data.topic}
 									url = {data.url} 
 									rating = {data.rating}
+									user={this.props.user}
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>
@@ -276,6 +280,7 @@ export default class Landing extends Component{
 									topic = {data.topic} 
 									url = {data.url} 
 									rating = {data.rating}
+									user={this.props.user}
 									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
 									</Thumbnail>
 								</Col>

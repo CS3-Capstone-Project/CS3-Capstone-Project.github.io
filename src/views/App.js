@@ -26,7 +26,8 @@ import fire from "./login/config/fire.js";
 import Button from '@material-ui/core/Button';
 
 export default function App(){
-    //Update the value of user
+
+    //User details
     const [user, setUser] = useState(null)
     const [userType, setUserType] = useState(null)
     const [userLevel, setUserLevel] = useState(null)
@@ -39,8 +40,6 @@ export default function App(){
     const handleUser = (userDetails) => {
       setUser(userDetails);
     }  
-
-    const [userObject, setUserObject] = useState([0])
 
     //ensure that login status persists after refreshing page
     useEffect(() => {
@@ -63,7 +62,6 @@ export default function App(){
         <Header 
           user={user} 
           userType={userType} 
-          userObject={userObject} 
           handleUser={handleUser}
         />
 
@@ -84,7 +82,7 @@ export default function App(){
    				</Route>
 
           <Route 
-          path={"/profilepage"}
+          path={"/profile"}
           render = {props =>(
           <ProfilePage user={user} description={userDescription} { ...props} />
           )}>
@@ -93,7 +91,7 @@ export default function App(){
           <Route 
           path={"/ebooks"}
           render = {props =>(
-          <Ebooks { ...props} />
+          <Ebooks user={user} { ...props} />
           )}>
           </Route>
 
@@ -124,19 +122,19 @@ export default function App(){
 
    				<Route path={"/beginner"}
             render = {props =>(
-            <Beginner { ...props} />
+            <Beginner user={user} { ...props} />
           )}>
    				</Route>
 
    				<Route path={"/intermediate"}
             render = {props =>(
-            <Intermediate { ...props} />
+            <Intermediate user={user} { ...props} />
           )}>
    				</Route>
 
    				<Route path={"/advanced"}
             render = {props =>(
-            <Advanced { ...props} />
+            <Advanced user={user} { ...props} />
           )}>
    				</Route>
    			</Switch>

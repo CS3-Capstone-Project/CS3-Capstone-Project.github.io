@@ -44,7 +44,7 @@ class Addresource extends React.Component{
 
   //Ask user for description only if they are not adding ebooks
   descrip(){
-    if(this.state.type != "ebooks"){
+    if(this.state.type == "ebooks"){
       return <div>
         <TextField 
           placeholder="Brief description"
