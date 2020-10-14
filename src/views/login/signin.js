@@ -4,7 +4,6 @@ import {Button,TextField} from '@material-ui/core';
 import loginImg from "./Login.svg";
 import IconButton from 'material-ui/IconButton';
 import {Link} from 'react-router-dom';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
 import Fire from "./config/fire";
 
@@ -12,10 +11,7 @@ import Fire from "./config/fire";
 import './style.css';
 
 //reactstrap API
-import {Col,Container,Row} from 'reactstrap';
-
-//Components
-import Header from "../../components/header/Header.js";
+import {Col, Container, Row} from 'reactstrap';
 
 export default class SignIn extends React.Component {
 
@@ -125,28 +121,6 @@ export default class SignIn extends React.Component {
 			            Sign in
 			        </Button>
 		        </form>
-
-		        {/*<div style={{textAlign:"center", marginTop:"10px"}}>
-		        	<p>or</p>
-		        	<Button 
-			            variant="contained"
-			            size = "medium" 
-			            className="buttons" 
-			        	style={{backgroundColor:"#FF6666", textTransform:"none", fontSize:"medium"}}
-			        > 
-			            Sign in with Google
-			        </Button>
-			        &nbsp; 
-			        <Button 
-			            variant="contained"
-			            size = "medium" 
-			            className="buttons" 
-			        	style={{backgroundColor:"#0080FF", textTransform:"none", fontSize:"medium"}}
-			        > 
-			            Sign in with Facebook
-			        </Button>
-		        </div>*/}
-
 		        <div style={{textAlign:"center", cursor:"default",marginTop:"5px"}}>
 		        	<p>Don't have an account? <Link className="loginLinks" to="/signup">Sign up </Link> <br/>
 		        	<Link className="loginLinks" to="/forgotpassword" >Forgot Password?</Link></p>
