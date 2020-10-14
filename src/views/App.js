@@ -29,6 +29,11 @@ export default function App(){
     //Update the value of user
     const [user, setUser] = useState(null)
     const [userType, setUserType] = useState(null)
+    const [userLevel, setUserLevel] = useState(null)
+    const [userDescription, setUserD] = useState(null)
+    const [userRated, setUserRat] = useState(null)
+    const [userResourses, setUserRes] = useState(null)
+    const [userEmail, setUserE] = useState(null)
 
     //Take user details and call setUser to update them
     const handleUser = (userDetails) => {
@@ -43,8 +48,8 @@ export default function App(){
         if(u){
           const userRef =fire.database().ref('User/'+u.uid); 
           userRef.on('value', (userData) => {
-            
-             
+            setUserD(userData.val().description);
+            setUserLevel(userData.val().level);
             setUserType(userData.val().userType);
             setUser(userData.val().firstname);
           });
@@ -74,14 +79,14 @@ export default function App(){
     			<Route 
           path={"/questionnaire"}
           render = {props =>(
-          <Questionnaire user={user} { ...props} />
+          <Questionnaire user={user} userLevel={userLevel} { ...props} />
           )}>
    				</Route>
 
           <Route 
           path={"/profilepage"}
           render = {props =>(
-          <ProfilePage user={user} { ...props} />
+          <ProfilePage user={user} description={userDescription} { ...props} />
           )}>
           </Route>
 
