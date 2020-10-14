@@ -1,3 +1,4 @@
+//React stuff
 import React, { Component, useState } from "react";
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,9 @@ import {Image, Navbar, Dropdown, DropdownButton, Nav, NavDropdown} from 'react-b
 //Reactstrap API
 import {Col,Container,Row} from 'reactstrap';
 
+//Components
+import FloatingButton from "../floatingButton/FloatingButton.js";
+
 //Material UI API
 import Button from '@material-ui/core/Button';
 import SearchBar from "../../components/SearchBar.js";
@@ -21,21 +25,20 @@ import "./Header.scss";
 export default class Header extends Component{
 	constructor(props){
 		super(props);
-		this.state={
-			currentPage:"",
-			user: null
-		}
 
 		this.signout = this.signout.bind(this);
+		this.addResButton = this.addResButton.bind(this);
 	}
 
 	//Sign out user
 	signout(){
 		Fire.auth().signOut()
 		.then(()=>{
+			//If current user is signed in sign them out
 			if(this.props.user != null){
 				this.props.handleUser(null);
 				alert("Signing out");
+				window.location.replace('/');
 			}
 
 		}).catch((error)=>{
@@ -45,9 +48,19 @@ export default class Header extends Component{
 		});
 	}
 
+
+	addResButton(){
+		if(this.props.userType == "expert"){
+			return <FloatingButton/>
+		}
+		else return;
+	}
+
+	//Display the navigation bar
 	render(){
 		return(
 			<Navbar className="my-nav-styles" expand="lg">
+				{this.addResButton()}
 				<Navbar.Brand>
 					<Link to="/">
 						<div className="logo-wrapper">
@@ -84,7 +97,6 @@ export default class Header extends Component{
 							</Nav.Link>*/}
 						</Nav>
 					
-
 					<Nav style={{display:"flex"}}>
 						<div className="searchBar">
 							<SearchBar/>

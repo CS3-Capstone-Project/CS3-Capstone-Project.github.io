@@ -1,11 +1,8 @@
+//React stuff
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-//React Bootstrap API
-//import Container from 'react-bootstrap/Container';
-import {Image} from 'react-bootstrap';
-//import Row from 'react-bootstrap/Row';
+//reactstrap API
 import {Col,Container,Row, Jumbotron} from 'reactstrap';
 
 //Material UI API
@@ -22,9 +19,7 @@ import SearchBar from "../../components/SearchBar.js";
 import Header from "../../components/header/Header.js";
 import FloatingButton from "../../components/floatingButton/FloatingButton.js";
 
-//Resources
-import { resources } from "../resources/data.js";
-
+//list of possible resources and their description
 import { commonSearchs } from "../resources/commonsearchs.js";
 
 //Views
@@ -53,68 +48,82 @@ export default class Landing extends Component{
 		}
 	}
 
+	//After the page is rendered load all the resources
 	componentDidMount() {
 	  const beginnerRef = fire.database().ref('resource/beginner/');
 	  const advancedRef = fire.database().ref('resource/advanced');
 	  const intermediateRef = fire.database().ref('resource/intermediate');
 
+	  //Load beginner resources
 	  beginnerRef.orderByChild("rating").on('value', (snapshot) => {
 	  	let temp1 = [];
 	  	let temp2 = [];
 	    snapshot.forEach( function(type){
+	    	//load videos to temporary array
 	    	if(type.key == "videos"){
 	    		type.forEach( function(res){
 	    			temp1.push(res.val());
 	    		});
 	    	}
+	   		//load videos to temporary array
 	    	else if(type.key == "webpages"){
 	    		type.forEach( function(res){
 	    			temp2.push(res.val());
 	    		});
 	    	}
 	    });
+
+	    //Set the temporary array equal to global array
 	    this.setState({
 	    	begv: temp1,
 	    	begw: temp2
 	    });
 	  });
 
+	  //Load intermediate resources
 	  intermediateRef.orderByChild("rating").on('value', (snapshot) => {
 	  	let temp1 = [];
 	  	let temp2 = [];
 	    snapshot.forEach( function(type){
+	    	//load videos to temporary array
 	    	if(type.key == "videos"){
 	    		type.forEach( function(res){
 	    			temp1.push(res.val());
 	    		});
 	    	}
+	    	//load webpages to temporary array
 	    	else if(type.key == "webpages"){
 	    		type.forEach( function(res){
 	    			temp2.push(res.val());
 	    		});
 	    	}
 	    });
+	    //Set the temporary array equal to the gloabal array
 	    this.setState({
 	    	intv: temp1,
 	    	intw: temp2
 	    });
 	  });
 
+	  //load advanced resources
 	  advancedRef.orderByChild("rating").on('value', (snapshot) => {
 	  	let temp1 = [];
 	  	let temp2 = [];
 	    snapshot.forEach( function(type){
+	    	//load videos to temporary array
 	    	if(type.key == "videos"){
 	    		type.forEach( function(res){
 	    			temp1.push(res.val());
 	    		});
 	    	}
+	    	//load webpages to temporary array
 	    	else if(type.key == "webpages"){
 	    		type.forEach( function(res){
 	    			temp2.push(res.val());
 	    		});
 	    	}
 	    });
+	    //set the temporary array equal to the global array
 	    this.setState({
 	    	advv: temp1,
 	    	advw: temp2
@@ -122,11 +131,11 @@ export default class Landing extends Component{
 	  });
 	}
 
+	//Display landing page to the user
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px",position:"absolute"}}>
-				
-				<FloatingButton/>
+			
 			<Container className="wrapper">
 			 	<Jumbotron>
 			 		<h3 style={{textDecoration:"none"}}>Python Description</h3>
@@ -144,7 +153,7 @@ export default class Landing extends Component{
 				 		</Button>
 			 		</a>
 			 	</Jumbotron>
-			 	{this.props.user}
+			 	
 				<div><h3>Beginner</h3></div>
 				<div><h5>Youtube Videos</h5></div>
 				

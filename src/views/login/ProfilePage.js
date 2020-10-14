@@ -24,7 +24,7 @@ class ProfilePage extends Component {
     return (
       <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
         <Container style={{paddingTop:"85px"}}>
-          <div style={{float:"left"}}><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>Hi, {this.props.user}</h1></div></div>
+          <div style={{float:"left"}}><div ><h1 style={{textDecoration:"none",fontFamily:"Courier New"}}>{this.props.user}</h1></div></div>
           
         </Container>
       </Container>

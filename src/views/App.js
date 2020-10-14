@@ -1,6 +1,5 @@
-import React, { Component, useState } from 'react';
-//Views
-//import Landing from "./landing/Landing.js";
+//React stuff
+import React, { Component, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //Components
@@ -27,15 +26,42 @@ import fire from "./login/config/fire.js";
 import Button from '@material-ui/core/Button';
 
 export default function App(){
+    //Update the value of user
     const [user, setUser] = useState(null)
+    const [userType, setUserType] = useState(null)
 
+    //Take user details and call setUser to update them
     const handleUser = (userDetails) => {
       setUser(userDetails);
-    }    
+    }  
+
+    const [userObject, setUserObject] = useState([0])
+
+    //ensure that login status persists after refreshing page
+    useEffect(() => {
+      fire.auth().onAuthStateChanged((u)=>{
+        if(u){
+          const userRef =fire.database().ref('User/'+u.uid); 
+          userRef.on('value', (userData) => {
+            
+             
+            setUserType(userData.val().userType);
+            setUser(userData.val().firstname);
+          });
+        }
+      });
+    });  
 
     return (
     	<Router>
-        <Header user={user} handleUser={handleUser}/>
+
+        <Header 
+          user={user} 
+          userType={userType} 
+          userObject={userObject} 
+          handleUser={handleUser}
+        />
+
     		<Switch>
     			<Route 
           exact 
@@ -44,8 +70,6 @@ export default function App(){
             <Landing user={user} { ...props} />
           )}>
     			</Route>
-
-          
 
     			<Route 
           path={"/questionnaire"}
@@ -83,7 +107,7 @@ export default function App(){
 
           <Route path={"/signup"}
             render = {props =>(
-            <SignUp { ...props} />
+            <SignUp { ...props} handleUser={handleUser} />
           )}>
           </Route>
 

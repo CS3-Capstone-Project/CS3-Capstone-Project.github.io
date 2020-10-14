@@ -7,13 +7,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { TextField, MenuItem } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
 
 //Firebase
 import fire from "../login/config/fire.js";
-
-//Components
-import Header from "../../components/header/Header.js";
 
 //reactstrap API
 import {Col,Container,Row, Jumbotron} from 'reactstrap';
@@ -115,7 +111,7 @@ class Addresource extends React.Component{
   render(){
     return (
       <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-        <Header/>
+        
         <Container className="wrapper">
           <form onSubmit={this.handleSubmit}>
             <h2 style={{textAlign:"center"}}>Add Resource</h2>

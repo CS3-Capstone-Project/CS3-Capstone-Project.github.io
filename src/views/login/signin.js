@@ -48,10 +48,10 @@ export default class SignIn extends React.Component {
 		        if(user){
 		        	Fire.database().ref('User/' + user.uid).once("value", snap => {
 		        		this.props.handleUser(snap.val().firstname);
-				        alert(snap.val().firstname);
+				        alert("Hey " + snap.val().firstname + ", you are now signed in.");
+				        window.location.replace('/');
 				    })
 		        }
-
       		})
       		//Catch all of the errors here and display appropriate error message
       		.catch((error) =>{

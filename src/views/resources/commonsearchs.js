@@ -1,3 +1,5 @@
+/*a list of all types of resources are in the catalog 
+and that can be added in the catalogue and their descriptions*/ 
 export const commonSearchs = [
   {
     topic:'All',
@@ -41,11 +43,11 @@ export const commonSearchs = [
   },
   {
     topic:'numbers',
-    description: 'In Python there are three numeric types in Python: int, float and complex'
+    description: 'In Python there are three numeric types in Python: int, float and ...'
   },
   {
     topic:'casting',
-    description: 'Is used to either specify a data type of a variable or change a data type.'
+    description: 'Is used to either specify a data type of a variable or change a data...'
   },
   {
     topic:'operator',
@@ -53,11 +55,11 @@ export const commonSearchs = [
   },
   {
     topic:'list',
-    description: 'A list is a collection which is ordered and changeable. In Python lists...'
+    description: 'A list is a collection which is ordered and changeable. In Python...'
   },
   {
     topic:'tuple',
-    description:'A tuple is a collection which is ordered and unchangeable. In Python tup...'
+    description:'A tuple is a collection which is ordered and unchangeable. In Python...'
   },
   {
     topic:'set',
