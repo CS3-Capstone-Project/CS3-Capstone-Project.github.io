@@ -1,6 +1,8 @@
+//React stuff
 import React, { Component } from "react";
-import Modal from 'react-awesome-modal';
 
+//Modal by react-awesome-modal
+import Modal from 'react-awesome-modal';
 
 //Icons
 import { MdShare } from 'react-icons/md';
@@ -19,9 +21,6 @@ import Button from '@material-ui/core/Button';
 
 //React Js Popup
 //import Popup from "reactjs-popup";
-
-//Images
-
 
 export default class Thumbnail extends Component{
 	constructor(props){
@@ -85,7 +84,6 @@ export default class Thumbnail extends Component{
 						&nbsp;
 					<Rating 
 						
-						value={this.state.rating} 
 						style={{backgroundColor:""}} 
 						name = {this.props.id} 
 						size="large" 

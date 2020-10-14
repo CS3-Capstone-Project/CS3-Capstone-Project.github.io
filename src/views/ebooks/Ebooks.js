@@ -16,9 +16,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
-import Header from "../../components/header/Header.js";
-
-import { resources } from "../resources/data.js";
 
 export default class Ebooks extends Component{
 	constructor(props){
@@ -30,15 +27,16 @@ export default class Ebooks extends Component{
 		    description:"",
 		    rating:0,
 		    totalRatings:0,
-
 		}
 	}
 
+	//After the page is rendered load ebooks
 	componentDidMount() {
 		const baseRef = fire.database().ref('ebooks');
-		baseRef.on('value', (currentfire) => {
-	    let base = currentfire.val();
+		baseRef.on('value', (snap) => {
+	    let base = snap.val();
 	    let temp = [];
+	    //iterate through all ebooks in the database and append them to a temporary array
 	    for (let data in base) {
 	      temp.push({
 	        id: data,
@@ -49,16 +47,18 @@ export default class Ebooks extends Component{
 	        totalRatings: base[data].totalRatings,
 	      });
 	    }
+	    //set the temporary array to be equal to the global array
 	    this.setState({
 	      res: temp
 	    });
 	  });
 	}
 
+	//Display the ebooks page
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-				<Header/>
+				
 				<Container className="wrapper">
 					<div style={{textAlign:"center", paddingBottom:"40px"}}><div ><h2>eBooks</h2></div></div>
 					<Row>

@@ -3,14 +3,7 @@ import React, { Component } from 'react';
 //import Landing from "./landing/Landing.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Modal from 'react-awesome-modal';
-//Styles
-import "./App.scss";
 
-//Bootstrap React API
-import {Container} from 'reactstrap';
-
-//Material UI API
-import Button from '@material-ui/core/Button';
 //Components
 import Questionnaire from "./questionnaire/questionnaire.js";
 import SignIn from "./login/signin.js";
@@ -27,7 +20,14 @@ import Fire  from "./config/fire";
 import Header from "../components/header/Header.js";
 import Ebooks from "./ebooks/Ebooks.js";
 
+//Styles
+import "./App.scss";
 
+//Bootstrap React API
+import {Container} from 'reactstrap';
+
+//Material UI API
+import Button from '@material-ui/core/Button';
 
 export default class App extends Component {
   constructor(){
@@ -39,9 +39,6 @@ export default class App extends Component {
       userId:'',
       level:"",
       isNew:true,
-      newUserMsg:"",
-      lastActivity:"",
-      askToContinue:""
     }
   }
   componentDidMount(){
@@ -170,7 +167,7 @@ export default class App extends Component {
 
      				<Route path={"/beginner"}
               render = {props =>(
-              <Beginner { ...props} loginStatus={this.state.loginStatus}/>
+              <Addresource { ...props} loginStatus={this.state.loginStatus}/>
               )}>
             </Route>
 

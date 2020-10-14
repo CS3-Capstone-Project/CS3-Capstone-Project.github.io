@@ -1,7 +1,17 @@
+//React stuff
 import React from "react";
-import {Button,TextField, Radio,FormLabel, FormControl, RadioGroup, FormControlLabel} from '@material-ui/core';
-import loginImg from "./Login.svg";
+
+//material ui API
+import {Button,TextField, 
+        Radio,FormLabel, 
+        FormControl, 
+        RadioGroup, 
+        FormControlLabel
+        } from '@material-ui/core';
 import IconButton from 'material-ui/IconButton';
+
+import loginImg from "./Login.svg";
+
 import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
@@ -12,9 +22,6 @@ import './style.css';
 
 //reactstrap API
 import {Col,Container,Row} from 'reactstrap';
-
-//Components
-import Header from "../../components/header/Header.js";
 
 export default class SignUp extends React.Component {
 
@@ -33,7 +40,6 @@ export default class SignUp extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.signup = this.signup.bind(this);
 
    }
@@ -43,10 +49,6 @@ export default class SignUp extends React.Component {
     this.setState({
       [event.target.name] : event.target.value
     });
-  }
-
-  handleSubmit(){
-    alert(this.state.email + " " + this.state.password); 
   }
 
    //Ask user for description only if they are not adding ebooks
@@ -71,7 +73,8 @@ export default class SignUp extends React.Component {
   signup(e){
     e.preventDefault();
     Fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-    .then((user) => {
+    .then((user) => { 
+      //bundle user data to this if they are a student
       if(this.state.userType === "student"){
         Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
           firstname:this.state.firstname,
@@ -81,8 +84,26 @@ export default class SignUp extends React.Component {
           userType: this.state.userType,
           ratedResources:this.state.ratedResources
         });
+
+        //Sign in the user that just signed up
+        Fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password)
+          .then((u)=>{
+
+            //Get logged in user data
+            let user = Fire.auth().currentUser;
+            if(user){
+              Fire.database().ref('User/' + user.uid).once("value", snap => {
+                this.props.handleUser(snap.val().firstname);
+                alert("Welcome " + snap.val().firstname + ", you are now signed in.");
+                window.location.replace('/');
+            })
+          }
+
+        })
+
       }
 
+      //if it's a Python expert bundle it to this
       else if(this.state.userType === "expert"){
         Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
           firstname:this.state.firstname,
@@ -93,10 +114,26 @@ export default class SignUp extends React.Component {
           ratedResources: this.state.ratedResources,
           myResources: this.state.myResources
         });
+
+        //Sign in the user that just signed up
+        Fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password)
+          .then((u)=>{
+
+            //Get logged in user data
+            let user = Fire.auth().currentUser;
+            if(user){
+              Fire.database().ref('User/' + user.uid).once("value", snap => {
+                this.props.handleUser(snap.val().firstname);
+                alert("Welcome " + snap.val().firstname + ", you are now signed in.");
+                window.location.replace('/');
+            })
+          }
+
+        })
       }
+    })
 
-      alert("Welcome " + this.state.firstname );})
-
+      //Catch errors and display appropriate error message
       .catch((error)=> {
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -116,11 +153,12 @@ export default class SignUp extends React.Component {
       }); 
   }
 
+  //Display the sign up page
   render(){
       return(
         <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-            <Header/>
-            <Container style={{paddingTop:"70px"}}>
+            
+            <Container style={{paddingTop:"78px"}}>
             <div style={{textAlign:"center"}}>
               <img style={{width:"350px",margin:"10px"}} src={loginImg}/>
             </div>
@@ -161,7 +199,7 @@ export default class SignUp extends React.Component {
                 />
                 <br/><br/>
 
-                <TextField
+                {/*<TextField
                     label="Last Name"
                     variant="outlined"
                     fullWidth="true"
@@ -170,7 +208,7 @@ export default class SignUp extends React.Component {
                     name="lastname"
                     onChange={this.handleChange}
                 />
-                <br/><br/>
+                <br/><br/>*/}
 
                 <TextField
                     label="Email"
@@ -200,7 +238,7 @@ export default class SignUp extends React.Component {
                 
                 <Button 
                   fullWidth="true"
-                  size = "medium" 
+                  size = "small" 
                   className="buttons" 
                   type="submit"
                   value="Submit"
@@ -210,23 +248,25 @@ export default class SignUp extends React.Component {
                   Sign up
               </Button>
             </form>
-            {/*<div style={{textAlign:"center"}}><p>or</p>
+
+            {/*<div style={{textAlign:"center", marginTop:"10px"}}>
+              <p>or</p>
               <Button 
-                  
+                  variant="contained"
                   size = "medium" 
                   className="buttons" 
-                style={{backgroundColor:"red"}}
+                style={{backgroundColor:"#FF6666", textTransform:"none", fontSize:"medium"}}
               > 
-                  Sign in with Google
+                  Sign up with Google
               </Button>
               &nbsp; 
               <Button 
-                  
+                  variant="contained"
                   size = "medium" 
                   className="buttons" 
-                style={{backgroundColor:"blue"}}
+                style={{backgroundColor:"#0080FF", textTransform:"none", fontSize:"medium"}}
               > 
-                  Sign in with Facebook
+                  Sign up with Facebook
               </Button>
             </div>*/}
 

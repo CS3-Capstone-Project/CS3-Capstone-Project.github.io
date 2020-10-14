@@ -1,5 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React, { Component } from 'react';
+
+//material ui API
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Modal from 'react-awesome-modal';
@@ -13,13 +15,16 @@ import {Container} from 'reactstrap';
 import {Row} from 'reactstrap';
 import {Col} from 'reactstrap';
 
+//Get all searchable elements
 import { commonSearchs } from "../views/resources/commonsearchs.js";
 
 //Firebase
 import Fire from "../views/config/fire.js";
 
+//Search sytels
 import "./searchBar.scss";
 
+//
 class SearchResult extends Component {
   constructor(props){
     super(props);
@@ -36,14 +41,16 @@ class SearchResult extends Component {
     }
   }
 
+  //After SearchResult is rendered fetch all resources from the database
   componentDidMount() {
     const webRef = Fire.database().ref('resource/beginner/webpages');
     const videosRef = Fire.database().ref('resource/beginner/videos');
     const ref = Fire.database().ref('resource');
     let temp = [];
 
+    //Fetching the data
     ref.on('value', function(snapshot) { 
-      snapshot.forEach(function(levels) { //ordered records, see comment
+      snapshot.forEach(function(levels) {
         levels.forEach(function(type) {
           let res = type.val();
           for(let item in res){
@@ -60,20 +67,20 @@ class SearchResult extends Component {
         });
       });
     });
+    //Put resources in the temporary array into the resource state
     this.setState({
       resources: temp
     });
   }
 
+  //Display the search element
   render(){
     return(
       <Container>
-        {/*<div> Deep Shit : {this.props.request}</div>*/}
         {
           <Row>
           {
             this.state.resources.map((data,key) => {
-              console.log("This is the Topic " + data.topic);
               if(data.topic == this.props.request){
                 return(
                   <Col>
@@ -109,6 +116,7 @@ export default class SearchBar extends Component {
     }
   }
 
+  //Make the modal with the searched items visible
   openModal(v){
     this.setState({
       visible: true,
@@ -117,6 +125,7 @@ export default class SearchBar extends Component {
     });
   }
 
+  //Make the modal disappear
   closeModal(){
     this.setState({
       visible: false,
@@ -124,6 +133,7 @@ export default class SearchBar extends Component {
     });
   }
 
+  //Display the actual search bar
   render(){
     return (
       <div>

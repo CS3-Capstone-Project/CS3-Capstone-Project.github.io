@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 //React Bootstrap API
@@ -7,7 +6,6 @@ import {Container} from 'reactstrap';
 import {Row} from 'reactstrap';
 import {Col} from 'reactstrap';
 import {Image} from 'react-bootstrap';
-
 
 //Styles
 import "./levels.scss";
@@ -18,10 +16,8 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
-import Header from "../../components/header/Header.js";
 import { commonSearchs } from "../resources/commonsearchs.js";
-
-import { resources } from "../resources/data.js";
+import Header from "../../components/header/Header.js";
 
 //Firebase
 import fire from "../../views/config/fire.js";
@@ -43,6 +39,7 @@ export default class Intermediate extends Component{
 		}
 	}
 
+	//After the page is rendered load intermediate resources
 	componentDidMount() {
 	  fire.auth().onAuthStateChanged((user) =>{
       		if(user){
@@ -61,6 +58,7 @@ export default class Intermediate extends Component{
 	  videosRef.on('value', (snapshot) => {
 	    let vids = snapshot.val();
 	    let temp = [];
+	    //iterate through all videos resources in the database and append them to a temporary array
 	    for (let item in vids) {
 	      temp.push({
 	        id: item,
@@ -72,11 +70,13 @@ export default class Intermediate extends Component{
 	       	totalRatings: vids[item].totalRatings
 	      });
 	    }
+	    //set temporary array to be equal to the global videos array
 	    this.setState({
 	      videos: temp
 	    });
 	  });
 
+      //iterate through all webpage resources in the database and append them to a temporary array
 	  webRef.on('value', (snapshot) => {
 	    let web = snapshot.val();
 	    let temp = [];
@@ -91,12 +91,15 @@ export default class Intermediate extends Component{
 	       	totalRatings: web[item].totalRatings
 	      });
 	    }
+
+	    //set temporary array to be equal to the global webpage array
 	    this.setState({
 	      webpages: temp
 	    });
 	  });
 	}
 
+	//Display page with advanced Python reasources
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>

@@ -17,10 +17,8 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 //Components
 import Thumbnail from "../../components/thumbnail/Thumbnail.js";
-import Header from "../../components/header/Header.js";
 import { commonSearchs } from "../resources/commonsearchs.js";
-
-import { resources } from "../resources/data.js";
+import Header from "../../components/header/Header.js";
 
 //Firebase
 import fire from "../../views/config/fire.js";
@@ -42,6 +40,7 @@ export default class Advanced extends Component{
 		}
 	}
 
+	//After the page is rendered load advanced resources
 	componentDidMount() {
 
 		fire.auth().onAuthStateChanged((user) =>{
@@ -59,24 +58,27 @@ export default class Advanced extends Component{
 	  	const webRef = fire.database().ref('resource/advanced/webpages');
 	  	const videosRef = fire.database().ref('resource/advanced/videos');
 	  	videosRef.on('value', (snapshot) => {
-		    let vids = snapshot.val();
-		    let temp = [];
-		    for (let item in vids) {
-		      temp.push({
-		        id: item,
-		        source: vids[item].source,
-		       	url: vids[item].url, 
-		       	topic: vids[item].topic,
-		       	description: (commonSearchs.find( ({ topic }) => topic == vids[item].topic )).description,
-		       	rating: vids[item].rating,
-		       	totalRatings: vids[item].totalRatings
-		      });
-		    }
-		    this.setState({
-		      videos: temp
-		    });
-		  });
+	    let vids = snapshot.val();
+	    let temp = [];
+	    //iterate through all videos resources in the database and append them to a temporary array
+	    for (let item in vids) {
+	      temp.push({
+	        id: item,
+	        source: vids[item].source,
+	       	url: vids[item].url, 
+	       	topic: vids[item].topic,
+	       	description: (commonSearchs.find( ({ topic }) => topic == vids[item].topic )).description,
+	       	rating: vids[item].rating,
+	       	totalRatings: vids[item].totalRatings
+	      });
+	    }
+	    //set temporary array to be equal to the global array
+	    this.setState({
+	      videos: temp
+	    });
+	  });
 
+      //iterate through all webpage resources in the database and append them to a temporary array
 	  webRef.on('value', (snapshot) => {
 	    let web = snapshot.val();
 	    let temp = [];
@@ -91,44 +93,50 @@ export default class Advanced extends Component{
 	       	totalRatings: web[item].totalRatings
 	      });
 	    }
+
+	    //set temporary array to be equal to the global array
 	    this.setState({
 	      webpages: temp
 	    });
 	  });
 	}
 
+	//Display page with advanced Python reasources
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
 				<Header/>
 				<Container className="wrapper">
-				{this.state.student ?(
-					<>
-						<Link to="/Quiz2">
-							<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Take a learning path</Button>
-						</Link>
-					</>) : (
-					<><p>Enjoy.</p></>)}
+					{this.state.student ?(
+						<>
+							<Link to="/Quiz2">
+								<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Take a learning path</Button>
+							</Link>
+						</>) : (
+						<><p>Enjoy.</p></>)
+					}
 					<Container className="wrapper">
 						<div style={{textAlign:"center"}}><div ><h2>Advanced</h2></div></div>
 						<div><h5>Videos</h5></div>
 						<Row>
-							{this.state.videos.map((data,key) => {
-								return(
-									<Col>
-										<Thumbnail 
-										key={data.id} 
-										id = {data.id} 
-										topic = {data.topic}
-										source = {data.source} 
-										desc = {data.description} 
-										url = {data.url} 
-										rating = {data.rating}
-										style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
-										</Thumbnail>
-									</Col>
-								);
-							})}	
+							{
+								this.state.videos.map((data,key) => {
+									return(
+										<Col>
+											<Thumbnail 
+											key={data.id} 
+											id = {data.id} 
+											topic = {data.topic}
+											source = {data.source} 
+											desc = {data.description} 
+											url = {data.url} 
+											rating = {data.rating}
+											style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
+											</Thumbnail>
+										</Col>
+									);
+								})
+							}
 						</Row>
 
 						<div><h5>Webpages</h5></div>

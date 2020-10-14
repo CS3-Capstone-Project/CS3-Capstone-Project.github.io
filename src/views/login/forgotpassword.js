@@ -61,12 +61,13 @@ class ForgotPassword extends Component {
           alert(errorMessage);
         }
     });
+    window.location.replace('/');
   }
 
   render(){
     return (
       <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-        <Header/> 
+
         <Container style={{paddingTop:"78px"}}>
         <div style={{textAlign:"center"}}>
           <img style={{width:"350px",margin:"10px"}} src={loginImg}/>

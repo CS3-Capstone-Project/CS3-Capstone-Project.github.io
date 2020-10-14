@@ -1,18 +1,17 @@
 import React from 'react';
 
+//material ui API
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import { TextField, MenuItem } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
 
 //Firebase
 import fire from "../../views/config/fire.js";
 
-//Components
-import Header from "../../components/header/Header.js";
+//reactstrap API
 import {Col,Container,Row, Jumbotron} from 'reactstrap';
 //import Fire from "./login/config/fire";
 
@@ -65,6 +64,7 @@ class Addresource extends React.Component{
     event.preventDefault();
     let resourcesRef;
     let resource;
+    //if selected data is an ebook use this to create a resource object
     if(this.state.type == "ebooks"){
       resourcesRef = fire.database().ref('ebooks/');
       resource = {
@@ -75,6 +75,7 @@ class Addresource extends React.Component{
         totalRatings:this.state.totalRatings
       }
     }
+    //otherwise use this
     else{
       resourcesRef = fire.database().ref('resource/' + this.state.difficulty + "/" + this.state.type);
       resource = {
@@ -87,6 +88,7 @@ class Addresource extends React.Component{
       }
     }
 
+    //upload the data
     resourcesRef.push(resource);
     alert("Please wait for 2.6 seconds while the resource is being uploaded.");
     this.setState({
@@ -98,17 +100,18 @@ class Addresource extends React.Component{
       type:""
     });
     
-
+    //wait for 2.6 seconds before user gets redirected
     setTimeout(() => {
       window.location.replace('/');
     }, 2600);
     //window.location.replace('/');
   }
 
+  //Display the add resource page
   render(){
     return (
       <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
-        <Header/>
+        
         <Container className="wrapper">
           <form onSubmit={this.handleSubmit}>
             <h2 style={{textAlign:"center"}}>Add Resource</h2>
@@ -199,6 +202,7 @@ class Addresource extends React.Component{
               className="buttons" 
               type="submit"
               value="Submit"
+              variant="contained"
               style={{backgroundColor:"#5bc0de"}}
               > 
                 Submit
