@@ -8,7 +8,6 @@ import Modal from 'react-awesome-modal';
 import {Image} from 'react-bootstrap';
 import Fire from "../../views/config/fire.js";
 // eslint-disable-next-line import/first
-import Col,{Container,Row} from 'reactstrap';
 
 //Styles
 // eslint-disable-next-line import/first
@@ -20,6 +19,7 @@ import './style.css';
 //Components
 // eslint-disable-next-line import/first
 import Header from "../../components/header/Header.js";
+import {Col, Container, Row} from 'reactstrap';
 
 export default class SignIn extends React.Component {
 
@@ -56,9 +56,11 @@ export default class SignIn extends React.Component {
 		        	Fire.database().ref('User/' + user.uid).once("value", snap => {
 		        		this.props.handleUser(snap.val().firstname);
 		        		if(snap.val().userType==="student"){
+		        			alert("Hey " + snap.val().firstname + ", you are now signed in.");
 		        			window.location.replace(snap.val().level);
 		        		}
 		        		else{
+		        			alert("Hey " + snap.val().firstname + ", you are now signed in.");
 				        	window.location.replace('/');
 				    	}
 				    })

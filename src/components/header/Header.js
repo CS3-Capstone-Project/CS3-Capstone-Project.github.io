@@ -70,7 +70,7 @@ export default class Header extends Component{
 		});
 	}
 
-
+	//Add the add resource button if a Python expert is logged in
 	addResButton(){
 		if(this.props.userType == "expert"){
 			return <FloatingButton/>
@@ -124,7 +124,7 @@ export default class Header extends Component{
 		        				 &nbsp; Sign Out
 		      				</Button>
 		      				&nbsp;
-		      				<Link to="/profilepage" className="links">
+		      				<Link to="/profile" className="links">
 		      					<AccountCircleIcon style={{height:"40px"}} color="primary" fontSize="large"/>
 		      				</Link>
 

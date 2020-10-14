@@ -36,7 +36,8 @@ export default class SignUp extends React.Component {
       userType:"",
       description:"",
       ratedResources:{},
-      myResources:{}
+      myResources:{},
+      watched:{}
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -82,7 +83,8 @@ export default class SignUp extends React.Component {
           password:this.state.password,
           level: this.state.level,
           userType: this.state.userType,
-          ratedResources:this.state.ratedResources
+          ratedResources:this.state.ratedResources,
+          watched:this.state.watched
         });
 
         //Sign in the user that just signed up
@@ -111,7 +113,8 @@ export default class SignUp extends React.Component {
           userType: this.state.userType,
           description: this.state.description,
           ratedResources: this.state.ratedResources,
-          myResources: this.state.myResources
+          myResources: this.state.myResources,
+          watched:this.state.watched
         });
 
         //Sign in the user that just signed up
