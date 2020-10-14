@@ -15,7 +15,6 @@ export default class Quiz2 extends Component {
         this.state ={
         	newLevel:"Beginner",
         	visible: false,
-        	points:0,
         	level: 1,
         	answer1:"",
         	answer2:"",
@@ -41,9 +40,13 @@ export default class Quiz2 extends Component {
       		if(user){
       			this.database = Fire.database().ref().child('User/'+user.uid);
       			this.database.on('value', snap =>{
-	      			if(snap.val().userType==="Student"){
+	      			if(snap.val().userType==="student"){
 	      				Fire.database().ref('User/' + user.uid).set({
+	      					email:snap.val().email,
+	      					firstname:snap.val().firstname,
 	      					level:this.state.newLevel,
+	      					password:snap.val().password,
+	      					userType:"student"
 	      				});
 	      			}
       			});
@@ -113,8 +116,8 @@ export default class Quiz2 extends Component {
 		    return (
 		    	<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
 		        	<Header/>
+		        	<hr/>
 		    		<Container style={{backgroundColor: "#A2E8A9"}}>
-		            <hr/>
 		            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 		    			<h1>Beginner level learning path</h1>
 		    			<div>
@@ -537,7 +540,6 @@ export default class Quiz2 extends Component {
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
 			        <Header/>
 		    		<Container style={{backgroundColor: "#FAD8A3"}}>
-			            <hr/>
 			            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 		    			<h1>Intermediate level learning path</h1>
 		    			<div>
@@ -985,7 +987,6 @@ export default class Quiz2 extends Component {
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
 			        <Header/>
 		    		<Container style={{backgroundColor: "#F0A2A2"}}>
-			            <hr/>
 			            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 		    			<h1>Advanced level learning path</h1>
 		    			<div>

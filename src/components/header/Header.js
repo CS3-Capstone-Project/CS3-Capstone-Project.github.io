@@ -83,10 +83,6 @@ export default class Header extends Component{
 							<Nav.Link>
 								<Link to="/ebooks" className="links">eBooks</Link> 
 							</Nav.Link>
-							{/*
-							<Nav.Link>
-								<Link to="/login" className="links">Expert</Link> 
-							</Nav.Link>*/}
 						</Nav>
 					
 
@@ -98,23 +94,18 @@ export default class Header extends Component{
 						{this.state.signedIn ? (<>
 							<Link to = "/" className="links">
 							<Button onClick = {()=> this.logout()} style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
-	      						sign out
+	      						<AccountCircleIcon fontSize="large" />&nbsp;sign out
 	      					</Button>
 	      					</Link>
 	      					</>
 							) : ( <>
-							<Link to="/login" className="links">
+							<Link to="/signin" className="links">
 								<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
 	        						<AccountCircleIcon fontSize="large"/> &nbsp; Sign In
 	      						</Button>
 	      					</Link>
 							</>
 						)}
-						<Link to="/signin" className="links">
-						<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
-	        				<AccountCircleIcon fontSize="large"/> &nbsp; Sign In
-	      				</Button>
-	      				</Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>	

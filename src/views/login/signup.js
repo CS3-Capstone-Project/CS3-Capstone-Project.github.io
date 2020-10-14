@@ -5,7 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
-import Fire from "./config/fire";
+import Fire from "../../views/config/fire.js";
 
 //Styles
 import './style.css';
@@ -73,7 +73,6 @@ export default class SignUp extends React.Component {
     Fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
     .then((user) => {
       if(this.state.userType === "student"){
-        alert("Ingenile");
         Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
           firstname:this.state.firstname,
           email:this.state.email,

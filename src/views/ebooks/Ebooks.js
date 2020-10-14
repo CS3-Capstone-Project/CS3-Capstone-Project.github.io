@@ -8,7 +8,7 @@ import {Image} from 'react-bootstrap';
 //Styles
 
 //Firebase
-import fire from "../login/config/fire.js";
+import fire from "../../views/config/fire.js";
 
 //Material UI API
 import Button from '@material-ui/core/Button';

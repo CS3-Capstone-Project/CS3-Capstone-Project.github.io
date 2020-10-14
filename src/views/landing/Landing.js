@@ -31,7 +31,7 @@ import { commonSearchs } from "../resources/commonsearchs.js";
 //import questionnaire from "../questionnaire/questionnaire.js";
 
 //Firebase
-import fire from "../login/config/fire.js";
+import fire from "../../views/config/fire.js";
 
 export default class Landing extends Component{
 	constructor(props){
@@ -193,7 +193,7 @@ export default class Landing extends Component{
 				</Row>
 
 				<div style={{textAlign:"center"}}>
-					<Link to="beginner" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
+					<Link to="Beginner" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>
 			</Container>
 				<hr/>

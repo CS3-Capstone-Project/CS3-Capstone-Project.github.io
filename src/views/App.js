@@ -3,11 +3,16 @@ import React, { Component } from 'react';
 //import Landing from "./landing/Landing.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Modal from 'react-awesome-modal';
+//Styles
+import "./App.scss";
 
+//Bootstrap React API
+import {Container} from 'reactstrap';
+
+//Material UI API
+import Button from '@material-ui/core/Button';
 //Components
 import Questionnaire from "./questionnaire/questionnaire.js";
-import Login from "./login/main.js";
-import Register from "./login/Register.js";
 import SignIn from "./login/signin.js";
 import SignUp from "./login/signup.js";
 import ForgotPassword from "./login/forgotpassword.js";
@@ -22,14 +27,7 @@ import Fire  from "./config/fire";
 import Header from "../components/header/Header.js";
 import Ebooks from "./ebooks/Ebooks.js";
 
-//Styles
-import "./App.scss";
 
-//Bootstrap React API
-import {Container} from 'reactstrap';
-
-//Material UI API
-import Button from '@material-ui/core/Button';
 
 export default class App extends Component {
   constructor(){
@@ -62,29 +60,18 @@ export default class App extends Component {
         });
         this.database = Fire.database().ref().child('User/'+user.uid);
         this.database.on('value', snap =>{
-          if(snap.val().userType==="Student"){
+          if(snap.val().userType==="student"){
             this.setState({
-              userName:snap.val().FirstName,
-              level:snap.val().level,
-              newUserMsg:"Welcome back ",
-              lastActivity:"You were on level ",
-              askToContinue:"would you like to continue?"
-            });
-            alert("This is a student");
-            this.openModal();
-          }
-          else if(snap.val().userType==="Student"){
-            this.setState({
-              userName:snap.val().FirstName,
+              userName:snap.val().firstname,
               level:snap.val().level,
               newUserMsg:"Welcome" 
             });
             alert("This is a student");
             this.openModal();
           }
-          else if(snap.val().userType==="Expert"){
+          else if(snap.val().userType==="expert"){
             this.setState({
-              userName:snap.val().FirstName
+              userName:snap.val().firstname
             });
             alert("This is an expert.");
           }
@@ -96,11 +83,6 @@ export default class App extends Component {
       else{
         this.setState({user: null});
       }
-    });
-  }
-  callbackFunction=(justRegistered)=>{
-    this.setState({
-      isNew:justRegistered
     });
   }
   openModal(){
@@ -115,40 +97,30 @@ export default class App extends Component {
   }
   render() {
     return (
-      <div>
       	<Router>
       		<Switch>
-            <Route
-              path = {"/Register"}
-              render = {props =>(
-                <Register 
-                  {...props}
-                  callback = {this.callbackFunction}/>
-                )}>
-            </Route>
-
       			<Route 
-            exact 
-            path={"/"}
-      			render = {props =>(
-              <Landing 
-                { ...props} 
-                loginStatus={this.state.loginStatus}
-                userName = {this.state.userName}
-              />
-            )}>
+              exact 
+              path={"/"}
+        			render = {props =>(
+                <Landing 
+                  { ...props} 
+                  loginStatus={this.state.loginStatus}
+                  userName = {this.state.userName}
+                />
+              )}>
       			</Route>
 
       			<Route 
-            path={"/questionnaire"}
-            render = {props =>(
-            <Questionnaire 
-              { ...props} 
-              loginStatus={this.state.loginStatus}
-              userName = {this.state.userName}
-              level = {this.state.level}
-            />
-            )}>
+              path={"/questionnaire"}
+              render = {props =>(
+              <Questionnaire 
+                { ...props} 
+                loginStatus={this.state.loginStatus}
+                userName = {this.state.userName}
+                level = {this.state.level}
+              />
+              )}>
      				</Route>
 
             <Route 
@@ -163,19 +135,19 @@ export default class App extends Component {
             </Route>
 
             <Route 
-            path={"/Addresource"}
-            render = {props =>(
-              <Addresource
-                {...props}
-                loginStatus = {this.state.loginStatus}/>
-            )}>
+              path={"/Addresource"}
+              render = {props =>(
+                <Addresource
+                  {...props}
+                  loginStatus = {this.state.loginStatus}/>
+              )}>
             </Route>
 
             <Route 
-            path={"/ebooks"}
-            render = {props =>(
-            <Ebooks { ...props} loginStatus={this.state.loginStatus}/>
-            )}>
+              path={"/ebooks"}
+              render = {props =>(
+              <Ebooks { ...props} loginStatus={this.state.loginStatus}/>
+              )}>
             </Route>
 
      				<Route path={"/signin"}
@@ -198,7 +170,7 @@ export default class App extends Component {
 
      				<Route path={"/beginner"}
               render = {props =>(
-              <Addresource { ...props} loginStatus={this.state.loginStatus}/>
+              <Beginner { ...props} loginStatus={this.state.loginStatus}/>
               )}>
             </Route>
 
@@ -222,11 +194,10 @@ export default class App extends Component {
                 <Quiz2/>
             </Route>
      			</Switch>
-        </Router>
             <Modal visible={this.state.visible} width="400" height="170" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
             <Container style={{backgroundColor:"#ccd8ff"}}>
-                <p className=" float-centre" style={{fontSize:"30px", fontWeight:"bold", color: "#009900"}}>{this.state.newUserMsg} {this.state.userName}</p>
-                <p style={{fontSize:"16px", fontWeight:"bold"}}>{this.state.lastActivity} {this.state.level}, {this.state.askToContinue}</p>
+                <p className=" float-centre" style={{fontSize:"30px", fontWeight:"bold", color: "#009900"}}>Welcome {this.state.userName}</p>
+                <p style={{fontSize:"16px", fontWeight:"bold"}}>You on {this.state.level}'s level, continue?</p>
               <hr/>
               <Link to= {this.state.level}>
                 <Button className="float-left" onClick={()=>this.closeModal()}>
@@ -238,7 +209,7 @@ export default class App extends Component {
               </Button>
             </Container>
           </Modal>
-      </div>
+        </Router>
     );
   }
 }

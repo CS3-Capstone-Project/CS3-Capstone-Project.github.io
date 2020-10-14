@@ -19,12 +19,13 @@ import Header from "../../components/header/Header.js";
 import { commonSearchs } from "../resources/commonsearchs.js";
 
 //Firebase
-import fire from "../login/config/fire.js";
+import fire from "../../views/config/fire.js";
 
 export default class Beginner extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
+			student:false,
 			videos : [],
 			webpages : [],
 			source:"",
@@ -38,6 +39,18 @@ export default class Beginner extends Component{
 	}
 
 	componentDidMount() {
+	  fire.auth().onAuthStateChanged((user) =>{
+      		if(user){
+      			this.database = fire.database().ref().child('User/'+user.uid);
+      			this.database.on('value', snap =>{
+          			if(snap.val().userType==="student"){
+            			this.setState({
+    						student:true
+            			});
+            		}
+            	});
+            }
+        });
 	  const webRef = fire.database().ref('resource/beginner/webpages');
 	  const videosRef = fire.database().ref('resource/beginner/videos');
 	  videosRef.on('value', (snapshot) => {
@@ -84,10 +97,13 @@ export default class Beginner extends Component{
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
 				<Header/>
 			<Container className="wrapper">
-				<div style={{textAlign:"center"}}><div ><h3>Beginner</h3></div></div>
-				<Link to="/Quiz2">
-					<Button>Take a quiz</Button>
-				</Link>
+				{this.state.student ?(
+					<>
+						<Link to="/Quiz2">
+							<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Take a learning path</Button>
+						</Link>
+					</>) : (
+					<><p>Enjoy.</p></>)}
 				<div style={{textAlign:"center"}}><div ><h2>Beginner</h2></div></div>
 				<div><h5>Videos</h5></div>
 				<Row>
@@ -133,14 +149,6 @@ export default class Beginner extends Component{
 					}
 				</Row>
 			</Container>
-			{/*
-			<div className="bottom-nav">
-    				<h6>Hi, are you a</h6>
-    				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
-    					&nbsp; or a &nbsp;
-    				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    		</div> */}
-
     		</Container>
 		);
 	}

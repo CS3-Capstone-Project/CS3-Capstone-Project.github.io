@@ -4,17 +4,20 @@ import {Button,TextField} from '@material-ui/core';
 import loginImg from "./Login.svg";
 import IconButton from 'material-ui/IconButton';
 import {Link} from 'react-router-dom';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
-import Fire from "./config/fire";
+import Fire from "../../views/config/fire.js";;
+// eslint-disable-next-line import/first
+import Col,{Container,Row} from 'reactstrap';
 
 //Styles
+// eslint-disable-next-line import/first
 import './style.css';
 
 //reactstrap API
-import {Col,Container,Row} from 'reactstrap';
+
 
 //Components
+// eslint-disable-next-line import/first
 import Header from "../../components/header/Header.js";
 
 export default class SignIn extends React.Component {

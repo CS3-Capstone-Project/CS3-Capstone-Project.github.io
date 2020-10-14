@@ -16,7 +16,7 @@ import {Col} from 'reactstrap';
 import { commonSearchs } from "../views/resources/commonsearchs.js";
 
 //Firebase
-import fire from "../views/login/config/fire.js";
+import Fire from "../views/config/fire.js";
 
 import "./searchBar.scss";
 
@@ -37,9 +37,9 @@ class SearchResult extends Component {
   }
 
   componentDidMount() {
-    const webRef = fire.database().ref('resource/beginner/webpages');
-    const videosRef = fire.database().ref('resource/beginner/videos');
-    const ref = fire.database().ref('resource');
+    const webRef = Fire.database().ref('resource/beginner/webpages');
+    const videosRef = Fire.database().ref('resource/beginner/videos');
+    const ref = Fire.database().ref('resource');
     let temp = [];
 
     ref.on('value', function(snapshot) { 

@@ -4,7 +4,7 @@ import loginImg from "./Login.svg";
 import {Link} from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Image} from 'react-bootstrap';
-import Fire from "./config/fire";
+import Fire from "../../views/config/fire.js";
 
 //Styles
 import './style.css';

@@ -24,12 +24,13 @@ import { commonSearchs } from "../resources/commonsearchs.js";
 import { resources } from "../resources/data.js";
 
 //Firebase
-import fire from "../login/config/fire.js";
+import fire from "../../views/config/fire.js";
 
 export default class Intermediate extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
+			student:false,
 			videos : [],
 			webpages : [],
 			source:"",
@@ -43,6 +44,18 @@ export default class Intermediate extends Component{
 	}
 
 	componentDidMount() {
+	  fire.auth().onAuthStateChanged((user) =>{
+      		if(user){
+      			this.database = fire.database().ref().child('User/'+user.uid);
+      			this.database.on('value', snap =>{
+          			if(snap.val().userType==="student"){
+            			this.setState({
+    						student:true
+            			});
+            		}
+            	});
+            }
+        });
 	  const webRef = fire.database().ref('resource/intermediate/webpages');
 	  const videosRef = fire.database().ref('resource/intermediate/videos');
 	  videosRef.on('value', (snapshot) => {
@@ -89,11 +102,13 @@ export default class Intermediate extends Component{
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
 				<Header/>
 			<Container className="wrapper">
-				<div style={{textAlign:"center"}}><div ><h3>Intermediate</h3></div></div>
-				<Link to="/Quiz2">
-					<Button>Take a quiz</Button>
-				</Link>
-				<div><h5>Youtube Videos</h5></div>
+				{this.state.student ?(
+					<>
+						<Link to="/Quiz2">
+							<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Take a learning path</Button>
+						</Link>
+					</>) : (
+					<><p>Enjoy.</p></>)}
 				<div style={{textAlign:"center"}}><div ><h2>Intermediate</h2></div></div>
 				<div><h5>Videos</h5></div>
 				<Row>
