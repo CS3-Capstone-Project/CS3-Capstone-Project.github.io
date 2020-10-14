@@ -85,7 +85,6 @@ export default class Thumbnail extends Component{
 						&nbsp;
 					<Rating 
 						
-						value={this.state.rating} 
 						style={{backgroundColor:""}} 
 						name = {this.props.id} 
 						size="large" 

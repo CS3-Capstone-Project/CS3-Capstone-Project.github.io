@@ -125,7 +125,7 @@ export default class Landing extends Component{
 	render(){
 		return(
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px",position:"absolute"}}>
-				<Header/>
+				
 				<FloatingButton/>
 			<Container className="wrapper">
 			 	<Jumbotron>
@@ -139,12 +139,12 @@ export default class Landing extends Component{
 			 			logical code for small and large-scale projects.
 			 		</p>
 			 		<a style={{textDecoration:"none"}} href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank">
-				 		<Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>
+				 		<Button  variant="contained" className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>
 				 			More about Python
 				 		</Button>
 			 		</a>
 			 	</Jumbotron>
-			 	
+			 	{this.props.user}
 				<div><h3>Beginner</h3></div>
 				<div><h5>Youtube Videos</h5></div>
 				
@@ -192,7 +192,7 @@ export default class Landing extends Component{
 				</Row>
 
 				<div style={{textAlign:"center"}}>
-					<Link to="beginner" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
+					<Link to="beginner" className="links"><Button  variant="contained" size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>
 			</Container>
 				<hr/>
@@ -245,7 +245,7 @@ export default class Landing extends Component{
 				</Row>
 
 				<div style={{textAlign:"center"}}>
-					<Link to="intermediate" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
+					<Link to="intermediate" className="links"><Button  variant="contained" size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>
 			</Container>
 				<hr/>
@@ -298,7 +298,7 @@ export default class Landing extends Component{
 				</Row>
 
 				<div style={{textAlign:"center"}}>
-					<Link to="advanced" className="links"><Button size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
+					<Link to="advanced" className="links"><Button  variant="contained" size = "small" className="buttons" style={{backgroundColor:"#5bc0de"}}> More </Button></Link>
 				</div>
 
 			</Container>

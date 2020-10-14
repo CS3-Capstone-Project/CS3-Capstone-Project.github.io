@@ -1,13 +1,14 @@
 import React, { Component, useState } from "react";
 import { Link } from 'react-router-dom';
 
+//Firebase 
+import Fire from "../../views/login/config/fire";
+
 //React Bootstrap API
-//import Container from 'react-bootstrap/Container';
 import {Image, Navbar, Dropdown, DropdownButton, Nav, NavDropdown} from 'react-bootstrap';
 
 //Reactstrap API
 import {Col,Container,Row} from 'reactstrap';
-
 
 //Material UI API
 import Button from '@material-ui/core/Button';
@@ -20,6 +21,28 @@ import "./Header.scss";
 export default class Header extends Component{
 	constructor(props){
 		super(props);
+		this.state={
+			currentPage:"",
+			user: null
+		}
+
+		this.signout = this.signout.bind(this);
+	}
+
+	//Sign out user
+	signout(){
+		Fire.auth().signOut()
+		.then(()=>{
+			if(this.props.user != null){
+				this.props.handleUser(null);
+				alert("Signing out");
+			}
+
+		}).catch((error)=>{
+			let errorCode = error.code;
+	      	let errorMessage = error.message;
+	      	alert(errorMessage);
+		});
 	}
 
 	render(){
@@ -67,16 +90,27 @@ export default class Header extends Component{
 							<SearchBar/>
 						</div>
 						&nbsp;
-						<Link to="/signin" className="links">
-						<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
-	        				<AccountCircleIcon fontSize="large"/> &nbsp; Sign In
-	      				</Button>
-	      				</Link>
+						{this.props.user ?
+							<div>
+							<Button onClick={this.signout} style={{padding:"7px", paddingRight:"17px" ,outline:"none"}} variant="outlined" color="primary">
+		        				 &nbsp; Sign Out
+		      				</Button>
+		      				&nbsp;
+		      				<Link to="/profilepage" className="links">
+		      					<AccountCircleIcon style={{height:"40px"}} color="primary" fontSize="large"/>
+		      				</Link>
+
+		      				</div>
+		      				:
+		      				<Link to="/signin" className="links">
+							<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
+		        				<AccountCircleIcon fontSize="large" /> &nbsp; Sign In
+		      				</Button>
+		      				</Link>
+	      				}
 					</Nav>
 				</Navbar.Collapse>
 				</Navbar>
-				
-	    	
 		);
 	}
 }

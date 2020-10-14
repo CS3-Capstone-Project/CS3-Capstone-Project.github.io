@@ -73,7 +73,6 @@ export default class SignUp extends React.Component {
     Fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
     .then((user) => {
       if(this.state.userType === "student"){
-        alert("Ingenile");
         Fire.database().ref("User/"+Fire.auth().currentUser.uid).set({
           firstname:this.state.firstname,
           email:this.state.email,
@@ -121,7 +120,7 @@ export default class SignUp extends React.Component {
       return(
         <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
             <Header/>
-            <Container style={{paddingTop:"70px"}}>
+            <Container style={{paddingTop:"78px"}}>
             <div style={{textAlign:"center"}}>
               <img style={{width:"350px",margin:"10px"}} src={loginImg}/>
             </div>
@@ -162,7 +161,7 @@ export default class SignUp extends React.Component {
                 />
                 <br/><br/>
 
-                <TextField
+                {/*<TextField
                     label="Last Name"
                     variant="outlined"
                     fullWidth="true"
@@ -171,7 +170,7 @@ export default class SignUp extends React.Component {
                     name="lastname"
                     onChange={this.handleChange}
                 />
-                <br/><br/>
+                <br/><br/>*/}
 
                 <TextField
                     label="Email"
@@ -201,7 +200,7 @@ export default class SignUp extends React.Component {
                 
                 <Button 
                   fullWidth="true"
-                  size = "medium" 
+                  size = "small" 
                   className="buttons" 
                   type="submit"
                   value="Submit"
@@ -211,23 +210,25 @@ export default class SignUp extends React.Component {
                   Sign up
               </Button>
             </form>
-            {/*<div style={{textAlign:"center"}}><p>or</p>
+
+            {/*<div style={{textAlign:"center", marginTop:"10px"}}>
+              <p>or</p>
               <Button 
-                  
+                  variant="contained"
                   size = "medium" 
                   className="buttons" 
-                style={{backgroundColor:"red"}}
+                style={{backgroundColor:"#FF6666", textTransform:"none", fontSize:"medium"}}
               > 
-                  Sign in with Google
+                  Sign up with Google
               </Button>
               &nbsp; 
               <Button 
-                  
+                  variant="contained"
                   size = "medium" 
                   className="buttons" 
-                style={{backgroundColor:"blue"}}
+                style={{backgroundColor:"#0080FF", textTransform:"none", fontSize:"medium"}}
               > 
-                  Sign in with Facebook
+                  Sign up with Facebook
               </Button>
             </div>*/}
 
