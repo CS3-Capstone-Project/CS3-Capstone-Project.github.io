@@ -51,11 +51,11 @@ export default function App(){
         if(u){
           const userRef =fire.database().ref('User/'+u.uid); 
           userRef.on('value', (userData) => {
-            setUserD(userData.val().description);
-            setUserLevel(userData.val().level);
-            setUserType(userData.val().userType);
-            setUser(userData.val().firstname);
-            setUserE(userData.val().email);
+           // setUserD(userData.val().description);
+            //setUserLevel(userData.val().level);
+            //setUserType(userData.val().userType);
+            //setUser(userData.val().firstname);
+            //setUserE(userData.val().email);
           });
         }
       });

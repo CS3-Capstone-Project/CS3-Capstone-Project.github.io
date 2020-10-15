@@ -21,7 +21,7 @@ import {Jumbotron} from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 
 //Firebase
-import fire from "../../login/config/fire.js";
+import fire from "../../views/config/fire.js";
 
 export default class Thumbnail extends Component{
 	constructor(props){

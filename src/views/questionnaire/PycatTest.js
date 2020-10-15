@@ -9,7 +9,9 @@ import Modal from 'react-awesome-modal';
 import Header from "../../components/header/Header.js";
 import Fire from "../config/fire";
 
+//Export default, all class that import this class will import PycatTest
 export default class PycatTest extends Component {
+	//Class constructor that initialise all class objects and binds all used functions to this class 
 	constructor(props){
         super(props);
         this.state ={
@@ -35,6 +37,8 @@ export default class PycatTest extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.levelUpdate=this.levelUpdate.bind(this);
     }
+   	//This function gets the student details from the firebase database and updates their level whenever they got all questions
+   	//correct from each level.
   	levelUpdate(){
   		let user = Fire.auth().currentUser;
       	if(user){
@@ -52,9 +56,11 @@ export default class PycatTest extends Component {
       		});
       	}
   	}
+  	//Handles the change event when selecting a value, which in this class its an answer.
     onAnsChange = e=>{
     	this.setState({[e.target.name]: e.target.value});
     }
+    //Updates the level of questions whenever a user get all answers correct on level 1 quiz
     levelChange1(){
     	if(this.state.answer1==="10, 11, 12, 13, 14," && this.state.answer2==="True" && this.state.answer3==="25 and 125" && this.state.answer4==="Salary: 12000 Salary: 8000" && this.state.answer5==="maJ" && this.state.answer6==="True" && this.state.answer7==="yn" && this.state.answer8==="The program executed with error" && this.state.answer9==="182.0" && this.state.answer10==="secrets.token_hex(32)"){
     		this.openModal();
@@ -63,6 +69,7 @@ export default class PycatTest extends Component {
     		alert("Make sure you get all answers right!");
     	}
     }
+    //Updates the level of questions whenever a user get all answers correct on level 2 quiz
     levelChange2(){
     	if(this.state.answer1==="input()" && this.state.answer2==="Create a file, returns an error if the file exists" && this.state.answer3==="Syntax Error" && this.state.answer4==="Salary: 12000 Salary: 8000" && this.state.answer5==="[A]" && this.state.answer6==="True" && this.state.answer7==="NaN, NaN, NaN, NaN," && this.state.answer8==="aaa" && this.state.answer9==="11 undefined 11.22" && this.state.answer10==="t+"){
     		this.openModal();
@@ -71,6 +78,7 @@ export default class PycatTest extends Component {
     		alert("Make sure you answer all answers right!");
     	}
     }
+    //Updates the level of questions whenever a user get all answers correct on level 3 quiz
     levelChange3(){
     	if(this.state.answer1==="‘a’" && this.state.answer2==="else clause of for loop is executed when the loop terminates naturally" && this.state.answer3==="21" && this.state.answer4==="num * fact(num - 1)" && this.state.answer5==="False" && this.state.answer6==="You cannot use print(self) as a function name." && this.state.answer7==="Foo" && this.state.answer8==="re" && this.state.answer9==="interpreter/ compile time" && this.state.answer10==="False True"){
     		this.openModal();
@@ -79,18 +87,22 @@ export default class PycatTest extends Component {
     		alert("Make sure you get all answers right!");
     	}
     }
+    //Updates the level state, whenever user answer all questions correct
     setLevel1(){
     	this.setState({
 	    	newLevel:"Intermediate"
 	    });
 	    this.levelUpdate();
     }
+    //Updates the level state, whenever user answer all questions correct
     setLevel2(){
     	this.setState({
 	    	newLevel:"Advanced"
 	    });
 	    this.levelUpdate();
     }
+   //Updates level inside this class so that all other components of this class get the updated leve, and also updates for levelUpdate function
+   //which updates level in the database
     intLevel(){
     	this.closeModal();
     	if(this.state.level===1){
@@ -111,16 +123,19 @@ export default class PycatTest extends Component {
     		return 0;
     	}
     }
+    //Opens up the modal by setting visibility to true
     openModal(){
         this.setState({
             visible : true
         });
     }
+    //Close the modal by setting visibility to false
     closeModal(){
         this.setState({
             visible : false
         });
     }
+    //Renders the LevelQuiz page to the website, all components contained will appear, all HTML tags.
   render() {
   	//Beginner level quiz--------------------------------------------------------------------------------------------
   		if(this.state.level===1){

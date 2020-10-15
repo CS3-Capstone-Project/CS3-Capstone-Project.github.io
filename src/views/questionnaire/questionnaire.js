@@ -4,16 +4,19 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {Form} from 'reactstrap';
 import './LP_button.scss';
 
+//reactstrap and bootstrap
 import {Container} from 'reactstrap';
 import {Image} from 'react-bootstrap';
 
 //@material-ui API
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
+//import components
 import Header from "../../components/header/Header.js";
 
 
 export default class Questionnaire extends Component{
+    //Class contructor that initialise class states objects, object styles and bind binds all functions used to this class.
     constructor(props){
         super(props);
         this.styles ={
@@ -34,25 +37,30 @@ export default class Questionnaire extends Component{
         this.openModal= this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
+    //Handles event when selecting a level using radio button
     onLevelChange(event){
         this.setState({
             selectedOption:event.target.value
         });
     }
+    //Tests to see the output is the expected selected option 
     formSubmit(event){
         event.preventDefault();
         console.log(this.state.selectedOption)
     }
+    //Opens the modal component by setting visibility to true
     openModal(){
         this.setState({
             visible : true
         });
     }
+    //Close the modal component by setting visibility to false
     closeModal(){
         this.setState({
             visible : false
         });
     }
+    //Renders the questionnaire page to the website, all components contained will appear, HTML tags.
     render() {
         return (
             <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>

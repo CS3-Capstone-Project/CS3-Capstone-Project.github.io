@@ -7,7 +7,9 @@ import {Image} from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 import Header from "../../components/header/Header.js";
 
-export default class LevelQuiz extends Component { 
+//Export default, all class that import this class will import levelQuiz
+export default class LevelQuiz extends Component {
+//Class constructor that initialise all class objects and binds all used functions to this class 
 	constructor(props){
         super(props);
         this.state ={
@@ -24,9 +26,11 @@ export default class LevelQuiz extends Component {
         this.levelChange2 = this.levelChange2.bind(this);
         this.levelChange3 = this.levelChange3.bind(this);
     }
+    //Handles the change event when selecting a value, which in this class its an answer.
     onAnsChange = e=>{
     	this.setState({[e.target.name]: e.target.value});
     }
+    //Updates the level of questions whenever a user get all answers correct on level 1 quiz
     levelChange1(){
     	if((this.state.value1==="1a" && this.state.value2==="No" && this.state.value3==="secrets.token_hex(32)")){
 			return("Advanced");
@@ -38,6 +42,7 @@ export default class LevelQuiz extends Component {
 			return("Beginner");
 		}
     }
+    //Updates the level of questions whenever a user get all answers correct on level 2 quiz
     levelChange2(){
     	if(this.state.value1==="**, Exponent" && this.state.value2==="secrets.token_hex(32)"){
     		return("Advanced");
@@ -49,6 +54,7 @@ export default class LevelQuiz extends Component {
 			return("Beginner");
 		}
     }
+    //Updates the level of questions whenever a user get all answers correct on level 3 quize
     levelChange3(){
     	if(this.state.value1==="3d" && this.state.value2==="10"){
 			return("Advanced");
@@ -60,16 +66,19 @@ export default class LevelQuiz extends Component {
 			return("Beginner");
 		}
     }
-      openModal(){
+    //Opens the modal component by setting visibility to true
+    openModal(){
         this.setState({
             visible : true
         });
     }
+    //Opens the modal component by setting visibility to true
     closeModal(){
         this.setState({
             visible : false
         });
     }
+    //Renders the LevelQuiz page to the website, all components contained will appear, all HTML tags.
   render() {
   	const {value1, value2, value3}=this.state;
   	//If the generated random number is 0 this is the quiz ------------------------------------------------------------------
