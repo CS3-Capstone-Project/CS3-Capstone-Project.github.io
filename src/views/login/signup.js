@@ -37,11 +37,14 @@ export default class SignUp extends React.Component {
       description:"",
       ratedResources:{},
       myResources:{},
-      watched:{}
+      watched:{},
+      signedUp:false
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.signup = this.signup.bind(this);
+    this.openModal=this.openModal.bind(this);
+    this.closeModal=this.closeModal.bind(this);
 
    }
 
@@ -245,7 +248,7 @@ export default class SignUp extends React.Component {
                   type="submit"
                   value="Submit"
                   variant="contained"
-                style={{backgroundColor:"#5bc0de",textTransform:"none", fontSize:"medium"}}
+                  style={{backgroundColor:"#5bc0de",textTransform:"none", fontSize:"medium"}}
               > 
                   Sign up
               </Button>
@@ -254,20 +257,25 @@ export default class SignUp extends React.Component {
               <p>Already have an account? <Link className="loginLinks" to="/signin">Sign In </Link> </p>
             </div>
             </Container>
-            <Modal visible={this.state.visible} width="400" height="200" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
-              <Container>
+            <Modal visible={this.state.visible} width="400" height="330" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+              <Container  >
                 <div>
-                  <h1>Welcome {this.state.firstname}</h1>
+                  <Container style={{backgroundColor:"#D1EEDE"}}>
+                  <p style={{fontSize:"26px", fontWeight:"bold"}}>Welcome {this.state.firstname}</p>
+                  </Container>
+                  <hr/>
                 </div>
                 <div>
-                  <p>You have openned for yourself a door to fully experience our features.</p>
+                <Container style={{backgroundColor:"#E6E9ED"}}>
                   <li>Now you can rate resources after you have viewed them.</li>
                   <li>You can check your understanding of python concepts based on their level of difficulty.</li>
                   <li>You can monitor your progress.</li>
+                </Container>
+                <hr/>
                 </div>
-                <div><h1>Enjoy</h1></div>
+                <div><p style={{fontSize:"20px", fontWeight:"bold"}}>Enjoy</p></div>
               </Container>
-              <div><Link to="/questionnaire"><Button>continue</Button></Link></div>
+              <div><Link to="/questionnaire"><Button className="btn btn-primary float-center"style={{backgroundColor:"#5bc0de"}}>continue</Button></Link></div>
             </Modal>
         </Container>
       );
