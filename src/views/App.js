@@ -15,6 +15,7 @@ import Addresource from "./addresource/Addresource.js";
 import Ebooks from "./ebooks/Ebooks.js";
 import ProfilePage from "./login/ProfilePage.js";
 import Header from "../components/header/Header.js";
+import NotFound from "./NotFound.js";
 
 //Styles
 import "./App.scss";
@@ -35,6 +36,7 @@ export default function App(){
     const [userRated, setUserRat] = useState(null)
     const [userResourses, setUserRes] = useState(null)
     const [userEmail, setUserE] = useState(null)
+    const [userId, setUserId] = useState(null)
 
     //Take user details and call setUser to update them
     const handleUser = (userDetails) => {
@@ -51,7 +53,10 @@ export default function App(){
             setUserLevel(userData.val().level);
             setUserType(userData.val().userType);
             setUser(userData.val().firstname);
+            setUserE(userData.val().email);
           });
+
+          setUserId(u.uid);
         }
       });
     });  
@@ -70,35 +75,42 @@ export default function App(){
           exact 
           path={"/"}
     			render = {props =>(
-            <Landing user={user} { ...props} />
+            <Landing userId={userId} user={user} { ...props} />
           )}>
     			</Route>
 
     			<Route 
           path={"/questionnaire"}
           render = {props =>(
-          <Questionnaire user={user} userLevel={userLevel} { ...props} />
+          <Questionnaire userId={userId} user={user} userLevel={userLevel} { ...props} />
           )}>
    				</Route>
 
           <Route 
           path={"/profile"}
           render = {props =>(
-          <ProfilePage user={user} description={userDescription} { ...props} />
+          <ProfilePage 
+            userId={userId} 
+            user={user} 
+            userType={userType}
+            userLevel={userLevel} 
+            userEmail = {userEmail} 
+            description={userDescription} 
+            { ...props} />
           )}>
           </Route>
 
           <Route 
           path={"/ebooks"}
           render = {props =>(
-          <Ebooks user={user} { ...props} />
+          <Ebooks userId={userId} user={user} { ...props} />
           )}>
           </Route>
 
           <Route 
           path={"/addresource"}
           render = {props =>(
-          <Addresource user={user} { ...props} />
+          <Addresource userId={userId} user={user} { ...props} />
           )}>
           </Route>
 
@@ -122,21 +134,26 @@ export default function App(){
 
    				<Route path={"/beginner"}
             render = {props =>(
-            <Beginner user={user} { ...props} />
+            <Beginner userId={userId} user={user} { ...props} />
           )}>
    				</Route>
 
    				<Route path={"/intermediate"}
             render = {props =>(
-            <Intermediate user={user} { ...props} />
+            <Intermediate userId={userId} user={user} { ...props} />
           )}>
    				</Route>
 
    				<Route path={"/advanced"}
             render = {props =>(
-            <Advanced user={user} { ...props} />
+            <Advanced userId={userId} user={user} { ...props} />
           )}>
    				</Route>
+          <Route path={"*"}
+            render = {props =>(
+            <NotFound userId={userId} user={user} { ...props} />
+          )}>
+          </Route>
    			</Switch>
     	</Router>
     );

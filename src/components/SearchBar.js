@@ -142,7 +142,7 @@ export default class SearchBar extends Component {
         options={commonSearchs}
         getOptionLabel={function(option){
           if(option.topic == "All"){
-            return "";
+            return "float";
           }
           else{
             return option.topic;

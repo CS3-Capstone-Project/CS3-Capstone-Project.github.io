@@ -30,90 +30,144 @@ export default class Thumbnail extends Component{
 			visible: false,
 			rating: this.props.rating,
 			numRatings: 0,
-			accumulator: 0,
-			watched:false,
+			sumRatings: 0,
+			rated:false,
+			viewed:false,
+			rating:0,
 		}
 
-		this.calcRating = this.calcRating.bind(this);
-		
+		this.updateRating = this.updateRating.bind(this);
+		this.didView = this.didView.bind(this);
+		this.copy = this.copy.bind(this);
 	}
 
-	//Get details of the currently logged in user
+	//after the page has been rendered work on the database
 	componentDidMount(){
-		fire.auth().onAuthStateChanged((u)=>{
-        if(u){
-          fire.database().ref('User/'+u.uid+"/ratedResources").set({
-          	
-          });
-        }
-      });
+		let resourceRef = fire.database().ref(this.props.path);
+		let userId = this.props.userId;
+		resourceRef.on('value', (snapshot) => {
+			let resData = snapshot.val();
+			//Check if user is logged in before doing anything
+			if(userId){
+				let userRef = snapshot.child('users').child(userId);
+				let ratedValue = false;
+				let viewValue = false;
+				//Check if user has ever interacted with this resources
+				snapshot.child("users").forEach( function(res){
+					if(res.val() == userId){
+						if(!userRef.child('viewed')){
+							userRef.child('viewed').set(false);
+							userRef.child('rate').set(false);
+						}else if(userRef.child('viewed')){
+							viewValue = true;
+						}else if(userRef.child('rate')){
+							ratedValue = true;
+						}
+					}
+		    	});
+		    	//If current user has rated or viewed the resource record that locally
+		    	if(ratedValue || viewValue){
+			    	this.setState({
+			    		rated:ratedValue,
+			    		viewed: viewValue
+			    	});
+		    	}
+			}
+			//if no on has rated the resource don't calculate rating
+			if(resData.numRatings >= 1){
+				this.setState({
+					numRatings: resData.numRatings,
+					sumRatings: resData.sumRatings,
+					rating: Math.round(resData.sumRatings/resData.numRatings),
+				});
+			}
+		});
 	}
 
-	//Calculate rating for this resource
-	calcRating(v){
-		const {accumulator, numRatings, rating} = this.state
-		this.setState({
-			accumulator: accumulator + v,
-			numRatings: numRatings + 1,
-			rating: Math.round(accumulator/numRatings)
-		}, () => {
-			console.log("v: " + v + " accumulator: " + this.state.accumulator + " numRatings: " + this.state.numRatings);
-			console.log(this.state.accumulator/this.state.numRatings);
-		})
+	//Record that this user viewed this resource
+	didView(){
+		console.log(this.state.viewed && !this.state.rated);
+		if(this.props.user){
+			this.setState({
+				viewed: true
+			},()=>{
+				let resourceRef = fire.database().ref(this.props.path);
+				resourceRef.child("users").child(this.props.userId).child('viewed').set(this.state.viewed);
+			});
+		}
 	}
+
+	//Update resource meta data when user rates resource
+	updateRating(event,value){
+		this.setState({
+			numRatings: this.state.numRatings + 1,
+			sumRatings: this.state.sumRatings + value,
+		},  ()=>{
+			
+			if(this.state.viewed){
+				//If user has never rated the resource allow them to rate it
+				if(!this.state.rated){
+
+					let resourceRef = fire.database().ref(this.props.path);
+				    let userPath = "users." + this.props.userId;
+				    resourceRef.update({
+				    	numRatings: this.state.numRatings,
+				        sumRatings: this.state.sumRatings,
+				    });
+				    
+				    resourceRef.child("users").child(this.props.userId).child('rate').set(true);
+
+				    this.setState({
+				    	rated:true,
+				    	rating: Math.round(this.state.sumRatings/this.state.numRatings)
+				    });
+				}
+			}
+		});
+	}
+
 
 	//Copy resource url to user clipboard
 	copy = () => {
 		navigator.clipboard.writeText(this.props.url);
 		alert("Link to " + this.props.url + " copied to clipboard");
 	}
+
+	//Display a thumbnail for the resources
 	render(){
 		return(
 			<div style={{zIndex:"999"}} className="thumbnail">
-				<a className="links" href={this.props.url} target="_blank">
+				<a className="links" onClick={this.didView} href={this.props.url} target="_blank">
 					<span className="a">
 						<div className="ttop" style = {this.props.style}>
 							<div className="source">{this.props.topic}</div>
-							<p className="desc">{this.props.desc}</p>
+							<p className="desc">{(this.props.desc).slice(0,100)}</p>
 							
-							<p className="desc" style={{fontWeight:"bold"}} >source: {this.props.source}</p>
+							<p className="desc" style={{fontWeight:"bold"}} >source: {this.props.source.slice(0,13)}</p>
 						</div>
 					</span>
 				</a>
-				{/*
-				<Modal style={{zIndex:"999"}} visible={this.state.visible} width="95%" height="600px" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <div>
-                    	<div style={{display:"flex"}}>
-                    		<div style={{paddingLeft:"10px"}}>
-                        		<h2 >{this.props.source}</h2>
-                        	</div>
-                        	<a className="close" href="javascript:void(0);" onClick={() => this.closeModal()}><CloseIcon fontSize="large" style={{color:"black"}}/></a>
-                        </div>
-                        <iframe height="500px" width="100%" src={this.props.url}></iframe>
-                    </div>
-                </Modal> */}
 
 				<div className="t-bottom">
 					<ShareIcon onClick={this.copy} className="shareButton"/>
 						&nbsp;
 					{ this.props.user ?
 					<Rating 
-						style={{backgroundColor:""}} 
 						name = {this.props.id} 
+						readOnly = { !this.state.viewed } 
 						size="large" 
+						value={this.state.rating}
 						onChange={(event,value) => { 
-							this.calcRating(value);
+							this.updateRating(event,value)
 						}}
 						precision={1} />
 						:
 						<Rating 
+						name = {this.props.id}
 						readOnly
-						style={{backgroundColor:""}} 
+						value={this.state.rating}
 						name = {this.props.id} 
 						size="large" 
-						onChange={(event,value) => { 
-							this.calcRating(value);
-						}}
 						precision={1} />
 					}
 				</div>

@@ -1,9 +1,18 @@
+//React stuff
 import React, {Component} from "react";
-import {Button,TextField} from '@material-ui/core';
-import loginImg from "./Login.svg";
 import {Link} from 'react-router-dom';
+
+//Material ui API
+import {Button,TextField} from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+//Image
+import loginImg from "./Login.svg";
+
+//react-bootstrap API
 import {Image} from 'react-bootstrap';
+
+//Firebase
 import Fire from "./config/fire";
 
 //Styles
@@ -33,18 +42,14 @@ class ForgotPassword extends Component {
     });
   }
 
-  //
-  handleSubmit(event){
-      event.preventDefault();
-      this.reset(this.state.email);    
-  }
-
-  //Send password reset email
+  //Check if email has an account if it does send password reset link to the email
   reset(e){
     e.preventDefault();
     Fire.auth().sendPasswordResetEmail(this.state.email).then(function(){
       alert("Check your emails");
-    }).catch((error)=>{
+    })
+    //Otherwise raise one of these errors
+    .catch((error)=>{
       let errorCode = error.code;
         let errorMessage = error.message;
 
@@ -61,9 +66,11 @@ class ForgotPassword extends Component {
           alert(errorMessage);
         }
     });
+    //Redirectic user to home page
     window.location.replace('/');
   }
 
+  //Display the forgot password/ Reset password page
   render(){
     return (
       <Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>

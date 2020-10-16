@@ -27,12 +27,14 @@ class Addresource extends React.Component{
       description:"",
       difficulty:"",
       type:"",
-      rating:0,
-      totalRatings:0
+      numRatings:0,
+      sumRatings:0,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.removeAll = this.removeAll.bind(this);
+    this.descrip = this.descrip.bind(this);
   }
  
   //Update state when one or more of the Textfields are changed 
@@ -59,52 +61,68 @@ class Addresource extends React.Component{
     else{ return;}
   }
 
+  removeAll(){
+    if(this.state.type == 'ebooks'){
+      return <MenuItem value="all">All</MenuItem>
+    }else{
+      return;
+    }
+  }
+
   //After the submit button is pressed push data to firebase
   handleSubmit(event){
     event.preventDefault();
     let resourcesRef;
     let resource;
+    let userRef;
     //if selected data is an ebook use this to create a resource object
     if(this.state.type == "ebooks"){
+      userRef = fire.database().ref('User/'+this.props.userId).child('myResources/ebooks');
       resourcesRef = fire.database().ref('ebooks/');
+      userRef.child('ebooks/');
       resource = {
         source: this.state.source,
         url: this.state.url,
         description: this.state.description,
-        rating:this.state.rating,
-        totalRatings:this.state.totalRatings
+        numRatings:this.state.numRatings,
+        sumRatings:this.state.sumRatings,
       }
     }
     //otherwise use this
     else{
       resourcesRef = fire.database().ref('resource/' + this.state.difficulty + "/" + this.state.type);
+      userRef = fire.database().ref('User/'+this.props.userId+'/myResources').child(this.state.type);
       resource = {
         source: this.state.source,
         url: this.state.url,
         topic: this.state.topic,
         description: this.state.description,
-        rating:this.state.rating,
-        totalRatings:this.state.totalRatings
+        numRatings:this.state.numRatings,
+        sumRatings:this.state.sumRatings
       }
     }
 
     //upload the data
-    resourcesRef.push(resource);
-    alert("Please wait for 2.6 seconds while the resource is being uploaded.");
+    let res = resourcesRef.push(resource).key;
+    userRef.child(res).set(resource);
+    //console.log(userRef.path);
+    alert("Uploading...");
     this.setState({
       source:"",
       url:"",
       topic: "",
       description:"",
       difficulty:"",
+      numRatings:0,
+      sumRatings:0,
       type:""
     });
     
     //wait for 2.6 seconds before user gets redirected
-    setTimeout(() => {
+    /*setTimeout(() => {
       window.location.replace('/');
-    }, 2600);
-    //window.location.replace('/');
+    }, 2600);*/
+    window.location.replace('/');
   }
 
   //Display the add resource page
@@ -166,7 +184,7 @@ class Addresource extends React.Component{
               name="difficulty"
               onChange={this.handleChange}
               select> 
-                <MenuItem value="all">All</MenuItem>
+                {this.removeAll()}
                 <MenuItem value="beginner">Beginner</MenuItem>
                 <MenuItem value="intermediate">Intermediate</MenuItem>
                 <MenuItem value="advanced">Advanced</MenuItem>
@@ -187,7 +205,11 @@ class Addresource extends React.Component{
               select> 
               {commonSearchs.map((t) => (
                 <MenuItem key={t.topic} value={t.topic}>
-                  {t.topic}
+                  {t.topic == 'All' && this.state.type != "ebooks" ? 
+                    "float"
+                    :
+                    t.topic
+                  }
                 </MenuItem>
               ))}
               </TextField>

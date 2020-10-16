@@ -39,48 +39,53 @@ export default class Intermediate extends Component{
 
 	//After the page is rendered load intermediate resources
 	componentDidMount() {
-	  const webRef = fire.database().ref('resource/intermediate/webpages');
-	  const videosRef = fire.database().ref('resource/intermediate/videos');
-	  videosRef.on('value', (snapshot) => {
-	    let vids = snapshot.val();
-	    let temp = [];
-	    //iterate through all videos resources in the database and append them to a temporary array
-	    for (let item in vids) {
-	      temp.push({
-	        id: item,
-	        source: vids[item].source,
-	       	url: vids[item].url, 
-	       	topic: vids[item].topic,
-	       	description: (commonSearchs.find( ({ topic }) => topic == vids[item].topic )).description,
-	       	rating: vids[item].rating,
-	       	totalRatings: vids[item].totalRatings
-	      });
-	    }
-	    //set temporary array to be equal to the global videos array
-	    this.setState({
-	      videos: temp
+	  const intermediateRef = fire.database().ref('resource/intermediate');
+
+	  //Load intermediate resources
+	  intermediateRef.orderByChild("rating").on('value', (snapshot) => {
+	  	let temp1 = [];
+	  	let temp2 = [];
+	    snapshot.forEach( function(type){
+	    	//load videos to temporary array
+	    	if(type.key == "videos"){
+	    		type.forEach( function(res){
+	    			let vids = res.val();
+	    			let resVal = [];
+	    			
+	    			temp1.push({
+				        resPath: res.ref.path.toString(),
+				        source: vids.source,
+				       	url: vids.url, 
+				       	topic: vids.topic,
+				       	description: (commonSearchs.find( ({ topic }) => topic == vids.topic)).description,
+				       	rating: vids.rating,
+				       	totalRatings: vids.totalRatings
+				    });
+	    		});
+	    	}
+	    	//load webpages to temporary array
+	    	else if(type.key == "webpages"){
+	    		type.forEach( function(res){
+	    			let web = res.val();
+	    			let resVal = [];
+	    			
+	    			temp2.push({
+				        resPath: res.ref.path.toString(),
+				        source: web.source,
+				       	url: web.url, 
+				       	topic: web.topic,
+					   	description: (commonSearchs.find( ({ topic }) => topic == web.topic)).description,
+				       	rating: web.rating,
+				       	totalRatings: web.totalRatings
+				    });
+	    			
+	    		});
+	    	}
 	    });
-	  });
-
-      //iterate through all webpage resources in the database and append them to a temporary array
-	  webRef.on('value', (snapshot) => {
-	    let web = snapshot.val();
-	    let temp = [];
-	    for (let item in web) {
-	      temp.push({
-	        id: item,
-	        source: web[item].source,
-	       	url: web[item].url, 
-	       	topic: web[item].topic,
-	       	description: (commonSearchs.find( ({ topic }) => topic == web[item].topic )).description,
-	       	rating: web[item].rating,
-	       	totalRatings: web[item].totalRatings
-	      });
-	    }
-
-	    //set temporary array to be equal to the global webpage array
+	    //Set the temporary array equal to the gloabal array
 	    this.setState({
-	      webpages: temp
+	    	videos: temp1,
+	    	webpages: temp2
 	    });
 	  });
 	}
@@ -105,6 +110,9 @@ export default class Intermediate extends Component{
 									topic = {data.topic} 
 									desc = {data.description} 
 									url = {data.url}
+									user={this.props.user}
+									path = {data.resPath}
+									userId = {this.props.userId}
 									rating = {data.rating} 
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
@@ -127,6 +135,9 @@ export default class Intermediate extends Component{
 									topic = {data.topic}
 									desc = {data.description} 
 									url = {data.url} 
+									user={this.props.user}
+									path = {data.resPath}
+									userId = {this.props.userId}
 									rating = {data.rating}
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
 									</Thumbnail>
@@ -136,13 +147,6 @@ export default class Intermediate extends Component{
 					}
 				</Row>
 			</Container>
-			{/*
-			<div className="bottom-nav">
-    				<h6>Hi, are you a</h6>
-    				<Link to="/questionnaire" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}>Student</Button> </Link>
-    					&nbsp; or a &nbsp;
-    				<Link to="/login" className="links"> <Button className="buttons" size = "small" style={{backgroundColor:"#5bc0de"}}> Python Expert</Button></Link>
-    		</div>*/}
     		</Container>
 		);
 	}

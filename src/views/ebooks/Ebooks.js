@@ -37,16 +37,19 @@ export default class Ebooks extends Component{
 	    let base = snap.val();
 	    let temp = [];
 	    //iterate through all ebooks in the database and append them to a temporary array
-	    for (let data in base) {
-	      temp.push({
-	        id: data,
-	        source: base[data].source,
-	        description: base[data].description,
-	        url: base[data].url,
-	        rating: base[data].rating,
-	        totalRatings: base[data].totalRatings,
-	      });
-	    }
+	    snap.forEach( function(book){
+	    			let vids = book.val();
+	    			
+	    			temp.push({
+				        resPath: book.ref.path.toString(),
+				        source: vids.source,
+				       	url: vids.url, 
+				       	topic: vids.topic,
+				       	description: vids.description.slice(0,250),
+				       	rating: vids.rating,
+				       	totalRatings: vids.totalRatings
+				    });
+	    		});
 	    //set the temporary array to be equal to the global array
 	    this.setState({
 	      res: temp
@@ -73,6 +76,9 @@ export default class Ebooks extends Component{
 										topic = {data.topic}
 										desc = {data.description} 
 										url = {data.url} 
+										user={this.props.user}
+										path = {data.resPath}
+										userId = {this.props.userId}
 										rating = {data.rating}
 										style={{backgroundColor:"rgba(104, 46, 26,0.6)"}}> 
 										</Thumbnail>

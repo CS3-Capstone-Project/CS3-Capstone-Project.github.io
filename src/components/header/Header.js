@@ -22,6 +22,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 //Styles 
 import "./Header.scss";
 
+//Display the header component
 export default class Header extends Component{
 	constructor(props){
 		super(props);
@@ -115,7 +116,10 @@ export default class Header extends Component{
 		      				</div>
 		      				:
 		      				<Link to="/signin" className="links">
-							<Button style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} variant="outlined" color="primary">
+							<Button 
+								style={{padding:"1.5px", paddingRight:"5px", outline:"none"}} 
+								variant="outlined" 
+								color="primary">
 		        				<AccountCircleIcon fontSize="large" /> &nbsp; Sign In
 		      				</Button>
 		      				</Link>

@@ -44,8 +44,17 @@ export default class Landing extends Component{
 		    description:"",
 		    rating:0,
 		    totalRatings:0,
+		    resPath:""
 
 		}
+
+		this.getPath = this.getPath.bind();
+	}
+
+	//Get current resource path in the database
+	getPath(p){
+		this.setState({resPath: p});
+		console.log(this.state.resPath);
 	}
 
 	//After the page is rendered load all the resources
@@ -54,21 +63,44 @@ export default class Landing extends Component{
 	  const advancedRef = fire.database().ref('resource/advanced');
 	  const intermediateRef = fire.database().ref('resource/intermediate');
 
-	  //Load beginner resources
-	  beginnerRef.orderByChild("rating").on('value', (snapshot) => {
+	  //Download beginner resources
+	  beginnerRef.orderByChild("numRatings").on('value', (snapshot) => {
 	  	let temp1 = [];
 	  	let temp2 = [];
 	    snapshot.forEach( function(type){
-	    	//load videos to temporary array
+	    	//Download videos to temporary array
 	    	if(type.key == "videos"){
 	    		type.forEach( function(res){
-	    			temp1.push(res.val());
+	    			let vids = res.val();
+	    			let resVal = [];
+
+	    			temp1.push({
+					    resPath: res.ref.path.toString(),
+					    source: vids.source,
+					   	url: vids.url, 
+					   	topic: vids.topic,
+				       	description: (commonSearchs.find( ({ topic }) => topic == vids.topic)).description,
+				       	rating: vids.rating,
+				       	totalRatings: vids.totalRatings
+				    });
 	    		});
 	    	}
-	   		//load videos to temporary array
+	   		//load webpages to temporary array
 	    	else if(type.key == "webpages"){
 	    		type.forEach( function(res){
-	    			temp2.push(res.val());
+	    			let web = res.val();
+	    			let resVal = [];
+	    			
+	    			temp2.push({
+				        resPath: res.ref.path.toString(),
+				        source: web.source,
+				       	url: web.url, 
+				       	topic: web.topic,
+					   	description: (commonSearchs.find( ({ topic }) => topic == web.topic)).description,
+				       	rating: web.rating,
+				       	totalRatings: web.totalRatings
+				    });
+	    			
 	    		});
 	    	}
 	    });
@@ -88,13 +120,36 @@ export default class Landing extends Component{
 	    	//load videos to temporary array
 	    	if(type.key == "videos"){
 	    		type.forEach( function(res){
-	    			temp1.push(res.val());
+	    			let vids = res.val();
+	    			let resVal = [];
+	    			
+	    			temp1.push({
+				        resPath: res.ref.path.toString(),
+				        source: vids.source,
+				       	url: vids.url, 
+				       	topic: vids.topic,
+				       	description: (commonSearchs.find( ({ topic }) => topic == vids.topic)).description,
+				       	rating: vids.rating,
+				       	totalRatings: vids.totalRatings
+				    });
 	    		});
 	    	}
 	    	//load webpages to temporary array
 	    	else if(type.key == "webpages"){
 	    		type.forEach( function(res){
-	    			temp2.push(res.val());
+	    			let web = res.val();
+	    			let resVal = [];
+	    			
+	    			temp2.push({
+				        resPath: res.ref.path.toString(),
+				        source: web.source,
+				       	url: web.url, 
+				       	topic: web.topic,
+					   	description: (commonSearchs.find( ({ topic }) => topic == web.topic)).description,
+				       	rating: web.rating,
+				       	totalRatings: web.totalRatings
+				    });
+	    			
 	    		});
 	    	}
 	    });
@@ -113,13 +168,36 @@ export default class Landing extends Component{
 	    	//load videos to temporary array
 	    	if(type.key == "videos"){
 	    		type.forEach( function(res){
-	    			temp1.push(res.val());
+	    			let vids = res.val();
+	    			let resVal = [];
+	    			
+	    			temp1.push({
+				        resPath: res.ref.path.toString(),
+				        source: vids.source,
+				       	url: vids.url, 
+				       	topic: vids.topic,
+				       	description: (commonSearchs.find( ({ topic }) => topic == vids.topic)).description,
+				       	rating: vids.rating,
+				       	totalRatings: vids.totalRatings
+				    });
 	    		});
 	    	}
 	    	//load webpages to temporary array
 	    	else if(type.key == "webpages"){
 	    		type.forEach( function(res){
-	    			temp2.push(res.val());
+	    			let web = res.val();
+	    			let resVal = [];
+	    			
+	    			temp2.push({
+				        resPath: res.ref.path.toString(),
+				        source: web.source,
+				       	url: web.url, 
+				       	topic: web.topic,
+					   	description: (commonSearchs.find( ({ topic }) => topic == web.topic)).description,
+				       	rating: web.rating,
+				       	totalRatings: web.totalRatings
+				    });
+	    			
 	    		});
 	    	}
 	    });
@@ -166,9 +244,11 @@ export default class Landing extends Component{
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description} 
+									desc = {data.description} 
 									topic = {data.topic}
 									url = {data.url} 
+									path = {data.resPath}
+									userId = {this.props.userId}
 									rating = {data.rating}
 									user={this.props.user}
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
@@ -189,9 +269,11 @@ export default class Landing extends Component{
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description} 
+									desc = {data.description} 
 									topic = {data.topic}
 									url = {data.url} 
+									path = {data.resPath}
+									userId = {this.props.userId}
 									rating = {data.rating}
 									user={this.props.user}
 									style={{backgroundColor:"rgba(34,139,34,0.3)"}}> 
@@ -220,8 +302,10 @@ export default class Landing extends Component{
 									<Thumbnail 
 									key={data.id} 
 									id = {data.id} 
-									source = {data.source} 
-									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description}
+									source = {data.source}
+									path={data.resPath} 
+									userId = {this.props.userId}
+									desc = {data.description}
 									topic = {data.topic}
 									url = {data.url}
 									rating = {data.rating} 
@@ -244,9 +328,11 @@ export default class Landing extends Component{
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description} 
+									desc = {data.description} 
 									topic = {data.topic}
 									url = {data.url} 
+									path={data.resPath}
+									userId = {this.props.userId}
 									rating = {data.rating}
 									user={this.props.user}
 									style={{backgroundColor:"rgba(255,159,0,0.3)"}}> 
@@ -276,9 +362,11 @@ export default class Landing extends Component{
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description}
+									desc = {data.description}
 									topic = {data.topic} 
 									url = {data.url} 
+									path={data.resPath}
+									userId = {this.props.userId}
 									rating = {data.rating}
 									user={this.props.user}
 									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
@@ -299,9 +387,12 @@ export default class Landing extends Component{
 									key={data.id} 
 									id = {data.id} 
 									source = {data.source} 
-									desc = {(commonSearchs.find( ({ topic }) => topic == data.topic )).description}
+									desc = {data.description}
 									topic = {data.topic}
 									url = {data.url}
+									path = {data.resPath}
+									userId = {this.props.userId}
+									user={this.props.user}
 									rating = {data.rating} 
 									style={{backgroundColor:"rgba(255,56,0,0.3)"}}> 
 									</Thumbnail>
