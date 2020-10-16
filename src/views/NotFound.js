@@ -5,8 +5,6 @@ import React, { Component } from "react";
 import {Col,Container,Row, Jumbotron} from 'reactstrap';
 import {Image} from 'react-bootstrap';
 
-
-
 export default class NotFound extends Component{
 	constructor(props){
 		super(props);

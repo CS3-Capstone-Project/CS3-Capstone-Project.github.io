@@ -163,30 +163,26 @@ export const commonSearchs = [
   },
   {
     topic:'keywords',
-    description: ''
+    description: 'Is a reserved word which identifies a syntactic form. Words used in control...'
   },
   {
     topic:'integer',
-    description: ''
+    description: 'Is a whole number(not fraction) that can be posive, negative, or zero.'
   },
   {
     topic:'float',
-    description: ''
+    description: 'Short for floating point. Define numeric values with floating decimal...'
   },
   {
     topic:'double',
-    description: ''
+    description: 'Can represent a fraction as well as whole number.'
   },
   {
     topic:'print',
-    description: ''
+    description: 'Sends text, variables, or another object to the screen. If you are more ...'
   },
   {
     topic: 'import',
-    description: ''
-  },
-  {
-    topic: '',
-    description: ''
+    description: 'One module gains access to the code of another module, by the process of impo...'
   }
 ];
