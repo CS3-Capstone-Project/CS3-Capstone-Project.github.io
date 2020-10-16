@@ -126,8 +126,15 @@ class ProfilePage extends Component {
           <div><h2 style={{textDecorationColor: "black",textDecoration:"underline"}}>Profile</h2></div>
           <div>Name : {this.props.user}</div>
           <div>Email Address: {this.props.userEmail}</div>
-          { this.props.userType != 'expert' ?
+          { this.props.userType == 'student' ?
+            <div style={{paddingBottom:"50px"}}>
+            <div>Career : Student</div>
             <div>Level: {this.props.userLevel}</div>
+            <hr/>
+            <div style={{paddingTop:"10px", boxShadow:"0px 10px 5px 5px #888888"}}>
+                <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+            </div>
+            </div>
             :
             <div>
             <div>Description: {this.props.description}</div>
@@ -159,7 +166,6 @@ class ProfilePage extends Component {
               }
             </Row>
 
-            <div><h4 style={{paddingTop:"20px",textDecoration:"none"}}>videos</h4></div>
           
             <Row style={{fontFamily:"Sans serif"}}>
               {

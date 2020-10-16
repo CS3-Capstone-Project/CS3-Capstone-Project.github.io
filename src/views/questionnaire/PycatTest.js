@@ -7,7 +7,7 @@ import {Image} from 'react-bootstrap';
 import './LP_button.scss';
 import Modal from 'react-awesome-modal';
 import Header from "../../components/header/Header.js";
-import Fire from "../config/fire";
+import Fire from "../login/config/fire";
 
 //Export default, all class that import this class will import PycatTest
 export default class PycatTest extends Component {
@@ -45,7 +45,7 @@ export default class PycatTest extends Component {
       		this.database = Fire.database().ref().child('User/'+user.uid);
       		this.database.on('value', snap =>{
 	      		if(snap.val().userType==="student"){
-	      			Fire.database().ref('User/' + user.uid).set({
+	      			Fire.database().ref('User/' + user.uid).update({
 	      				email:snap.val().email,
 	      				firstname:snap.val().firstname,
 	      				level:this.state.newLevel,
@@ -91,36 +91,42 @@ export default class PycatTest extends Component {
     setLevel1(){
     	this.setState({
 	    	newLevel:"Intermediate"
+	    },()=>{
+	    	this.levelUpdate();
 	    });
-	    this.levelUpdate();
+	    
     }
     //Updates the level state, whenever user answer all questions correct
     setLevel2(){
     	this.setState({
 	    	newLevel:"Advanced"
+	    },()=>{
+	    	this.levelUpdate();
 	    });
-	    this.levelUpdate();
     }
    //Updates level inside this class so that all other components of this class get the updated leve, and also updates for levelUpdate function
    //which updates level in the database
     intLevel(){
     	this.closeModal();
-    	if(this.state.level===1){
+    	if(this.props.userLevel == "Beginner"){
 	    	this.setState({
-	    		level:2,
+
 	    		newLevel:"Intermediate"
-	    	});
+	    	},()=>{
 	    	this.levelUpdate();
+	    	});
+	    	window.location.replace("/intermediate");
     	}
-    	else if(this.state.level===2){
+    	else if(this.props.userLevel == "Intermediate"){
     		this.setState({
-    			level:3,
     			newLevel:"Advanced"
-    		});
-    		this.levelUpdate();
+    		},()=>{
+	    	this.levelUpdate();
+	    	});
+	    	window.location.replace("/advanced");
     	}
     	else{
-    		return 0;
+    		window.location.replace("/ebooks");
     	}
     }
     //Opens up the modal by setting visibility to true
@@ -135,15 +141,18 @@ export default class PycatTest extends Component {
             visible : false
         });
     }
+    closeQuestion(){
+    	this.closeModal();
+    	window.location.replace("/ebooks");
+    }
+
     //Renders the LevelQuiz page to the website, all components contained will appear, all HTML tags.
   render() {
   	//Beginner level quiz--------------------------------------------------------------------------------------------
-  		if(this.state.level===1){
+  		if(this.props.userLevel == "Beginner"){
 		    return (
 		    	<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-		        	<hr/>
-		    		<Container style={{backgroundColor: "#A2E8A9"}}>
-		            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+		    		<Container style={{marginTop: "100px",backgroundColor: "#A2E8A9"}}>
 		    			<h1>Beginner level learning path</h1>
 		    			<div>
 			    			<p style={{fontSize:"16px", fontWeight:"bold"}}>1. What is the output of the following code?</p>
@@ -561,12 +570,11 @@ export default class PycatTest extends Component {
 	//End of Beginner quiz--------------------------------------------------------------------------------------------------------------
 
 	//Intermediate level quiz-------------------------------------------------------------------------------------------------------------
-		else if(this.state.level===2){
+		else if(this.props.userLevel == "Intermediate"){
 			return(
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-			        <Header/>
-		    		<Container style={{backgroundColor: "#FAD8A3"}}>
-			            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+			        
+		    		<Container style={{marginTop: "100px", marginBottom:"20px",backgroundColor: "#FAD8A3"}}>
 		    			<h1>Intermediate level learning path</h1>
 		    			<div>
 			    			<p style={{fontSize:"16px", fontWeight:"bold"}}>1. In Python3, which functions are used to accept input from the user</p>
@@ -1009,12 +1017,10 @@ export default class PycatTest extends Component {
 //End of Intermediate level quiz-------------------------------------------------------------------------------------------------------------
 
 //Advanced level quiz-------------------------------------------------------------------------------------------------------------------------
-		else{
+		else if(this.props.userLevel == "Advanced"){
 			return(
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-			        <Header/>
-		    		<Container style={{backgroundColor: "#F0A2A2"}}>
-			            <iframe src="https://trinket.io/embed/python/edd948bf08" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+		    		<Container style={{marginTop: "100px", marginBottom:"20px",backgroundColor: "#F0A2A2"}}>
 		    			<h1>Advanced level learning path</h1>
 		    			<div>
 			    			<p style={{fontSize:"16px", fontWeight:"bold"}}>1. What is the output of the following?</p>
@@ -1413,6 +1419,7 @@ export default class PycatTest extends Component {
 							    &nbsp; interpreter/ compile time
 							</label>
 						</div>
+						<hr/>
 						<div>
 			    			<p style={{fontSize:"16px", fontWeight:"bold"}}>10. what is output of following code?</p>
 							<Container style={{backgroundColor: "#ffffff"}}>
@@ -1473,17 +1480,27 @@ export default class PycatTest extends Component {
 		    			<Modal visible={this.state.visible} width="500" height="100" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
 			    			<Container style={{backgroundColor: "#12AB18"}}>
 			    				<div>
-			    					<p>Congradulations you have passed our short learning path!</p>
+			    					<p>Congradulations you have passed our advanced level, see extra resource in ebooks.</p>
 			    				</div>
 			    			</Container>
 			    			<Container>
-			    				<Button onClick={()=> this.closeModal()}>Ok</Button>
+			    				<Button onClick={()=> this.closeQuestion()}>Ok</Button>
 			    			</Container>
 			    		</Modal>
 		    		</Container>
 		    	</Container>
 	    	);
 		}
+		else{
+		
+			return(
+				<div>
+					this.props.userLevel
+				</div>
+			);
+		}
+	
 //End of Advanced level quiz-----------------------------------------------------------------------------------------------------------------------------
 	}
+
 }

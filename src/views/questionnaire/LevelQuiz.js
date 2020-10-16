@@ -85,8 +85,8 @@ export default class LevelQuiz extends Component {
   		if(this.state.randomNum===0){
 	  		return (
 	  			<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-				    <Header/>
-				    <Container style={{backgroundColor: "#D7DBDD"}}>
+				    
+				    <Container style={{marginTop: "100px", marginBottom:"20px",backgroundColor: "#D7DBDD"}}>
 				    	<p style={{fontSize:"20px", fontWeight:"bold"}}>Please answer all questions on this quiz, this will help us determine your level of understanding python.</p>
 				    	<div>
 				    		<p style={{fontSize:"16px", fontWeight:"bold"}}>1. What is the output of the following code?</p>
@@ -256,8 +256,7 @@ export default class LevelQuiz extends Component {
  		else if(this.state.randomNum===1){
 			return (
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-				    <Header/>
-				   	<Container style={{backgroundColor: "#D7DBDD"}}>
+				   	<Container style={{marginTop: "100px", marginBottom:"20px" ,backgroundColor: "#D7DBDD"}}>
 				    	<p style={{fontSize:"20px", fontWeight:"bold"}}>Please answer all questions on this quiz, this will help us determine your level of understanding python.</p>
 						<div>
 							<p style={{fontSize:"16px", fontWeight:"bold"}}>1.Which operator has higher precedence in the following list?</p>
@@ -383,8 +382,7 @@ export default class LevelQuiz extends Component {
 		else{
 			return (
 				<Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-				    <Header/>
-				   	<Container style={{backgroundColor: "#D7DBDD"}}>
+				   	<Container style={{marginTop: "100px", marginBottom:"20px",backgroundColor: "#D7DBDD"}}>
 				    	<p style={{fontSize:"20px", fontWeight:"bold"}}>Please answer all questions on this quiz, this will help us determine your level of understanding python.</p>
 						<div>
 							<p style={{fontSize:"16px", fontWeight:"bold"}}>1. What is the output of the following display() function call?</p>

@@ -16,6 +16,8 @@ import Ebooks from "./ebooks/Ebooks.js";
 import ProfilePage from "./login/ProfilePage.js";
 import Header from "../components/header/Header.js";
 import NotFound from "./NotFound.js";
+import PycatTest from "./questionnaire/PycatTest.js";
+import LevelQuiz from "./questionnaire/LevelQuiz.js";
 
 //Styles
 import "./App.scss";
@@ -87,6 +89,20 @@ export default function App(){
    				</Route>
 
           <Route 
+          path={"/LevelQuiz"}
+          render = {props =>(
+          <LevelQuiz user={user} { ...props} />
+          )}>
+          </Route>
+
+          <Route 
+          path={"/PycatTest"}
+          render = {props =>(
+          <PycatTest userLevel={userLevel} user={user} { ...props} />
+          )}>
+          </Route>
+
+          <Route 
           path={"/profile"}
           render = {props =>(
           <ProfilePage 
@@ -134,19 +150,19 @@ export default function App(){
 
    				<Route path={"/beginner"}
             render = {props =>(
-            <Beginner userId={userId} user={user} { ...props} />
+            <Beginner userType={userType} userId={userId} user={user} { ...props} />
           )}>
    				</Route>
 
    				<Route path={"/intermediate"}
             render = {props =>(
-            <Intermediate userId={userId} user={user} { ...props} />
+            <Intermediate userType={userType} userId={userId} user={user} { ...props} />
           )}>
    				</Route>
 
    				<Route path={"/advanced"}
             render = {props =>(
-            <Advanced userId={userId} user={user} { ...props} />
+            <Advanced userType={userType} userId={userId} user={user} { ...props} />
           )}>
    				</Route>
           <Route path={"*"}

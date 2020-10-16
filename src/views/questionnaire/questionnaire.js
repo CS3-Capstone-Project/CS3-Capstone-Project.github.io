@@ -61,10 +61,11 @@ export default class Questionnaire extends Component{
         });
     }
     //Renders the questionnaire page to the website, all components contained will appear, HTML tags.
+    
     render() {
         return (
             <Container fluid style={{paddingLeft:"0", paddingRight:"0"}}>
-                <Container className="formControl" style={{backgroundColor:"#D6EAF8"}}>
+                <Container className="formControl" style={{marginTop: "100px",marginBottom:"20px",backgroundColor:"#D6EAF8"}}>
                     <div ><p style={{fontWeight:"bold"}}>Select level</p> {this.props.level}</div>
                     <div style={{textAlign:"left", width:"185px",position:"relative", margin:"0 auto", backgroundColor:"#F4F6F6"}}>
                         <Form onSubmit={this.formSubmit}>

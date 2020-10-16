@@ -31,7 +31,6 @@ class ForgotPassword extends Component {
       email:""
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.reset = this.reset.bind(this);
   }
 

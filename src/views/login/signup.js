@@ -10,6 +10,8 @@ import {Button,TextField,
         } from '@material-ui/core';
 import IconButton from 'material-ui/IconButton';
 
+import Modal from 'react-awesome-modal';
+
 import loginImg from "./Login.svg";
 
 import {Link} from 'react-router-dom';
@@ -37,10 +39,13 @@ export default class SignUp extends React.Component {
       description:"",
       ratedResources:{},
       myResources:{},
+      visible:false
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.signup = this.signup.bind(this);
+    this.openModal=this.openModal.bind(this);
+    this.closeModal=this.closeModal.bind(this);
 
    }
 
@@ -94,8 +99,8 @@ export default class SignUp extends React.Component {
             if(user){
               Fire.database().ref('User/' + user.uid).once("value", snap => {
                 this.props.handleUser(snap.val().firstname);
-                alert("Welcome " + snap.val().firstname + ", you are now signed in.");
-                window.location.replace('/');
+                this.openModal();
+                //window.location.replace('/');
             })
           }
 
@@ -152,6 +157,19 @@ export default class SignUp extends React.Component {
         }
       }); 
   }
+
+  //Opens the modal welcoming new student users.
+   openModal(){
+        this.setState({
+            visible : true
+        });
+    }
+    //Closes the modal welcoming new student users.
+    closeModal(){
+        this.setState({
+            visible : false
+        });
+    }
 
   //Display the sign up page
   render(){
@@ -274,6 +292,26 @@ export default class SignUp extends React.Component {
               <p>Already have an account? <Link className="loginLinks" to="/signin">Sign In </Link> </p>
             </div>
             </Container>
+            <Modal visible={this.state.visible} width="400" height="330" effect= "fadeInUp" onClickAway={() => this.closeModal()}>
+              <Container  >
+                <div>
+                  <Container style={{backgroundColor:"#D1EEDE"}}>
+                  <p style={{fontSize:"26px", fontWeight:"bold"}}>Welcome {this.state.firstname}</p>
+                  </Container>
+                  <hr/>
+                </div>
+                <div>
+                <Container style={{backgroundColor:"#E6E9ED"}}>
+                  <li>Now you can rate resources after you have viewed them.</li>
+                  <li>You can check your understanding of python concepts based on their level of difficulty.</li>
+                  <li>You can monitor your progress.</li>
+                </Container>
+                <hr/>
+                </div>
+                <div><p style={{fontSize:"20px", fontWeight:"bold"}}>Enjoy</p></div>
+              </Container>
+              <div><Link to="/questionnaire"><Button className="btn btn-primary float-center"style={{backgroundColor:"#5bc0de"}}>continue</Button></Link></div>
+            </Modal>
         </Container>
       );
     }

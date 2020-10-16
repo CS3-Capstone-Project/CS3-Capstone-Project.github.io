@@ -96,6 +96,13 @@ export default class Intermediate extends Component{
 			<Container fluid style={{backgroundColor:"#f5f5f5",paddingLeft:"0px", paddingRight:"0px"}}>
 			
 			<Container className="wrapper">
+				{this.props.userType == "student" ?(
+						<>
+							<Link className = "links" to="/PycatTest">
+								<Button className="btn btn-primary btn-lg"style={{backgroundColor:"#5bc0de"}}>Questions</Button>
+							</Link>
+						</>) : (
+						<><p></p></>)}
 				<div style={{textAlign:"center"}}><div ><h2>Intermediate</h2></div></div>
 				<div><h5>Videos</h5></div>
 				<Row>

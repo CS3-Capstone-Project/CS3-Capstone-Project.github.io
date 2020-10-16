@@ -142,7 +142,7 @@ export default class SearchBar extends Component {
         options={commonSearchs}
         getOptionLabel={function(option){
           if(option.topic == "All"){
-            return "float";
+            return "";
           }
           else{
             return option.topic;
@@ -151,10 +151,8 @@ export default class SearchBar extends Component {
         style={{ width: 200 }}
         renderInput={(params) => <TextField {...params} color="primary" label="Search" variant="outlined" fullWidth/>}
         onChange={(event,value) => {
-          if(value != null){
-            
+          if(value != null){  
             this.openModal(value.topic);
-
           }
         }}
         size={"small"}/>
