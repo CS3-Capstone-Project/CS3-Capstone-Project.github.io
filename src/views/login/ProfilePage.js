@@ -166,7 +166,7 @@ class ProfilePage extends Component {
               }
             </Row>
 
-          
+            <div><h4 style={{paddingTop:"5px",textDecoration:"none"}}>Videos</h4></div>
             <Row style={{fontFamily:"Sans serif"}}>
               {
                 this.state.videos.map((data,key) => {

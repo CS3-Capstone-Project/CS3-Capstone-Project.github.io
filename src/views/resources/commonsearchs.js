@@ -71,7 +71,7 @@ export const commonSearchs = [
   },
   {
     topic:'while loop',
-    description:'With the while loop we can execute a set of statements as long as a they...'
+    description:'With the while loop we can execute a set of statements as long as a...'
   },
   {
     topic:'for loop',
