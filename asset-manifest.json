@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/pycat/static/css/main.bf359007.chunk.css",
+    "main.js": "/pycat/static/js/main.b9970006.chunk.js",
+    "main.js.map": "/pycat/static/js/main.b9970006.chunk.js.map",
+    "runtime-main.js": "/pycat/static/js/runtime-main.39352e5c.js",
+    "runtime-main.js.map": "/pycat/static/js/runtime-main.39352e5c.js.map",
+    "static/js/2.11febfa1.chunk.js": "/pycat/static/js/2.11febfa1.chunk.js",
+    "static/js/2.11febfa1.chunk.js.map": "/pycat/static/js/2.11febfa1.chunk.js.map",
+    "index.html": "/pycat/index.html",
+    "precache-manifest.1e7c19176c5d7b94c66a45065913b554.js": "/pycat/precache-manifest.1e7c19176c5d7b94c66a45065913b554.js",
+    "service-worker.js": "/pycat/service-worker.js",
+    "static/css/main.bf359007.chunk.css.map": "/pycat/static/css/main.bf359007.chunk.css.map",
+    "static/js/2.11febfa1.chunk.js.LICENSE.txt": "/pycat/static/js/2.11febfa1.chunk.js.LICENSE.txt",
+    "static/media/Login.svg": "/pycat/static/media/Login.87491ab5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.39352e5c.js",
+    "static/js/2.11febfa1.chunk.js",
+    "static/css/main.bf359007.chunk.css",
+    "static/js/main.b9970006.chunk.js"
+  ]
+}
